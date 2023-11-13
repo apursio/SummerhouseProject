@@ -12,7 +12,7 @@ public class BackendHandler : MonoBehaviour
 {
     public TMP_Text highScoresTextArea;
     public TMP_Text logTextArea;
-    public TMP_InputField playerNameInput;
+    public TMP_InputField playernameInput;
     public TMP_InputField scoreInput;
     bool updateHighScoreTextArea = false;
     private int fetchCounter = 0;
@@ -36,7 +36,7 @@ public class BackendHandler : MonoBehaviour
         Debug.Log("BackendHandler started");
         // conversion from JSON to object
         hs = JsonUtility.FromJson<HighScores>(jsonTestStr);       
-        Debug.Log("HighScores name: " + hs.scores[0].playerName);  
+        Debug.Log("HighScores name: " + hs.scores[0].playername);  
         // conversion from object to JSON
         Debug.Log("HighScores as json: " + JsonUtility.ToJson(hs));     
     }
@@ -62,7 +62,7 @@ public class BackendHandler : MonoBehaviour
             for (int i = 0; i < len; i++)
             {
                 hsList += string.Format("[ {0} ] {1,15} {2,5} {3,15}\n",
-                    (i+1), hs.scores[i].playerName, hs.scores[i].score, hs.scores[i].playtime);
+                    (i+1), hs.scores[i].playername, hs.scores[i].score, hs.scores[i].playtime);
             }
         }
         return hsList;
@@ -90,18 +90,19 @@ public class BackendHandler : MonoBehaviour
             }
             else
             {
+                Debug.Log(resultStr);
                 // create HighScore item from json string
                 hs = JsonUtility.FromJson<HighScores>(resultStr);
                 updateHighScoreTextArea = true;
                 InsertToLog("Response received succesfully ");
                 Debug.Log("Received(UTF8): " + resultStr);
                 Debug.Log("Received(HS): " + JsonUtility.ToJson(hs));
-                Debug.Log("Received(HS) name: " + hs.scores[0].playerName);
+                Debug.Log("Received(HS) name: " + hs.scores[0].playername);
             }
         }
     }
-
-            public void FetchHighScoresJSONFile() 
+    /*
+    public void FetchHighScoresJSONFile() 
     {
         fetchCounter++;
         Debug.Log("FetchHighScoresJSONFile button clicked");
@@ -142,12 +143,12 @@ public class BackendHandler : MonoBehaviour
                 Debug.Log("Received(HS): " + JsonUtility.ToJson(hs));
             }
         } 
-    }
+    } */
     public void FetchHighScoresJSON() 
     {
         fetchCounter++;
         Debug.Log("FetchHighScoresJSON button clicked");
-        StartCoroutine(GetRequestForHighScoresFile(urlBackendHighScores));
+        StartCoroutine(GetRequestForHighScores(urlBackendHighScores));
     }
 
     string InsertToLog(string s)
@@ -163,10 +164,10 @@ public class BackendHandler : MonoBehaviour
     public void PostGameResults()
     {
         HighScore hsItem = new HighScore();
-        hsItem.playerName = playerNameInput.text;
+        hsItem.playername = playernameInput.text;
         hsItem.score = float.Parse(scoreInput.text);
 
-        Debug.Log("PostGameResults button clicked: " + playerNameInput.text + " with scores " + scoreInput.text);
+        Debug.Log("PostGameResults button clicked: " + playernameInput.text + " with scores " + scoreInput.text);
         Debug.Log("hsItem: " + JsonUtility.ToJson(hsItem)); 
         StartCoroutine(PostRequestForHighScores(urlBackendHighScores, hsItem));
     }
@@ -194,7 +195,7 @@ public class BackendHandler : MonoBehaviour
                 Debug.Log("Error in post request: " + webRequest.error);
             }
             else{
-                string resultStr = System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
+                string resultStr = Encoding.UTF8.GetString(webRequest.downloadHandler.data);
                 InsertToLog("POST request succesful");
                 Debug.Log("Received(UTF8): " + resultStr);
             }

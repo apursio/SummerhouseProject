@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour
 {
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
+    public TMP_InputField tmpIfStory;
     public float initialTime;
     private float timeLeft;
 
@@ -15,7 +16,10 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         timeLeft = initialTime;
+        tmpIfStory.enabled = false; // story ikkunan piilotus, joka ei tosin toimi
         StartCoroutine("updateLevel");
+        
+
     }
     IEnumerator updateLevel()
     {

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PlayerPickUpDrop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private Transform objectGrabPointTransform;
@@ -28,6 +23,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                 {
                     if (raycastHit.transform.TryGetComponent(out objectGrabbable))
                     {
+                        Debug.Log(objectGrabbable);
                         objectGrabbable.Grab(objectGrabPointTransform);
                     }
                 }

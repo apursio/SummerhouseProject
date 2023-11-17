@@ -1,38 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerPickUpDrop : MonoBehaviour
 {
-
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask pickUpLayerMask;
+    [SerializeField] private TextMeshProUGUI pickUpPromptText;
+    [SerializeField] private float pickUpDistance = 5f;
 
     private ObjectGrabbable objectGrabbable;
 
-    // Update is called once per frame
-    private void Update()
+    void Update()
+    {
+        HandlePickUpInput();
+
+        UpdatePromptTextVisibility();
+    }
+
+    private void HandlePickUpInput()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (objectGrabbable == null)
             {
-                float pickUpDistance = 5f;
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
-                {
-                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))
-                    {
-                        Debug.Log(objectGrabbable);
-                        objectGrabbable.Grab(objectGrabPointTransform);
-                    }
-                }
-            } else
+                TryGrabObject();
+            }
+            else
             {
                 objectGrabbable.Drop();
                 objectGrabbable = null;
             }
-        
+        }
+    }
+
+    private void TryGrabObject()
+    {
+        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out objectGrabbable))
+            {
+                Debug.Log(objectGrabbable);
+                objectGrabbable.Grab(objectGrabPointTransform);
+            }
+        }
+    }
+
+    private void UpdatePromptTextVisibility()
+    {
+        if (objectGrabbable == null)
+        {
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
+            {
+                ObjectGrabbable grabbable = raycastHit.transform.GetComponent<ObjectGrabbable>();
+
+                if (grabbable != null)
+                {
+                    float distanceToGrabbable = Vector3.Distance(playerCameraTransform.position, raycastHit.point);
+                    if (distanceToGrabbable < pickUpDistance)
+                    {
+                        Debug.Log(grabbable);
+                        pickUpPromptText.enabled = true;
+                    }
+                    else
+                    {
+                        pickUpPromptText.enabled = false;
+                    }
+                }
+                else
+                {
+                    pickUpPromptText.enabled = false;
+                }
+            }
+            else
+            {
+                pickUpPromptText.enabled = false;
+            }
+        }
+        else
+        {
+            pickUpPromptText.enabled = false;
         }
     }
 }
+
+
+
+

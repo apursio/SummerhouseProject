@@ -21,6 +21,7 @@ public class MoveObjectController : MonoBehaviour
 
 	void Start()
 	{
+		Debug.Log("Script attached to: " + gameObject.name);
 		//Initialize moveDrawController if script is enabled.
 		player = GameObject.FindGameObjectWithTag("Player");
 
@@ -30,9 +31,18 @@ public class MoveObjectController : MonoBehaviour
 			Debug.LogError("A camera tagged 'MainCamera' is missing.");
 		}
 
-		//create AnimatorOverrideController to re-use animationController for sliding draws.
-		anim = GetComponent<Animator>(); 
-		anim.enabled = false;  //disable animation states by default.  
+		// create AnimatorOverrideController to re-use animationController for sliding draws.
+		anim = GetComponentInChildren<Animator>();
+		if (anim == null)
+		{
+			Debug.LogError("Animator component is missing on the object this script is attached to.");
+			enabled = false;
+			return;
+		}
+		else
+		{
+			anim.enabled = false;  // disable animation states by default.
+		}
 
 		//the layer used to mask raycast for interactable objects only
 		LayerMask iRayLM = LayerMask.NameToLayer("InteractRaycast");
@@ -82,22 +92,24 @@ public class MoveObjectController : MonoBehaviour
 				{	//it's not so return;
 					return;
 				}
-					
-				if (moveableObject != null)		//hit object must have MoveableDraw script attached
+
+				if (moveableObject != null)    // hit object must have MoveableDraw script attached
 				{
 					showInteractMsg = true;
 					string animBoolNameNum = animBoolName + moveableObject.objectNumber.ToString();
 
-					bool isOpen = anim.GetBool(animBoolNameNum);	//need current state for message.
+					bool isOpen = anim != null ? anim.GetBool(animBoolNameNum) : false; // check for null
 					msg = getGuiMsg(isOpen);
 
 					if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
 					{
-						anim.enabled = true;
-						anim.SetBool(animBoolNameNum,!isOpen);
-						msg = getGuiMsg(!isOpen);
+						if (anim != null)
+						{
+							anim.enabled = true;
+							anim.SetBool(animBoolNameNum, !isOpen);
+							msg = getGuiMsg(!isOpen);
+						}
 					}
-
 				}
 			}
 			else

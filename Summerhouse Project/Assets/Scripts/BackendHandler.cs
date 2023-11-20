@@ -17,16 +17,17 @@ public class BackendHandler : MonoBehaviour
     bool updateHighScoreTextArea = false;
     private int fetchCounter = 0;
     string log = "";
-    const string urlBackendHighScoresFile = "https://niisku.lab.fi/~x119867/PHPBackend/highscores.json";
+    // const string urlBackendHighScoresFile = "https://niisku.lab.fi/~x119867/PHPBackend/highscores.json";
     const string urlBackendHighScores = "https://niisku.lab.fi/~x119867/PHPBackend/api/highscores.php";
 
+    /*Ä
     const string jsonTestStr = "{ " +
         "\"scores\":[ " +
         "{\"id\":1, \"playername\":\"Matti\",  \"score\":20, \"playtime\": \"2020-21-11 08:20:00\"}, " +
         "{\"id\":2, \"playername\":\"Henkka\", \"score\":30, \"playtime\": \"2020-21-11 08:20:00\"}, " +
         "{\"id\":3, \"playername\":\"Ismo\",   \"score\":40, \"playtime\": \"2020-21-11 08:20:00\"} " +
         "] }";  
-    
+    */
     // vars
     HighScores hs; 
     
@@ -35,10 +36,10 @@ public class BackendHandler : MonoBehaviour
     {         
         Debug.Log("BackendHandler started");
         // conversion from JSON to object
-        hs = JsonUtility.FromJson<HighScores>(jsonTestStr);       
-        Debug.Log("HighScores name: " + hs.scores[0].playername);  
+        // hs = JsonUtility.FromJson<HighScores>(jsonTestStr);       
+        // Debug.Log("HighScores name: " + hs.scores[0].playername);  
         // conversion from object to JSON
-        Debug.Log("HighScores as json: " + JsonUtility.ToJson(hs));     
+        // Debug.Log("HighScores as json: " + JsonUtility.ToJson(hs));     
     }
 
     
@@ -56,17 +57,22 @@ public class BackendHandler : MonoBehaviour
     string CreateHighScoreList()
     {
         string hsList = "";
-        if(hsList != null)
+        if (hsList != null)
         {
             int len = (hs.scores.Length < 3) ? hs.scores.Length : 3;
             for (int i = 0; i < len; i++)
             {
-                hsList += string.Format("[ {0} ] {1,15} {2,5} {3,15}\n",
-                    (i+1), hs.scores[i].playername, hs.scores[i].score, hs.scores[i].playtime);
+                string truncatedName = hs.scores[i].playername.Length > 7
+                    ? hs.scores[i].playername.Substring(0, 7)
+                    : hs.scores[i].playername;
+
+                hsList += string.Format("[ {0} ] {1,-7} {2,5}\n",
+                    (i + 1), truncatedName, hs.scores[i].score);
             }
         }
         return hsList;
     }
+
 
 
     IEnumerator GetRequestForHighScores(string uri)
@@ -74,6 +80,7 @@ public class BackendHandler : MonoBehaviour
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
             InsertToLog("Request sent to " + uri);
+            Debug.Log("Coroutine started");
             
             // set downloadHandler for json
             webRequest.downloadHandler = new DownloadHandlerBuffer();

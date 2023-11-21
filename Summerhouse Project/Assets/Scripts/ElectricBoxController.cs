@@ -36,7 +36,7 @@ public class ElectricBoxController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Update method called");
+        //Debug.Log("Update method called");
 
         Debug.DrawRay(transform.position, playerController.transform.position - transform.position, Color.green); // Visualize the ray
         // Use the interactableLayerMask in the Physics.Raycast

@@ -2662,7 +2662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150656692776182782, guid: 85613a3a0f37dab48bc7c0408ab0ca41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.52
+      value: 12.696
       objectReference: {fileID: 0}
     - target: {fileID: 8150656692776182782, guid: 85613a3a0f37dab48bc7c0408ab0ca41, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2727,11 +2727,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lidSmoothness: 5
   knobSmoothness: 5
-  activationDistance: 2
+  activationDistance: 3
   dynamicLights: {fileID: 690463727}
   interactableLayerMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 256
 --- !u!4 &1044926293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013640550908, guid: 75434d6852c358145ab099a0eaeea877, type: 3}

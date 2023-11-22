@@ -8,7 +8,11 @@ public class LevelController : MonoBehaviour
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
     public float initialTime;
+    public float timeScore; // ajasta tulevat pisteet
+    public float actionScore; //toiminnoista tulevat pisteet > n‰ytet‰‰n pelaajalle valintoja tehdess‰
+    public float playerScore; // pisteet yhteens‰
     private float timeLeft;
+   
 
     // Start is called before the first frame update
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.013
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0015091547, g: 0.003011544, b: 0.00061157224, a: 0.013}
+  m_IndirectSpecularColor: {r: 0.0015067955, g: 0.0030092672, b: 0.0006139885, a: 0.013}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1169,8 +1169,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6bc657a14ebe398439dffcfd3e6496d3, type: 2}
+  m_sharedMaterial: {fileID: -4602854150689761507, guid: 6bc657a14ebe398439dffcfd3e6496d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2157,7 +2157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1497
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bc657a14ebe398439dffcfd3e6496d3, type: 2}
   m_sharedMaterial: {fileID: -4602854150689761507, guid: 6bc657a14ebe398439dffcfd3e6496d3, type: 2}
@@ -2868,7 +2868,7 @@ Transform:
   m_GameObject: {fileID: 978249911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.213, y: 0.613, z: 20.598}
+  m_LocalPosition: {x: 23.213, y: 1.18, z: 20.598}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3984,7 +3984,7 @@ GameObject:
   - component: {fileID: 1423863799}
   - component: {fileID: 1423863798}
   m_Layer: 5
-  m_Name: InputFieldScore
+  m_Name: InputFieldTimeScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5681,7 +5681,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bc657a14ebe398439dffcfd3e6496d3, type: 2}
   m_sharedMaterial: {fileID: -4602854150689761507, guid: 6bc657a14ebe398439dffcfd3e6496d3, type: 2}
@@ -6815,11 +6815,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpIfTime: {fileID: 1231048435}
-  tmpIfPoints: {fileID: 0}
-  initialTime: 35
+  tmpIfPoints: {fileID: 1968913096}
+  tmpIfTimeScore: {fileID: 1423863798}
+  initialTime: 200
+  taskTime: 60
   timeScore: 0
   actionScore: 0
+  totalTimeScore: 0
+  totalActionScore: 0
   playerScore: 0
+  fireIsOut: 0
 --- !u!4 &2073597573
 Transform:
   m_ObjectHideFlags: 0
@@ -6954,7 +6959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding: {x: -8, y: -5, z: -8, w: -5}
+  m_Padding: {x: -5, y: -5, z: -5, w: -5}
   m_Softness: {x: 0, y: 0}
 --- !u!1001 &4728002538893383143
 PrefabInstance:

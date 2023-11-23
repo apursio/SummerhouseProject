@@ -8,11 +8,12 @@ public class LevelController : MonoBehaviour
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
     public float initialTime;
-    public float timeScore; // ajasta tulevat pisteet
+    public float taskTime;
+    public int timeScore; // ajasta tulevat pisteet
     public float actionScore; //toiminnoista tulevat pisteet > n‰ytet‰‰n pelaajalle valintoja tehdess‰
     public float playerScore; // pisteet yhteens‰
     private float timeLeft;
-   
+
 
     // Start is called before the first frame update
 
@@ -24,7 +25,7 @@ public class LevelController : MonoBehaviour
     IEnumerator updateLevel()
     {
         float interval = 1f;
-        for(; ; )
+        for (; ; )
         {
             yield return new WaitForSeconds(interval);
             if (timeLeft > 0)//jos aikaa on j‰ljell‰ v‰hennet‰‰n intervalli j‰ljell‰ olevasta ajasta
@@ -32,16 +33,22 @@ public class LevelController : MonoBehaviour
                 timeLeft -= interval;
             }
             else //ei tee toistaiseksi mit‰‰n kun aika loppuu
-            { }    
+            { }
         }
     }
 
-    void DisplayTime (float timeToDisplay)
+    void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 0;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         tmpIfTime.text = string.Format("{0:00} : {1:00}", minutes, seconds); //muotoilee ajan minuuteiksi ja sekunneiksi
+    }
+
+    int countTimeScore()
+    {
+        taskTime = 60;
+        return timeScore;
     }
 
     // Update is called once per frame

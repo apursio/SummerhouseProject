@@ -108,7 +108,7 @@ public class MoveObjectController : MonoBehaviour
 							anim.enabled = true;
 							anim.SetBool(animBoolNameNum, !isOpen);
 							msg = getGuiMsg(!isOpen);
-						}
+                        }
 					}
 				}
 			}

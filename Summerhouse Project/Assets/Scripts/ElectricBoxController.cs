@@ -5,6 +5,7 @@ public class ElectricBoxController : MonoBehaviour
 {
     public float lidSmoothness = 5f;
     public float knobSmoothness = 5f;
+    public float activationDistance = 2.0f;
 
     private bool isLidOpen = false;
     private bool isKnobTurned = false;
@@ -15,66 +16,85 @@ public class ElectricBoxController : MonoBehaviour
     private GameObject lid;
     private GameObject knob;
 
+    public GameObject dynamicLights;
+    private bool isDynamicLightsEnabled = true;
+
+    private MoveObjectController playerController;
+
+    // Declare a LayerMask variable
+    public LayerMask interactableLayerMask;
+
     void Start()
     {
-        lid = GameObject.Find("Cup"); // Replace with the actual name of your lid GameObject
-        knob = GameObject.Find("Main Knob"); // Replace with the actual name of your knob GameObject
+        lid = GameObject.Find("Cup");
+        knob = GameObject.Find("Main Knob");
 
-        // Ensure the initial rotation of the knob is X-90
         knob.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+
+        playerController = FindObjectOfType<MoveObjectController>();
     }
 
     void Update()
     {
-        // Check if the "R" key is pressed
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (canToggleLid)
-            {
-                canToggleLid = false; // Prevent starting a new lid toggle until the current one completes
+        //Debug.Log("Update method called");
 
-                StartCoroutine(ToggleLid());
+        Debug.DrawRay(transform.position, playerController.transform.position - transform.position, Color.green); // Visualize the ray
+        // Use the interactableLayerMask in the Physics.Raycast
+        if (Physics.Raycast(transform.position, playerController.transform.position - transform.position, out RaycastHit hit, activationDistance, interactableLayerMask))
+        {
+            Debug.Log("Player is within activation distance");
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("R key pressed");
+                if (canToggleLid)
+                {
+                    canToggleLid = false;
+                    StartCoroutine(ToggleLid());
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.T))
+            {
+                Debug.Log("T key pressed");
+                if (canToggleKnob)
+                {
+                    canToggleKnob = false;
+                    StartCoroutine(ToggleKnob());
+                    isDynamicLightsEnabled = !isDynamicLightsEnabled;
+                    ToggleDynamicLights();
+                }
             }
         }
-        // Check if the "T" key is pressed
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (canToggleKnob)
-            {
-                canToggleKnob = false; // Prevent starting a new knob toggle until the current one completes
+    }
 
-                StartCoroutine(ToggleKnob());
-            }
+    void ToggleDynamicLights()
+    {
+        if (dynamicLights != null)
+        {
+            dynamicLights.SetActive(isDynamicLightsEnabled);
+            Debug.Log("DynamicLights are now " + (isDynamicLightsEnabled ? "enabled" : "disabled"));
+        }
+        else
+        {
+            Debug.LogWarning("DynamicLights reference is not set!");
         }
     }
 
     IEnumerator ToggleLid()
     {
-        // Toggle the lid state
         isLidOpen = !isLidOpen;
-
-        // Decide the target rotation based on whether the lid is open or closed
         Quaternion lidTargetRotation = isLidOpen ? Quaternion.Euler(0, 90, 0) : Quaternion.Euler(-90, 90, 0);
-
-        // Start the lid movement coroutine
         yield return StartCoroutine(MoveLid(lidTargetRotation));
-
-        canToggleLid = true; // Allow starting a new lid toggle
-        canToggleKnob = isLidOpen; // Allow starting a knob toggle only if the lid is open
+        canToggleLid = true;
+        canToggleKnob = isLidOpen;
     }
 
     IEnumerator ToggleKnob()
     {
-        // Toggle the knob state
         isKnobTurned = !isKnobTurned;
-
-        // Decide the target rotation based on whether the knob is turned or not
         Quaternion knobTargetRotation = isKnobTurned ? Quaternion.Euler(40, 0, 0) : Quaternion.Euler(-90, 0, 0);
-
-        // Start the knob movement coroutine
         yield return StartCoroutine(MoveKnob(knobTargetRotation));
-
-        canToggleKnob = true; // Allow starting a new knob toggle
+        canToggleKnob = true;
     }
 
     IEnumerator MoveLid(Quaternion targetRotation)

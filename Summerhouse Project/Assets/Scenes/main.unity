@@ -7609,7 +7609,7 @@ MonoBehaviour:
   tmpIfTime: {fileID: 1231048435}
   tmpIfPoints: {fileID: 1968913096}
   tmpIfTimeScore: {fileID: 1423863798}
-  tmpIfActionScore: {fileID: 0}
+  tmpIfActionScore: {fileID: 1332585481}
   initialTime: 200
   taskTime: 60
 --- !u!4 &2073597573

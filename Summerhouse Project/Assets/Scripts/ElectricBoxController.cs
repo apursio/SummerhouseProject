@@ -44,7 +44,7 @@ public class ElectricBoxController : MonoBehaviour
         {
             //Debug.Log("Player is within activation distance");
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKey(KeyCode.R))
             {
                 Debug.Log("R key pressed");
                 if (canToggleLid)
@@ -53,7 +53,7 @@ public class ElectricBoxController : MonoBehaviour
                     StartCoroutine(ToggleLid());
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.T))
+            else if (Input.GetKey(KeyCode.T))
             {
                 Debug.Log("T key pressed");
                 if (canToggleKnob)
@@ -62,10 +62,7 @@ public class ElectricBoxController : MonoBehaviour
                     StartCoroutine(ToggleKnob());
                     isDynamicLightsEnabled = !isDynamicLightsEnabled;
                     ToggleDynamicLights();
-                    if(GlobalVariableStorage.timeLeft < 120)
-                    {
-                        GlobalVariableStorage.actionScore = 600;
-                    }
+
                 }
             }
         }

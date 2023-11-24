@@ -70,7 +70,7 @@ public class LevelController : MonoBehaviour
 
     void DisplayActionScore()
     {
-        Debug.Log("Display action score");
+        // Debug.Log("Display action score");
         tmpIfActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
 
     }
@@ -78,7 +78,6 @@ public class LevelController : MonoBehaviour
     void DisplayPoints()
     {
         //Debug.Log("Display points");
-        GlobalVariableStorage.playerScore = GlobalVariableStorage.totalTimeScore + GlobalVariableStorage.totalActionScore;
         tmpIfPoints.text = GlobalVariableStorage.playerScore.ToString();
     }
 
@@ -98,7 +97,7 @@ public class LevelController : MonoBehaviour
                 Debug.Log("Fire is out");
                 Debug.Log("Task time left " +GlobalVariableStorage.taskTimeLeft);
                 DisplayTimeScore();
-                GlobalVariableStorage.totalTimeScore = GlobalVariableStorage.totalTimeScore + GlobalVariableStorage.timeScore;
+                GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
                 break;
             }
 
@@ -126,5 +125,6 @@ public class LevelController : MonoBehaviour
     {
         DisplayTime(GlobalVariableStorage.timeLeft);
         DisplayPoints();
+        DisplayActionScore();
     }
 }

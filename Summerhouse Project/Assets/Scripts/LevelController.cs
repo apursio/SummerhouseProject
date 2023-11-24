@@ -9,8 +9,8 @@ public class LevelController : MonoBehaviour
 {
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
-    public TMP_InputField tmpIfTimeScore;
-    public TMP_InputField tmpIfActionScore;
+    public TMP_Text TextTimeScore;
+    public TMP_Text TextActionScore;
     public float initialTime;
     public float taskTime;
 
@@ -65,14 +65,14 @@ public class LevelController : MonoBehaviour
     {
         Debug.Log("Display time score");
         GlobalVariableStorage.timeScore = (int) GlobalVariableStorage.taskTimeLeft *10; 
-        tmpIfTimeScore.text = "+" + GlobalVariableStorage.timeScore.ToString();
+        TextTimeScore.text = "+" + GlobalVariableStorage.timeScore.ToString();
 
     }
 
     void DisplayActionScore()
     {
         // Debug.Log("Display action score");
-        tmpIfActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
+        TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
 
     }
 

@@ -42,7 +42,7 @@ public class ElectricBoxController : MonoBehaviour
         // Use the interactableLayerMask in the Physics.Raycast
         if (Physics.Raycast(transform.position, playerController.transform.position - transform.position, out RaycastHit hit, activationDistance, interactableLayerMask))
         {
-            Debug.Log("Player is within activation distance");
+            //Debug.Log("Player is within activation distance");
 
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -62,6 +62,10 @@ public class ElectricBoxController : MonoBehaviour
                     StartCoroutine(ToggleKnob());
                     isDynamicLightsEnabled = !isDynamicLightsEnabled;
                     ToggleDynamicLights();
+                    if(GlobalVariableStorage.timeLeft < 120)
+                    {
+                        GlobalVariableStorage.actionScore = 600;
+                    }
                 }
             }
         }

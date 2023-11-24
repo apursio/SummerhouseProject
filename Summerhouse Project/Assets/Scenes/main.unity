@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.013
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0015091547, g: 0.003011544, b: 0.00061157224, a: 0.013}
+  m_IndirectSpecularColor: {r: 0.0015067955, g: 0.0030092672, b: 0.0006139885, a: 0.013}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1543,6 +1543,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16cf0b07a33e1b64783881738c2af316, type: 3}
+--- !u!1 &436852143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5126527961139664765, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+  m_PrefabInstance: {fileID: 1245602521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &436852147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436852143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2360a6087df584aa3cfa1c98a65628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &441344623
 GameObject:
   m_ObjectHideFlags: 0
@@ -4180,6 +4197,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7094977340588366727, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 391740417}
+    - targetCorrespondingSourceObject: {fileID: 5126527961139664765, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 436852147}
   m_SourcePrefab: {fileID: 100100000, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
 --- !u!1001 &1246363882
 PrefabInstance:
@@ -7589,14 +7609,9 @@ MonoBehaviour:
   tmpIfTime: {fileID: 1231048435}
   tmpIfPoints: {fileID: 1968913096}
   tmpIfTimeScore: {fileID: 1423863798}
+  tmpIfActionScore: {fileID: 0}
   initialTime: 200
   taskTime: 60
-  timeScore: 0
-  actionScore: 0
-  totalTimeScore: 0
-  totalActionScore: 0
-  playerScore: 0
-  fireIsOut: 0
 --- !u!4 &2073597573
 Transform:
   m_ObjectHideFlags: 0

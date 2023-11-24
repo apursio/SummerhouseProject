@@ -92,7 +92,7 @@ public class LevelController : MonoBehaviour
         for (; ; )
         {
             yield return new WaitForSeconds(interval);
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKey(KeyCode.P))
             {
                 Debug.Log("P key pressed");
                 fireIsOut = true;

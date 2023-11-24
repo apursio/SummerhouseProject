@@ -35,6 +35,7 @@ public class BackendHandler : MonoBehaviour
     void Start()
     {         
         Debug.Log("BackendHandler started");
+        FetchHighScoresJSON();
         // conversion from JSON to object
         // hs = JsonUtility.FromJson<HighScores>(jsonTestStr);       
         // Debug.Log("HighScores name: " + hs.scores[0].playername);  

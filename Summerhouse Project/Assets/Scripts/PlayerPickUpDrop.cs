@@ -1,36 +1,31 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerPickUpDrop : MonoBehaviour
 {
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask pickUpLayerMask;
+    [SerializeField] private TextMeshProUGUI pickUpPromptText;
+    [SerializeField] private float pickUpDistance = 5f;
 
     private ObjectGrabbable objectGrabbable;
+    void Update()
+    {
+        HandlePickUpInput();
 
-    // Update is called once per frame
-    private void Update()
+        UpdatePromptTextVisibility();
+    }
+
+    private void HandlePickUpInput()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (objectGrabbable == null)
             {
-                float pickUpDistance = 5f;
-
-                // Perform a raycast to check for grabbable objects
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
-                {
-                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))
-                    {
-                        // Check if the player is close enough to the object before grabbing
-                        if (IsPlayerCloseEnough(objectGrabbable.transform.position, pickUpDistance))
-                        {
-                            Debug.Log(objectGrabbable);
-                            objectGrabbable.Grab(objectGrabPointTransform);
-                        }
-                    }
-                }
+                TryGrabObject();
             }
             else
             {
@@ -40,10 +35,55 @@ public class PlayerPickUpDrop : MonoBehaviour
         }
     }
 
-    // Check if the player is close enough to the object
-    private bool IsPlayerCloseEnough(Vector3 objectPosition, float requiredDistance)
+    private void TryGrabObject()
     {
-        float distance = Vector3.Distance(transform.position, objectPosition);
-        return distance <= requiredDistance;
+        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out objectGrabbable))
+            {
+                Debug.Log(objectGrabbable);
+                objectGrabbable.Grab(objectGrabPointTransform);
+            }
+        }
     }
+
+    private void UpdatePromptTextVisibility()
+    {
+        if (objectGrabbable == null)
+        {
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask))
+            {
+                float distanceToGrabbable = Vector3.Distance(playerCameraTransform.position, raycastHit.point);
+
+                if (distanceToGrabbable <= pickUpDistance)
+                {
+                    ObjectGrabbable grabbable = raycastHit.transform.GetComponent<ObjectGrabbable>();
+
+                    if (grabbable != null)
+                    {
+                        pickUpPromptText.enabled = true;
+                        // You can also update the text content if needed
+                        // PickUpText.text = "Your custom text";
+                    }
+                    else
+                    {
+                        pickUpPromptText.enabled = false;
+                    }
+                }
+                else
+                {
+                    pickUpPromptText.enabled = false;
+                }
+            }
+            else
+            {
+                pickUpPromptText.enabled = false;
+            }
+        }
+        else
+        {
+            pickUpPromptText.enabled = false;
+        }
+    }
+
 }

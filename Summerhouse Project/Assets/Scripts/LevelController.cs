@@ -26,6 +26,8 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.actionScore = 0;
         GlobalVariableStorage.totalActionScore = 0;
         GlobalVariableStorage.playerScore = 0;
+        TextTimeScore.enabled = false;
+        TextActionScore.enabled = false;
         StartCoroutine("updateLevel");
 
 
@@ -66,6 +68,10 @@ public class LevelController : MonoBehaviour
         Debug.Log("Display time score");
         GlobalVariableStorage.timeScore = (int) GlobalVariableStorage.taskTimeLeft *10; 
         TextTimeScore.text = "+" + GlobalVariableStorage.timeScore.ToString();
+        TextTimeScore.enabled = true;
+        StartCoroutine("waitForSecond");
+
+
 
     }
 
@@ -73,12 +79,18 @@ public class LevelController : MonoBehaviour
     {
         // Debug.Log("Display action score");
         TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
-
+        TextActionScore.enabled = true;
+        ;
     }
+
+    
 
     IEnumerator waitForSecond()
     {
         yield return new WaitForSeconds(3f);
+       TextTimeScore.enabled = false;
+      
+
     }
 
     void DisplayPoints()

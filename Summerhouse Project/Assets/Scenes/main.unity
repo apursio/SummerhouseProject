@@ -7258,6 +7258,8 @@ MonoBehaviour:
   TextActionScore: {fileID: 1036703121}
   initialTime: 200
   taskTime: 60
+  blanket: {fileID: 1174241521}
+  extinguisher: {fileID: 1152222498}
 --- !u!4 &2073597573
 Transform:
   m_ObjectHideFlags: 0

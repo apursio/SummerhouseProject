@@ -3,7 +3,13 @@ guid: 63c8fcfeba88ed349bee33749cdd6aa5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tmpIfTime: {instanceID: 0}
+  - tmpIfPoints: {instanceID: 0}
+  - TextTimeScore: {instanceID: 0}
+  - TextActionScore: {instanceID: 0}
+  - blanket: {fileID: 919132149155446097, guid: 358cf5de8d6e728498f1f49738693366, type: 3}
+  - extinguisher: {fileID: 100000, guid: 2cf3d8721078b4a4db4a4f7941a94633, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

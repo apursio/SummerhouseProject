@@ -13,6 +13,8 @@ public class LevelController : MonoBehaviour
     public TMP_Text TextActionScore;
     public float initialTime;
     public float taskTime;
+    public GameObject blanket;
+    public GameObject extinguisher;
 
     // Start is called before the first frame update
 
@@ -58,6 +60,8 @@ public class LevelController : MonoBehaviour
                 {
                     GlobalVariableStorage.level1 = false;
                     GlobalVariableStorage.level2 = true;
+                    blanket.tag = "level2";
+                    extinguisher.tag = "level2";
                     GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Level 2");
                     Debug.Log("Fire started");
@@ -148,10 +152,10 @@ public class LevelController : MonoBehaviour
             }
             else if (GlobalVariableStorage.level2)
             {
-                if (Input.GetKey(KeyCode.P))
+                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
                 {
-                    Debug.Log("P key pressed");
-                    GlobalVariableStorage.fireIsOut = true;
+                    //Debug.Log("P key pressed");
+                    //GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Fire is out");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayTimeScore();
@@ -161,10 +165,10 @@ public class LevelController : MonoBehaviour
             }
             else if (GlobalVariableStorage.level3)
             {
-                if (Input.GetKey(KeyCode.P))
+                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
                 {
-                    Debug.Log("P key pressed");
-                    GlobalVariableStorage.fireIsOut = true;
+                    //Debug.Log("P key pressed");
+                    //GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Fire is out");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayTimeScore();

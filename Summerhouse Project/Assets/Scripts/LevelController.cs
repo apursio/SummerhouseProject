@@ -135,10 +135,10 @@ public class LevelController : MonoBehaviour
             yield return new WaitForSeconds(interval);
             if (GlobalVariableStorage.level1) 
             {
-                if (Input.GetKey(KeyCode.P))
+                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
                 {
-                    Debug.Log("P key pressed");
-                    GlobalVariableStorage.fireIsOut = true;
+                    //Debug.Log("P key pressed");
+                    //GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Fire is out");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayTimeScore();

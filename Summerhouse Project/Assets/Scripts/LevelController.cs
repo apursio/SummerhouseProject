@@ -9,18 +9,10 @@ public class LevelController : MonoBehaviour
 {
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
-    public TMP_InputField tmpIfTimeScore;
+    public TMP_Text TextTimeScore;
+    public TMP_Text TextActionScore;
     public float initialTime;
     public float taskTime;
-    public int timeScore; // ajasta tulevat pisteet
-    public int actionScore; //toiminnoista tulevat pisteet > näytetään pelaajalle valintoja tehdessä
-    public int totalTimeScore;
-    public int totalActionScore;
-    public int playerScore; // pisteet yhteensä
-    public bool fireIsOut;
-    private float timeLeft;
-    private float taskTimeLeft;
-
 
     // Start is called before the first frame update
 
@@ -28,12 +20,14 @@ public class LevelController : MonoBehaviour
     {
         
         Time.timeScale = 1;
-        timeLeft = initialTime;
-        taskTimeLeft = taskTime;
-        fireIsOut = true;
-        actionScore = 0;
-        totalActionScore = 0;
-        playerScore = 0;
+        GlobalVariableStorage.timeLeft = initialTime;
+        GlobalVariableStorage.taskTimeLeft = taskTime;
+        GlobalVariableStorage.fireIsOut = true;
+        GlobalVariableStorage.actionScore = 0;
+        GlobalVariableStorage.totalActionScore = 0;
+        GlobalVariableStorage.playerScore = 0;
+        TextTimeScore.enabled = false;
+        TextActionScore.enabled = false;
         StartCoroutine("updateLevel");
 
 
@@ -44,12 +38,12 @@ public class LevelController : MonoBehaviour
         for (; ; )
         {
             yield return new WaitForSeconds(interval);
-            if (timeLeft > 0)//jos aikaa on jäljellä vähennetään intervalli jäljellä olevasta ajasta
+            if (GlobalVariableStorage.timeLeft > 0)//jos aikaa on jäljellä vähennetään intervalli jäljellä olevasta ajasta
             {
-                timeLeft -= interval;
-                if (timeLeft == 180)
+                GlobalVariableStorage.timeLeft -= interval;
+                if (GlobalVariableStorage.timeLeft == 180)
                 {
-                    fireIsOut = false;
+                    GlobalVariableStorage.fireIsOut = false;
                     Debug.Log("Fire started");
                     StartCoroutine("countTaskTime");
                 }
@@ -72,40 +66,63 @@ public class LevelController : MonoBehaviour
     void DisplayTimeScore()
     {
         Debug.Log("Display time score");
-        timeScore = (int) taskTimeLeft*10; 
-        tmpIfTimeScore.text = "+" + timeScore.ToString();
+        GlobalVariableStorage.timeScore = (int) GlobalVariableStorage.taskTimeLeft *10; 
+        TextTimeScore.text = "+" + GlobalVariableStorage.timeScore.ToString();
+        TextTimeScore.enabled = true;
+        StartCoroutine("waitForSecond");
+
+
+
+    }
+
+    void DisplayActionScore()
+    {
+        // Debug.Log("Display action score");
+        TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
+        TextActionScore.enabled = true;
+        ;
+    }
+
+    
+
+    IEnumerator waitForSecond()
+    {
+        yield return new WaitForSeconds(3f);
+       TextTimeScore.enabled = false;
+      
+
     }
 
     void DisplayPoints()
     {
         //Debug.Log("Display points");
-        playerScore = totalTimeScore + totalActionScore;
-        tmpIfPoints.text = playerScore.ToString();
+        tmpIfPoints.text = GlobalVariableStorage.playerScore.ToString();
     }
 
     IEnumerator countTaskTime()
     {
         Debug.Log("Task time count started...");
         float interval = 1f;
-        taskTimeLeft = 60; // Initialize taskTimeLeft before entering the loop
+        GlobalVariableStorage.taskTimeLeft = 60; // Initialize taskTimeLeft before entering the loop
 
         for (; ; )
         {
             yield return new WaitForSeconds(interval);
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKey(KeyCode.P))
             {
                 Debug.Log("P key pressed");
-                fireIsOut = true;
+                GlobalVariableStorage.fireIsOut = true;
                 Debug.Log("Fire is out");
-                Debug.Log("Task time left " +taskTimeLeft);
+                Debug.Log("Task time left " +GlobalVariableStorage.taskTimeLeft);
                 DisplayTimeScore();
-                totalTimeScore = totalTimeScore + timeScore;
+                GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
                 break;
             }
+            
 
-            if (taskTimeLeft > 0)
+            if (GlobalVariableStorage.taskTimeLeft > 0)
             {
-                taskTimeLeft -= interval;
+                GlobalVariableStorage.taskTimeLeft -= interval;
             }
             else
             {
@@ -118,14 +135,15 @@ public class LevelController : MonoBehaviour
 
     public void putOutFire()
     {
-        fireIsOut = false;
+        GlobalVariableStorage.fireIsOut = false;
         Debug.Log("fire out");
     }
 
     // Update is called once per frame
     void Update()
     {
-        DisplayTime(timeLeft);
+        DisplayTime(GlobalVariableStorage.timeLeft);
         DisplayPoints();
+        DisplayActionScore();
     }
 }

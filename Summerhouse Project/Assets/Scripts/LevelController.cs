@@ -9,8 +9,8 @@ public class LevelController : MonoBehaviour
 {
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
-    public TMP_InputField tmpIfTimeScore;
-    public TMP_InputField tmpIfActionScore;
+    public TMP_Text TextTimeScore;
+    public TMP_Text TextActionScore;
     public float initialTime;
     public float taskTime;
 
@@ -26,6 +26,8 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.actionScore = 0;
         GlobalVariableStorage.totalActionScore = 0;
         GlobalVariableStorage.playerScore = 0;
+        TextTimeScore.enabled = false;
+        TextActionScore.enabled = false;
         StartCoroutine("updateLevel");
 
 
@@ -65,20 +67,30 @@ public class LevelController : MonoBehaviour
     {
         Debug.Log("Display time score");
         GlobalVariableStorage.timeScore = (int) GlobalVariableStorage.taskTimeLeft *10; 
-        tmpIfTimeScore.text = "+" + GlobalVariableStorage.timeScore.ToString();
+        TextTimeScore.text = "+" + GlobalVariableStorage.timeScore.ToString();
+        TextTimeScore.enabled = true;
+        StartCoroutine("waitForSecond");
+
+
 
     }
 
     void DisplayActionScore()
     {
         // Debug.Log("Display action score");
-        tmpIfActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
-
+        TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
+        TextActionScore.enabled = true;
+        ;
     }
+
+    
 
     IEnumerator waitForSecond()
     {
         yield return new WaitForSeconds(3f);
+       TextTimeScore.enabled = false;
+      
+
     }
 
     void DisplayPoints()

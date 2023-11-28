@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FireController : MonoBehaviour
@@ -12,17 +13,8 @@ public class FireController : MonoBehaviour
             // Check if any ObjectGrabbable is close enough to extinguish the fire
             if (IsObjectGrabbableNearFire())
             {
-                if (GlobalVariableStorage.level1)
-                {
-                    if (GameObject.FindWithTag("Lid"))
-                    {
-                        // Disable the fire
-                        gameObject.SetActive(false);
-                        GlobalVariableStorage.actionScore = 500;
-                        GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
-                    }
-                }
-                
+                // Disable the fire
+                gameObject.SetActive(false);
             }
         }
     }
@@ -38,6 +30,7 @@ public class FireController : MonoBehaviour
 
         // Find all objects with the ObjectGrabbable script
         ObjectGrabbable[] grabbableObjects = FindObjectsOfType<ObjectGrabbable>();
+
 
         // Check if any of the grabbable objects are close enough to the fire
         foreach (ObjectGrabbable grabbableObject in grabbableObjects)

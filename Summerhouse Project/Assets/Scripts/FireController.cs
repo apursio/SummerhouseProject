@@ -12,8 +12,17 @@ public class FireController : MonoBehaviour
             // Check if any ObjectGrabbable is close enough to extinguish the fire
             if (IsObjectGrabbableNearFire())
             {
-                // Disable the fire
-                gameObject.SetActive(false);
+                if (GlobalVariableStorage.level1)
+                {
+                    if (GameObject.FindWithTag("Lid"))
+                    {
+                        // Disable the fire
+                        gameObject.SetActive(false);
+                        GlobalVariableStorage.actionScore = 500;
+                        GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
+                    }
+                }
+                
             }
         }
     }

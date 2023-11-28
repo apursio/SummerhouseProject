@@ -26,6 +26,10 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.actionScore = 0;
         GlobalVariableStorage.totalActionScore = 0;
         GlobalVariableStorage.playerScore = 0;
+        GlobalVariableStorage.safeTime = true;
+        GlobalVariableStorage.level1 = false;
+        GlobalVariableStorage.level2 = false;
+        GlobalVariableStorage.level3 = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         StartCoroutine("updateLevel");
@@ -43,7 +47,28 @@ public class LevelController : MonoBehaviour
                 GlobalVariableStorage.timeLeft -= interval;
                 if (GlobalVariableStorage.timeLeft == 180)
                 {
+                    GlobalVariableStorage.safeTime = false;
+                    GlobalVariableStorage.level1 = true;
                     GlobalVariableStorage.fireIsOut = false;
+                    Debug.Log("Level 1");
+                    Debug.Log("Fire started");
+                    StartCoroutine("countTaskTime");
+                }
+                if (GlobalVariableStorage.timeLeft == 120)
+                {
+                    GlobalVariableStorage.level1 = false;
+                    GlobalVariableStorage.level2 = true;
+                    GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Level 2");
+                    Debug.Log("Fire started");
+                    StartCoroutine("countTaskTime");
+                }
+                if(GlobalVariableStorage.timeLeft == 60)
+                {
+                    GlobalVariableStorage.level2 = false;
+                    GlobalVariableStorage.level3 = true;
+                    GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Level 3");
                     Debug.Log("Fire started");
                     StartCoroutine("countTaskTime");
                 }
@@ -108,17 +133,46 @@ public class LevelController : MonoBehaviour
         for (; ; )
         {
             yield return new WaitForSeconds(interval);
-            if (Input.GetKey(KeyCode.P))
+            if (GlobalVariableStorage.level1) 
             {
-                Debug.Log("P key pressed");
-                GlobalVariableStorage.fireIsOut = true;
-                Debug.Log("Fire is out");
-                Debug.Log("Task time left " +GlobalVariableStorage.taskTimeLeft);
-                DisplayTimeScore();
-                GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
-                break;
+                if (Input.GetKey(KeyCode.P))
+                {
+                    Debug.Log("P key pressed");
+                    GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Fire is out");
+                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayTimeScore();
+                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
+                    break;
+                }
             }
-            
+            else if (GlobalVariableStorage.level2)
+            {
+                if (Input.GetKey(KeyCode.P))
+                {
+                    Debug.Log("P key pressed");
+                    GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Fire is out");
+                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayTimeScore();
+                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
+                    break;
+                }
+            }
+            else if (GlobalVariableStorage.level3)
+            {
+                if (Input.GetKey(KeyCode.P))
+                {
+                    Debug.Log("P key pressed");
+                    GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Fire is out");
+                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayTimeScore();
+                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
+                    break;
+                }
+            }
+
 
             if (GlobalVariableStorage.taskTimeLeft > 0)
             {

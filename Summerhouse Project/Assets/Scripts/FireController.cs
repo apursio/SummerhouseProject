@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FireController : MonoBehaviour
@@ -29,6 +30,7 @@ public class FireController : MonoBehaviour
 
         // Find all objects with the ObjectGrabbable script
         ObjectGrabbable[] grabbableObjects = FindObjectsOfType<ObjectGrabbable>();
+
 
         // Check if any of the grabbable objects are close enough to the fire
         foreach (ObjectGrabbable grabbableObject in grabbableObjects)

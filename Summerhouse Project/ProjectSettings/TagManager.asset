@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - Lid
   - level1
+  - level2
   layers:
   - Default
   - TransparentFX

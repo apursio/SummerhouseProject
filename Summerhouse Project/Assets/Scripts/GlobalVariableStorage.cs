@@ -14,6 +14,10 @@ public class GlobalVariableStorage : MonoBehaviour
     public static float taskTime;
     public static float timeLeft;
     public static float taskTimeLeft;
+    public static bool safeTime;
+    public static bool level1;
+    public static bool level2;
+    public static bool level3;
 
 
     // Start is called before the first frame update

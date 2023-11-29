@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class ElectricBoxController : MonoBehaviour
 {
+    // Lisätty 26.11.
+    public delegate void LightsToggleEventHandler(bool lightsOn);
+    public static event LightsToggleEventHandler OnLightsToggle;
+    // lisätty 26.11.
     public float lidSmoothness = 5f;
     public float knobSmoothness = 5f;
     public float activationDistance = 2.0f;
@@ -98,6 +102,11 @@ public class ElectricBoxController : MonoBehaviour
         Quaternion knobTargetRotation = isKnobTurned ? Quaternion.Euler(40, 0, 0) : Quaternion.Euler(-90, 0, 0);
         yield return StartCoroutine(MoveKnob(knobTargetRotation));
         canToggleKnob = true;
+
+        // Lisätty 26.11.
+        // Notify subscribers (other scripts) that lights were toggled
+        OnLightsToggle?.Invoke(!isKnobTurned);
+        // Lisätty 26.11.
     }
 
     IEnumerator MoveLid(Quaternion targetRotation)

@@ -6702,6 +6702,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1850177683}
   - component: {fileID: 1850177684}
+  - component: {fileID: 1850177685}
+  - component: {fileID: 1850177686}
   m_Layer: 0
   m_Name: Fire_CookingPot
   m_TagString: Untagged
@@ -6742,6 +6744,40 @@ MonoBehaviour:
   flamesSecondary: {fileID: 141228892}
   lights: {fileID: 1620773952}
   pointLightFire: {fileID: 1486073730}
+--- !u!65 &1850177685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850177682}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5097351, y: 0.61501133, z: 0.53819275}
+  m_Center: {x: -0.013839722, y: -0.19249433, z: -0.013795853}
+--- !u!114 &1850177686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850177682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8023546d73139c343a7d3a62adcaf6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extinguishDistance: 0.5
 --- !u!4 &1850316237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012514763842, guid: ba124179af6a3a7469f127358241673d, type: 3}

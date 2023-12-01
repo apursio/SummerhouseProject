@@ -19,7 +19,7 @@ public class FireController : MonoBehaviour
                     gameObject.SetActive(false);
                     GlobalVariableStorage.fireIsOut = true;
                     GlobalVariableStorage.actionScore = GlobalVariableStorage.availableScore;
-                    //GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
+                    GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
                     //if (GlobalVariableStorage.level1)
                     //{
                     //    GlobalVariableStorage.level1 = false;

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Assets.Scripts;
 using System;
+using UnityEditor.Rendering;
 
 public class LevelController : MonoBehaviour
 {
@@ -111,8 +112,6 @@ public class LevelController : MonoBehaviour
         TextTimeScore.enabled = true;
         StartCoroutine("waitForSecond");
 
-
-
     }
 
     void DisplayActionScore()
@@ -124,13 +123,10 @@ public class LevelController : MonoBehaviour
     }
 
     
-
     IEnumerator waitForSecond()
     {
         yield return new WaitForSeconds(3f);
-       TextTimeScore.enabled = false;
-      
-
+        TextTimeScore.enabled = false;
     }
 
     void DisplayPoints()
@@ -235,6 +231,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.level2 = false;
             GlobalVariableStorage.level3 = true;
             GlobalVariableStorage.fireIsOut = true;
+            //ButtonEndGame.SetActive(true); // Call 112 button to be set visible later!
         }
         // Add more conditions as needed for additional levels
     }

@@ -10431,7 +10431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1554322983}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1036703119
 GameObject:
@@ -15876,7 +15876,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000010805848668, guid: ba124179af6a3a7469f127358241673d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000011584250018, guid: ba124179af6a3a7469f127358241673d, type: 3}
       propertyPath: m_IsActive
@@ -20487,10 +20487,9 @@ SceneRoots:
   - {fileID: 175649891}
   - {fileID: 94399820}
   - {fileID: 1850177683}
-  - {fileID: 1228349019}
-  - {fileID: 303605293}
   - {fileID: 1933199445}
   - {fileID: 4728002538893383143}
   - {fileID: 819704312}
   - {fileID: 1466529870}
   - {fileID: 1407215808}
+  - {fileID: 1029121395}

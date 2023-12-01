@@ -14,10 +14,18 @@ public class FireController : MonoBehaviour
             if (IsObjectGrabbableNearFire())
             {
                 // Disable the fire
-                gameObject.SetActive(false);
-                GlobalVariableStorage.fireIsOut = true;
-                GlobalVariableStorage.actionScore = GlobalVariableStorage.availableScore;
-                Debug.Log("Fire is out from firecontroller");
+                if(GlobalVariableStorage.fireIsOutofControl == false)
+                {
+                    gameObject.SetActive(false);
+                    GlobalVariableStorage.fireIsOut = true;
+                    GlobalVariableStorage.actionScore = GlobalVariableStorage.availableScore;
+                    Debug.Log("Fire is out from firecontroller");
+                }else
+                {
+                    GlobalVariableStorage.taskTimeLeft = 0;
+                    GlobalVariableStorage.timeLeft = 60;
+                    Debug.Log("Fire is out of Control");
+                }
                 
             }
         }
@@ -49,6 +57,15 @@ public class FireController : MonoBehaviour
                     {
                         Debug.Log("If level 1 and crabbables");
                         GlobalVariableStorage.availableScore = 600;
+                        return true; // At least one object is close enough
+                    }
+                if (objectGrabbableCollider != null &&
+                    grabbableObject.CompareTag("water") &&
+                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
+                    {
+                        Debug.Log("If level 1 and crabbables");
+                        GlobalVariableStorage.availableScore = -100;
+                        GlobalVariableStorage.fireIsOutofControl = true;
                         return true; // At least one object is close enough
                     }
             }

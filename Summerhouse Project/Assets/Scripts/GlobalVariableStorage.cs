@@ -11,6 +11,7 @@ public class GlobalVariableStorage : MonoBehaviour
     public static int totalActionScore;
     public static int playerScore; // pisteet yhteensä
     public static bool fireIsOut;
+    public static bool fireIsOutofControl;
     public static float initialTime;
     public static float taskTime;
     public static float timeLeft;

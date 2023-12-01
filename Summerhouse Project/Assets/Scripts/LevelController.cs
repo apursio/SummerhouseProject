@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour
     public GameObject blanket;
     public GameObject extinguisher;
     public GameObject lid;
-
+    
     // Start is called before the first frame update
 
     void Start()
@@ -25,20 +25,23 @@ public class LevelController : MonoBehaviour
         Time.timeScale = 1;
         GlobalVariableStorage.timeLeft = initialTime;
         GlobalVariableStorage.taskTimeLeft = taskTime;
-        GlobalVariableStorage.fireIsOut = true;
+        GlobalVariableStorage.fireIsOut = false;
         GlobalVariableStorage.actionScore = 0;
         GlobalVariableStorage.totalActionScore = 0;
         GlobalVariableStorage.playerScore = 0;
-        GlobalVariableStorage.safeTime = true;
-        GlobalVariableStorage.level1 = false;
+        GlobalVariableStorage.safeTime = false;
+        GlobalVariableStorage.level1 = true;
         GlobalVariableStorage.level2 = false;
         GlobalVariableStorage.level3 = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
-        StartCoroutine("updateLevel");
-
+        //StartCoroutine("updateLevel");
+        //taskTimeCoroutine = countTaskTime();
+        StartCoroutine("countTaskTime");
 
     }
+
+    IEnumerator taskTimeCoroutine;
     IEnumerator updateLevel()
     {
         float interval = 1f;
@@ -48,35 +51,38 @@ public class LevelController : MonoBehaviour
             if (GlobalVariableStorage.timeLeft > 0)//jos aikaa on jäljellä vähennetään intervalli jäljellä olevasta ajasta
             {
                 GlobalVariableStorage.timeLeft -= interval;
-                if (GlobalVariableStorage.timeLeft == 180)
-                {
-                    GlobalVariableStorage.safeTime = false;
-                    GlobalVariableStorage.level1 = true;
-                    GlobalVariableStorage.fireIsOut = false;
-                    Debug.Log("Level 1");
-                    Debug.Log("Fire started");
-                    StartCoroutine("countTaskTime");
-                }
-                if (GlobalVariableStorage.timeLeft == 120)
-                {
-                    GlobalVariableStorage.level1 = false;
-                    GlobalVariableStorage.level2 = true;
-                    //blanket.tag = "level2";
-                    //extinguisher.tag = "level2";
-                    GlobalVariableStorage.fireIsOut = true;
-                    Debug.Log("Level 2");
-                    Debug.Log("Fire started");
-                    StartCoroutine("countTaskTime");
-                }
-                if(GlobalVariableStorage.timeLeft == 60)
-                {
-                    GlobalVariableStorage.level2 = false;
-                    GlobalVariableStorage.level3 = true;
-                    GlobalVariableStorage.fireIsOut = true;
-                    Debug.Log("Level 3");
-                    Debug.Log("Fire started");
-                    StartCoroutine("countTaskTime");
-                }
+                
+
+
+                //if (GlobalVariableStorage.timeLeft == 180)
+                //{
+                //    GlobalVariableStorage.safeTime = false;
+                //    GlobalVariableStorage.level1 = true;
+                //    GlobalVariableStorage.fireIsOut = false;
+                //    Debug.Log("Level 1");
+                //    Debug.Log("Fire started");
+                //    StartCoroutine("countTaskTime");
+                //}
+                //if (GlobalVariableStorage.timeLeft == 120)
+                //{
+                //    GlobalVariableStorage.level1 = false;
+                //    GlobalVariableStorage.level2 = true;
+                //    //blanket.tag = "level2";
+                //    //extinguisher.tag = "level2";
+                //    GlobalVariableStorage.fireIsOut = true;
+                //    Debug.Log("Level 2");
+                //    Debug.Log("Fire started");
+                //    StartCoroutine("countTaskTime");
+                //}
+                //if(GlobalVariableStorage.timeLeft == 60)
+                //{
+                //    GlobalVariableStorage.level2 = false;
+                //    GlobalVariableStorage.level3 = true;
+                //    GlobalVariableStorage.fireIsOut = true;
+                //    Debug.Log("Level 3");
+                //    Debug.Log("Fire started");
+                //    StartCoroutine("countTaskTime");
+                //}
             }
             else //ei tee toistaiseksi mitään kun aika loppuu
             {
@@ -138,47 +144,10 @@ public class LevelController : MonoBehaviour
         for (; ; )
         {
             yield return new WaitForSeconds(interval);
-            if (GlobalVariableStorage.level1) 
-            {
-                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
-                {
-                    //Debug.Log("P key pressed");
-                    //GlobalVariableStorage.fireIsOut = true;
-                    Debug.Log("Fire is out");
-                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
-                    DisplayTimeScore();
-                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
-                    break;
-                }
-            }
-            else if (GlobalVariableStorage.level2)
-            {
-                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
-                {
-                    //Debug.Log("P key pressed");
-                    //GlobalVariableStorage.fireIsOut = true;
-                    Debug.Log("Fire is out");
-                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
-                    DisplayTimeScore();
-                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
-                    break;
-                }
-            }
-            else if (GlobalVariableStorage.level3)
-            {
-                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
-                {
-                    //Debug.Log("P key pressed");
-                    //GlobalVariableStorage.fireIsOut = true;
-                    Debug.Log("Fire is out");
-                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
-                    DisplayTimeScore();
-                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.timeScore;
-                    break;
-                }
-            }
-
-
+            //if (GlobalVariableStorage.safeTime)
+            //{
+            //    GlobalVariableStorage.taskTimeLeft = 20;
+            //}
             if (GlobalVariableStorage.taskTimeLeft > 0)
             {
                 GlobalVariableStorage.taskTimeLeft -= interval;
@@ -186,11 +155,84 @@ public class LevelController : MonoBehaviour
             else
             {
                 Debug.Log("Task Time over");
+                MoveToNextLevel();
+                GlobalVariableStorage.taskTimeLeft = 60;
             }
+
+            if (GlobalVariableStorage.level1) 
+            {
+                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
+                {
+                    //Debug.Log("P key pressed");
+                    //GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Fire is out level 1");
+                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayTimeScore();
+                    GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
+                    GlobalVariableStorage.taskTimeLeft = 0;
+                    //break;
+
+                }
+            }
+            else if (GlobalVariableStorage.level2)
+            {
+                //GlobalVariableStorage.taskTimeLeft = 60;
+                if (Input.GetKey(KeyCode.P))//(GlobalVariableStorage.fireIsOut)//
+                {
+                    Debug.Log("P key pressed");
+                    GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Fire is out");
+                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayTimeScore();
+                    GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
+                    GlobalVariableStorage.taskTimeLeft = 0; 
+                    //break;
+
+
+
+                }
+            }
+            else if (GlobalVariableStorage.level3)
+            {
+                //GlobalVariableStorage.taskTimeLeft = 60;
+                if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
+                {
+                    //Debug.Log("P key pressed");
+                    //GlobalVariableStorage.fireIsOut = true;
+                    Debug.Log("Fire is out");
+                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayTimeScore();
+                    GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
+                    break;
+                }
+            }
+
+
+
         }
     }
 
+    void MoveToNextLevel()
+    {
+        // Your logic for moving to the next level goes here
+        // For example, you can update level flags and perform other actions
+        // You may also want to reset other relevant variables for the next level
 
+        Debug.Log("in move to next level");
+        if (GlobalVariableStorage.level1)
+        {
+            GlobalVariableStorage.level1 = false;
+            GlobalVariableStorage.level2 = true;
+            GlobalVariableStorage.fireIsOut = true;
+        }
+        else if (GlobalVariableStorage.level2)
+        {
+            GlobalVariableStorage.level2 = false;
+            GlobalVariableStorage.level3 = true;
+            GlobalVariableStorage.fireIsOut = true;
+        }
+        // Add more conditions as needed for additional levels
+    }
 
     //public void putOutFire()
     //{
@@ -201,8 +243,15 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayTime(GlobalVariableStorage.timeLeft);
+        DisplayTime(GlobalVariableStorage.taskTimeLeft);
         DisplayPoints();
         DisplayActionScore();
+        //if (taskTimeCoroutine != null && !taskTimeCoroutine.MoveNext())
+        //{
+        //    // Coroutine has finished, do something or restart it
+        //    Debug.Log("Coroutine finished");
+        //    taskTimeCoroutine = countTaskTime();
+        //    StartCoroutine(taskTimeCoroutine);
+        //}
     }
 }

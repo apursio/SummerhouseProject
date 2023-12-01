@@ -8017,7 +8017,7 @@ MonoBehaviour:
   taskTime: 60
   blanket: {fileID: 1174241521}
   extinguisher: {fileID: 1152222498}
-  lid: {fileID: 0}
+  lid: {fileID: 997322761}
 --- !u!4 &2073597573
 Transform:
   m_ObjectHideFlags: 0

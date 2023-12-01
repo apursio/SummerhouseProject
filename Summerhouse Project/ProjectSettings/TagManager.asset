@@ -11,6 +11,7 @@ TagManager:
   - blanket
   - lid
   - water
+  - safezone
   layers:
   - Default
   - TransparentFX

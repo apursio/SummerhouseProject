@@ -16,7 +16,8 @@ public class LevelController : MonoBehaviour
     public GameObject blanket;
     public GameObject extinguisher;
     public GameObject lid;
-    
+    public GameObject ButtonEndGame;
+    public GameObject ScoreField;
     // Start is called before the first frame update
 
     void Start()
@@ -38,6 +39,8 @@ public class LevelController : MonoBehaviour
         //StartCoroutine("updateLevel");
         //taskTimeCoroutine = countTaskTime();
         StartCoroutine("countTaskTime");
+        ButtonEndGame.SetActive(false);
+        ScoreField.SetActive(false);
 
     }
 

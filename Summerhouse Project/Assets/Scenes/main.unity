@@ -16819,10 +16819,6 @@ PrefabInstance:
       value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 112020994626916815, guid: 705e82e5eba2acc43a11e2d621f58732, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
-      objectReference: {fileID: 0}
-    - target: {fileID: 112020994626916815, guid: 705e82e5eba2acc43a11e2d621f58732, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.52
       objectReference: {fileID: 0}
@@ -17719,7 +17715,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000010805848668, guid: ba124179af6a3a7469f127358241673d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011584250018, guid: ba124179af6a3a7469f127358241673d, type: 3}
       propertyPath: m_IsActive

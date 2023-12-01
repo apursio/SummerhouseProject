@@ -52,20 +52,37 @@ public class FireController : MonoBehaviour
             if (GlobalVariableStorage.level1)
             {
                 if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("lid") || grabbableObject.CompareTag("blanket") || grabbableObject.CompareTag("extinguisher") &&
+                    grabbableObject.CompareTag("lid") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                     {
                         Debug.Log("If level 1 and crabbables");
-                        GlobalVariableStorage.availableScore = 600;
+                        GlobalVariableStorage.availableScore = 500;
                         return true; // At least one object is close enough
                     }
+                else if (objectGrabbableCollider != null &&
+                    grabbableObject.CompareTag("blanket") &&
+                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
+                {
+                    Debug.Log("If level 1 and crabbables");
+                    GlobalVariableStorage.availableScore = 500;
+                    return true; // At least one object is close enough
+                }
                 if (objectGrabbableCollider != null &&
+                    grabbableObject.CompareTag("extinguisher") &&
+                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
+                {
+                    Debug.Log("If level 1 and crabbables");
+                    GlobalVariableStorage.availableScore = 100;
+                    return true; // At least one object is close enough
+                }
+                else if (objectGrabbableCollider != null &&
                     grabbableObject.CompareTag("water") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                     {
-                        Debug.Log("If level 1 and crabbables");
-                        GlobalVariableStorage.availableScore = -100;
+                        Debug.Log("If level 1 and water");
+                        GlobalVariableStorage.availableScore = 0;
                         GlobalVariableStorage.fireIsOutofControl = true;
+                        Debug.Log("Fire out of control");
                         return true; // At least one object is close enough
                     }
             }

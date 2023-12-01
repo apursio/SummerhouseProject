@@ -15,6 +15,7 @@ public class LevelController : MonoBehaviour
     public float taskTime;
     public GameObject blanket;
     public GameObject extinguisher;
+    public GameObject lid;
 
     // Start is called before the first frame update
 
@@ -60,8 +61,8 @@ public class LevelController : MonoBehaviour
                 {
                     GlobalVariableStorage.level1 = false;
                     GlobalVariableStorage.level2 = true;
-                    blanket.tag = "level2";
-                    extinguisher.tag = "level2";
+                    //blanket.tag = "level2";
+                    //extinguisher.tag = "level2";
                     GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Level 2");
                     Debug.Log("Fire started");
@@ -191,11 +192,11 @@ public class LevelController : MonoBehaviour
 
 
 
-    public void putOutFire()
-    {
-        GlobalVariableStorage.fireIsOut = false;
-        Debug.Log("fire out");
-    }
+    //public void putOutFire()
+    //{
+    //    GlobalVariableStorage.fireIsOut = false;
+    //    Debug.Log("fire out");
+    //}
 
     // Update is called once per frame
     void Update()

@@ -2706,6 +2706,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1291500132}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: button1
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1014524958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2886,6 +2898,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2344723110055433573, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 087224dd7ec352f42a3b950a07009a88, type: 3}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: button1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1dc2f2287b118ff45939a91b08a2244e, type: 3}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: button2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[1].volume
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3351,6 +3395,17 @@ RectTransform:
   m_AnchoredPosition: {x: 296.7, y: -142.70988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1291500132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+  m_PrefabInstance: {fileID: 1096841455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d817546930d83e24d82ed5ffe5b397ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1302435485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,6 +3945,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1291500132}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: button1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1508237363
@@ -5452,6 +5519,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1291500132}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: button1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2092137369

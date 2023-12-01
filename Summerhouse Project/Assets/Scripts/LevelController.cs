@@ -34,6 +34,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level1 = true;
         GlobalVariableStorage.level2 = false;
         GlobalVariableStorage.level3 = false;
+        GlobalVariableStorage.scoreElectricityBox = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         //StartCoroutine("updateLevel");
@@ -227,6 +228,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.level1 = false;
             GlobalVariableStorage.level2 = true;
             GlobalVariableStorage.fireIsOut = true;
+            GlobalVariableStorage.scoreElectricityBox = true;
         }
         else if (GlobalVariableStorage.level2)
         {

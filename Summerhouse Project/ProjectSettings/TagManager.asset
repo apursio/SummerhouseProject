@@ -7,6 +7,9 @@ TagManager:
   - CinemachineTarget
   - level1
   - level2
+  - extinguisher
+  - blanket
+  - lid
   layers:
   - Default
   - TransparentFX

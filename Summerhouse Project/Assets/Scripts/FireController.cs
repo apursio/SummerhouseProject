@@ -16,7 +16,9 @@ public class FireController : MonoBehaviour
                 // Disable the fire
                 gameObject.SetActive(false);
                 GlobalVariableStorage.fireIsOut = true;
+                GlobalVariableStorage.actionScore = GlobalVariableStorage.availableScore;
                 Debug.Log("Fire is out from firecontroller");
+                
             }
         }
     }
@@ -42,10 +44,11 @@ public class FireController : MonoBehaviour
             if (GlobalVariableStorage.level1)
             {
                 if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("level1") &&
+                    grabbableObject.CompareTag("lid") || grabbableObject.CompareTag("blanket") || grabbableObject.CompareTag("extinguisher") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                     {
                         Debug.Log("If level 1 and crabbables");
+                        GlobalVariableStorage.availableScore = 600;
                         return true; // At least one object is close enough
                     }
             }

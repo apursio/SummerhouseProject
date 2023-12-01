@@ -15,6 +15,7 @@ public class LevelController : MonoBehaviour
     public float taskTime;
     public GameObject blanket;
     public GameObject extinguisher;
+    public GameObject lid;
 
     // Start is called before the first frame update
 

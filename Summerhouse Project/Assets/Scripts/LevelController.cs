@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Assets.Scripts;
 using System;
+using UnityEditor.Rendering;
 
 public class LevelController : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class LevelController : MonoBehaviour
     public GameObject blanket;
     public GameObject extinguisher;
     public GameObject lid;
-    
+    public GameObject ButtonEndGame;
+    public GameObject ScoreField;
     // Start is called before the first frame update
 
     void Start()
@@ -33,11 +35,14 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level1 = true;
         GlobalVariableStorage.level2 = false;
         GlobalVariableStorage.level3 = false;
+        GlobalVariableStorage.scoreElectricityBox = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         //StartCoroutine("updateLevel");
         //taskTimeCoroutine = countTaskTime();
         StartCoroutine("countTaskTime");
+        ButtonEndGame.SetActive(false);
+        ScoreField.SetActive(false);
 
     }
 
@@ -107,8 +112,6 @@ public class LevelController : MonoBehaviour
         TextTimeScore.enabled = true;
         StartCoroutine("waitForSecond");
 
-
-
     }
 
     void DisplayActionScore()
@@ -120,13 +123,10 @@ public class LevelController : MonoBehaviour
     }
 
     
-
     IEnumerator waitForSecond()
     {
         yield return new WaitForSeconds(3f);
-       TextTimeScore.enabled = false;
-      
-
+        TextTimeScore.enabled = false;
     }
 
     void DisplayPoints()
@@ -224,12 +224,14 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.level1 = false;
             GlobalVariableStorage.level2 = true;
             GlobalVariableStorage.fireIsOut = true;
+            GlobalVariableStorage.scoreElectricityBox = true;
         }
         else if (GlobalVariableStorage.level2)
         {
             GlobalVariableStorage.level2 = false;
             GlobalVariableStorage.level3 = true;
             GlobalVariableStorage.fireIsOut = true;
+            //ButtonEndGame.SetActive(true); // Call 112 button to be set visible later!
         }
         // Add more conditions as needed for additional levels
     }

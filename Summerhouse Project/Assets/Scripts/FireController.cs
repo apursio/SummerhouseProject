@@ -5,40 +5,61 @@ public class FireController : MonoBehaviour
 {
     public float extinguishDistance = 0.5f;  // Adjust this distance based on your needs
 
+    public GameObject fire1;
+    public GameObject fire2;
+    //GameObject fire3 = GlobalFireStorage.Instance.Fire3;
+
+
     private void Update()
     {
         // Check for left mouse click
         if (Input.GetMouseButtonDown(0))
         {
-            // Check if any ObjectGrabbable is close enough to extinguish the fire
-            if (IsObjectGrabbableNearFire())
+            if (GlobalVariableStorage.level1)
             {
-                // Disable the fire
-                if(GlobalVariableStorage.fireIsOutofControl == false)
+                // Check if any ObjectGrabbable is close enough to extinguish the fire
+                if (IsObjectGrabbableNearFire())
                 {
-                    gameObject.SetActive(false);
-                    GlobalVariableStorage.fireIsOut = true;
-                    GlobalVariableStorage.actionScore = GlobalVariableStorage.availableScore;
-                    GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
-                    //if (GlobalVariableStorage.level1)
-                    //{
-                    //    GlobalVariableStorage.level1 = false;
-                    //    GlobalVariableStorage.level2 = true;
-                    //} else if (GlobalVariableStorage.level2)
-                    //{
-                    //    GlobalVariableStorage.level2 = false;
-                    //    GlobalVariableStorage.level3 = true;
-                    //}
-                    Debug.Log("Fire is out from firecontroller");
-                }else
-                {
-                    GlobalVariableStorage.level3 = true;
-                    //GlobalVariableStorage.taskTimeLeft = 0;
-                    //GlobalVariableStorage.timeLeft = 60;
-                    //Debug.Log(GlobalVariableStorage.timeLeft);
-                    Debug.Log("Fire is out of Control");
+                    // Disable the fire
+                    if (GlobalVariableStorage.fireIsOutofControl == false)
+                    {
+                        fire1.SetActive(false);
+                        GlobalVariableStorage.fireIsOut = true;
+                        GlobalVariableStorage.actionScore = GlobalVariableStorage.availableScore;
+                        GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
+                        Debug.Log("Fire is out from firecontroller");
+                    }
+                    else
+                    {
+                        GlobalVariableStorage.level3 = true;
+                        Debug.Log("Fire is out of Control");
+                    }
                 }
-                
+            }
+            if (GlobalVariableStorage.level2)
+            {
+                if (GlobalVariableStorage.isKnobTurned)
+                {
+                    Debug.Log("Knob turned");
+                    // Check if any ObjectGrabbable is close enough to extinguish the fire
+                    if (IsObjectGrabbableNearFire())
+                    {
+                        // Disable the fire
+                        if (GlobalVariableStorage.fireIsOutofControl == false)
+                        {
+                            fire2.SetActive(false);
+                            GlobalVariableStorage.fireIsOut = true;
+                            GlobalVariableStorage.actionScore = GlobalVariableStorage.availableScore;
+                            GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
+                            Debug.Log("Fire is out from firecontroller");
+                        }
+                        else
+                        {
+                            GlobalVariableStorage.level3 = true;
+                            Debug.Log("Fire is out of Control");
+                        }
+                    }
+                }
             }
         }
     }
@@ -69,45 +90,62 @@ public class FireController : MonoBehaviour
                 if (objectGrabbableCollider != null &&
                     grabbableObject.CompareTag("lid") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                    {
-                        //Debug.Log("If level 1 and crabbables");
-                        GlobalVariableStorage.availableScore = 500;
-                        return true; // At least one object is close enough
-                    }
+                {
+                    //Debug.Log("If level 1 and crabbables");
+                    GlobalVariableStorage.availableScore = 500;
+                    return true; // At least one object is close enough
+                }
                 else if (objectGrabbableCollider != null &&
                     grabbableObject.CompareTag("blanket") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                    {
-                        //Debug.Log("If level 1 and crabbables");
-                        GlobalVariableStorage.availableScore = 500;
-                        return true; // At least one object is close enough
-                    }
-                if (objectGrabbableCollider != null &&
+                {
+                    //Debug.Log("If level 1 and crabbables");
+                    GlobalVariableStorage.availableScore = 500;
+                    return true; // At least one object is close enough
+                }
+                else if (objectGrabbableCollider != null &&
                     grabbableObject.CompareTag("extinguisher") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                    {
-                        //Debug.Log("If level 1 and crabbables");
-                        GlobalVariableStorage.availableScore = 100;
-                        return true; // At least one object is close enough
-                    }
+                {
+                    //Debug.Log("If level 1 and crabbables");
+                    GlobalVariableStorage.availableScore = 100;
+                    return true; // At least one object is close enough
+                }
                 else if (objectGrabbableCollider != null &&
                     grabbableObject.CompareTag("water") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                    {
-                        //Debug.Log("If level 1 and water");
-                        GlobalVariableStorage.availableScore = 0;
-                        GlobalVariableStorage.fireIsOutofControl = true;
-                        //Debug.Log("Fire out of control");
-                        return true; // At least one object is close enough
-                    }
+                {
+                    //Debug.Log("If level 1 and water");
+                    GlobalVariableStorage.availableScore = 0;
+                    GlobalVariableStorage.fireIsOutofControl = true;
+                    //Debug.Log("Fire out of control");
+                    return true; // At least one object is close enough
+                }
             }
             else if (GlobalVariableStorage.level2)
             {
                 if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("level2") &&
+                    grabbableObject.CompareTag("blanket") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
-                    Debug.Log("If level 2 and crabbables"); 
+                    Debug.Log("If level 2 and crabbables");
+                    GlobalVariableStorage.availableScore = 500;
+                    return true; // At least one object is close enough
+                }
+                else if (objectGrabbableCollider != null &&
+                        grabbableObject.CompareTag("extinguisher") &&
+                        Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
+                {
+                    Debug.Log("level 2 and crabbables");
+                    GlobalVariableStorage.availableScore = 500;
+                    return true; // At least one object is close enough
+                }
+                else if (objectGrabbableCollider != null &&
+                        grabbableObject.CompareTag("water") &&
+                        Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
+                {
+                    Debug.Log("level 2 and crabbables");
+                    GlobalVariableStorage.availableScore = 500;
                     return true; // At least one object is close enough
                 }
             }
@@ -117,7 +155,7 @@ public class FireController : MonoBehaviour
                     grabbableObject.CompareTag("level3") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
-                    Debug.Log("If level 3 and crabbables"); 
+                    Debug.Log("If level 3 and crabbables");
                     return true; // At least one object is close enough
                 }
             }
@@ -127,4 +165,3 @@ public class FireController : MonoBehaviour
         return false; // No object is close enough
     }
 }
-

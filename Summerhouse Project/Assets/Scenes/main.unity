@@ -504,6 +504,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 1
+  fire1: {fileID: 0}
+  fire2: {fileID: 0}
 --- !u!1001 &58197202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -555,6 +557,10 @@ PrefabInstance:
     - target: {fileID: 5882448671471983631, guid: b8cd161c3c5c62a438ab3cad2334450e, type: 3}
       propertyPath: m_Name
       value: Wooden_Bucket
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882448671471983631, guid: b8cd161c3c5c62a438ab3cad2334450e, type: 3}
+      propertyPath: m_TagString
+      value: water
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2436,6 +2442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 232604021}
+  - component: {fileID: 232604022}
   m_Layer: 0
   m_Name: ScoreField
   m_TagString: Untagged
@@ -2465,6 +2472,22 @@ Transform:
   - {fileID: 1516631330}
   m_Father: {fileID: 622629279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232604022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232604020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6f8f4419858e6429f1806974e0196d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoresTextArea: {fileID: 0}
+  logTextArea: {fileID: 0}
+  playernameInput: {fileID: 1567357376}
+  scoreInput: {fileID: 2047573664}
 --- !u!1001 &232880320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2566,6 +2589,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  fire1: {fileID: 1850177682}
+  fire2: {fileID: 240090523}
 --- !u!65 &240090525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13061,7 +13086,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 693177259}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2073597572}
+        m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
+        m_MethodName: Call112
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &693177259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24923,6 +24960,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  fire1: {fileID: 1850177682}
+  fire2: {fileID: 240090523}
 --- !u!65 &1448775719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33805,6 +33844,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  fire1: {fileID: 1850177682}
+  fire2: {fileID: 240090523}
 --- !u!4 &1850316237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012514763842, guid: ba124179af6a3a7469f127358241673d, type: 3}
@@ -35504,12 +35545,15 @@ MonoBehaviour:
   TextTimeScore: {fileID: 418010184}
   TextActionScore: {fileID: 1036703121}
   initialTime: 200
-  taskTime: 60
+  taskTime: 20
   blanket: {fileID: 1174241521}
   extinguisher: {fileID: 1152222498}
   lid: {fileID: 997322761}
   ButtonEndGame: {fileID: 693177257}
   ScoreField: {fileID: 232604020}
+  fire1: {fileID: 1850177682}
+  fire2: {fileID: 240090523}
+  fire3: {fileID: 1448775717}
 --- !u!4 &2073597573
 Transform:
   m_ObjectHideFlags: 0

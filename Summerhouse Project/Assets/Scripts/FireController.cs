@@ -21,7 +21,7 @@ public class FireController : MonoBehaviour
                 if (IsObjectGrabbableNearFire())
                 {
                     // Disable the fire
-                    if (GlobalVariableStorage.fireIsOutofControl == false)
+                    if (GlobalVariableStorage.fireIsOutOfControl == false)
                     {
                         fire1.SetActive(false);
                         GlobalVariableStorage.fireIsOut = true;
@@ -45,7 +45,7 @@ public class FireController : MonoBehaviour
                     if (IsObjectGrabbableNearFire())
                     {
                         // Disable the fire
-                        if (GlobalVariableStorage.fireIsOutofControl == false)
+                        if (GlobalVariableStorage.fireIsOutOfControl == false)
                         {
                             fire2.SetActive(false);
                             GlobalVariableStorage.fireIsOut = true;
@@ -117,7 +117,7 @@ public class FireController : MonoBehaviour
                 {
                     //Debug.Log("If level 1 and water");
                     GlobalVariableStorage.availableScore = 0;
-                    GlobalVariableStorage.fireIsOutofControl = true;
+                    GlobalVariableStorage.fireIsOutOfControl = true;
                     //Debug.Log("Fire out of control");
                     return true; // At least one object is close enough
                 }

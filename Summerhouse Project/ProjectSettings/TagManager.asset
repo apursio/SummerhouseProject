@@ -12,6 +12,7 @@ TagManager:
   - lid
   - water
   - safezone
+  - level3
   layers:
   - Default
   - TransparentFX

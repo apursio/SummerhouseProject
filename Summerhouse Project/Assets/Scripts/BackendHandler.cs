@@ -34,7 +34,7 @@ public class BackendHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {         
-        Debug.Log("BackendHandler started");
+        //Debug.Log("BackendHandler started");
         FetchHighScoresJSON();
         // conversion from JSON to object
         // hs = JsonUtility.FromJson<HighScores>(jsonTestStr);       
@@ -155,7 +155,7 @@ public class BackendHandler : MonoBehaviour
     public void FetchHighScoresJSON() 
     {
         fetchCounter++;
-        Debug.Log("FetchHighScoresJSON button clicked");
+        //Debug.Log("FetchHighScoresJSON button clicked");
         StartCoroutine(GetRequestForHighScores(urlBackendHighScores));
     }
 

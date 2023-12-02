@@ -20,7 +20,7 @@ public class Safezone : MonoBehaviour
     {
         savedItemPoints.Add("granny", 500);
         savedItemPoints.Add("animal", 100);
-        //savedItemPoints.Add("badchoice", -50);
+        savedItemPoints.Add("badchoice", -50);
     }
 
     //public SavedItemPoints[] itemPointValues; // Define point values for each item
@@ -34,6 +34,7 @@ public class Safezone : MonoBehaviour
                 Debug.Log("P key pressed!");
                 Dictionary<string, int> itemCounts = new Dictionary<string, int>();
                 int pointsCombined = 0;
+                bool grannyPresent = false; // to check if granny is saved
 
                 Collider[] colliders = Physics.OverlapSphere(targetArea.position, detectionRadius);
                 foreach (Collider collider in colliders)
@@ -53,6 +54,16 @@ public class Safezone : MonoBehaviour
                     {
                         itemCounts.Add(itemTag, 1);
                     }
+
+                    if (itemTag == "granny")
+                    {
+                        grannyPresent = true;
+                    }
+                }
+
+                if (!grannyPresent)
+                {
+                    pointsCombined += -savedItemPoints["granny"];
                 }
 
                 // Add points based on the counts

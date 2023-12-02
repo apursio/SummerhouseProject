@@ -20,6 +20,7 @@ public class GlobalVariableStorage : MonoBehaviour
     public static bool level1;
     public static bool level2;
     public static bool level3;
+    public static bool scoreElectricityBox; // sähkökaapista pisteet vain oikeaan aikaan ja kerran
 
 
     // Start is called before the first frame update

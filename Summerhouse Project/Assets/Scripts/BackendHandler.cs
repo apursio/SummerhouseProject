@@ -173,7 +173,8 @@ public class BackendHandler : MonoBehaviour
     {
         HighScore hsItem = new HighScore();
         hsItem.playername = playernameInput.text;
-        hsItem.score = float.Parse(scoreInput.text);
+        //hsItem.score = float.Parse(scoreInput.text);
+        hsItem.score = GlobalVariableStorage.playerScore;
 
         Debug.Log("PostGameResults button clicked: " + playernameInput.text + " with scores " + scoreInput.text);
         Debug.Log("hsItem: " + JsonUtility.ToJson(hsItem)); 

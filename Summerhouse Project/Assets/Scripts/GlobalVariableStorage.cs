@@ -21,6 +21,7 @@ public class GlobalVariableStorage : MonoBehaviour
     public static bool level1;
     public static bool level2;
     public static bool level3;
+    public static bool usedWater;
     public static bool scoreElectricityBox; // sähkökaapista pisteet vain oikeaan aikaan ja kerran
     public static bool lastLevelDone; // level3 juttuja
     public static bool allOut;

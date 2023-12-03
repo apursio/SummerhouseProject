@@ -11,6 +11,10 @@ TagManager:
   - blanket
   - lid
   - water
+  - level3
+  - granny
+  - animal
+  - badchoice
   layers:
   - Default
   - TransparentFX

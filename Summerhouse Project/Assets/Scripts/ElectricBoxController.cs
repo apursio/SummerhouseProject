@@ -56,6 +56,7 @@ public class ElectricBoxController : MonoBehaviour
                 {
                     canToggleLid = false;
                     StartCoroutine(ToggleLid());
+                    FindObjectOfType<AudioManager>().Play("electricbox");
                 }
             }
             else if (Input.GetKey(KeyCode.T))
@@ -65,6 +66,7 @@ public class ElectricBoxController : MonoBehaviour
                 {
                     canToggleKnob = false;
                     StartCoroutine(ToggleKnob());
+                    FindObjectOfType<AudioManager>().Play("electricboxtoggle");
                     //GlobalVariableStorage.actionScore = 600;
                     //GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
                     isDynamicLightsEnabled = !isDynamicLightsEnabled;

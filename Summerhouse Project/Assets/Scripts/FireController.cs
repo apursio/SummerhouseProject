@@ -119,7 +119,6 @@ public class FireController : MonoBehaviour
                     //Debug.Log("If level 1 and water");
                     GlobalVariableStorage.availableScore = 0;
                     GlobalVariableStorage.fireIsOutOfControl = true;
-                    GlobalVariableStorage.usedWater = true;
                     //Debug.Log("Fire out of control");
                     return true; // At least one object is close enough
                 }

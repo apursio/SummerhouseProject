@@ -30,6 +30,8 @@ public class LevelController : MonoBehaviour
     public GameObject fire3;
     public GameObject fire4;
     private int savePoints = 0;
+    public GameObject endMsg;
+
     // Start is called before the first frame update
 
     void Start()
@@ -54,6 +56,7 @@ public class LevelController : MonoBehaviour
         TextActionScore.enabled = false;
         ButtonEndGame.gameObject.SetActive(false);
         ScoreField.SetActive(false);
+        endMsg.SetActive(false);
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
@@ -201,6 +204,9 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.taskTimeLeft = 0;
                     Debug.Log(savePoints);
                     GlobalVariableStorage.level3 = false;
+                    ScoreField.SetActive(true);
+                    endMsg.SetActive(true);
+                    Time.timeScale = 0;
                 }
             }
         }
@@ -262,7 +268,9 @@ public class LevelController : MonoBehaviour
 
     public void Call112()
     {
+        Debug.Log("Button clicked");
         GlobalVariableStorage.allOut = true;
+        Debug.Log("112 called" +GlobalVariableStorage.allOut);
     }
 
     // Update is called once per frame

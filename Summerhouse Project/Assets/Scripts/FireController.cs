@@ -10,7 +10,6 @@ public class FireController : MonoBehaviour
     //GameObject fire3 = GlobalFireStorage.Instance.Fire3;
     public GameObject fire4;
 
-
     private void Update()
     {
         // Check for left mouse click

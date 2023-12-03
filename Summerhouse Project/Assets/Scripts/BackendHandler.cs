@@ -47,7 +47,7 @@ public class BackendHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        logTextArea.text = log;
+        //logTextArea.text = log;
 
         if (updateHighScoreTextArea)
         {

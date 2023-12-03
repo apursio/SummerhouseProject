@@ -28,6 +28,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire1;
     public GameObject fire2;
     public GameObject fire3;
+    public GameObject fire4;
     private int savePoints = 0;
     // Start is called before the first frame update
 
@@ -57,6 +58,7 @@ public class LevelController : MonoBehaviour
         fire1.SetActive(false);
         fire2.SetActive(false);
         fire3.SetActive(false);
+        fire4 .SetActive(false);
 
     StartCoroutine("countTaskTime");
     }
@@ -165,6 +167,7 @@ public class LevelController : MonoBehaviour
                 {
                     Debug.Log("Time up1, Fire should get out of control");
                     FireOutOfControl();
+                    fire4.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level2)

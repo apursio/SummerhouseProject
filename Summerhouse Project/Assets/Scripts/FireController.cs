@@ -8,6 +8,7 @@ public class FireController : MonoBehaviour
     public GameObject fire1;
     public GameObject fire2;
     //GameObject fire3 = GlobalFireStorage.Instance.Fire3;
+    public GameObject fire4;
 
 
     private void Update()
@@ -32,6 +33,7 @@ public class FireController : MonoBehaviour
                     else
                     {
                         GlobalVariableStorage.level3 = true;
+                        //fire4.SetActive(true);
                         Debug.Log("Fire is out of Control");
                     }
                 }

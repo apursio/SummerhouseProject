@@ -6,6 +6,9 @@ using Assets.Scripts;
 using System;
 using UnityEditor.Rendering;
 using Unity.VisualScripting;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
+using UnityEditor.Callbacks;
 
 public class LevelController : MonoBehaviour
 {
@@ -20,12 +23,12 @@ public class LevelController : MonoBehaviour
     public GameObject blanket;
     public GameObject extinguisher;
     public GameObject lid;
-    public GameObject ButtonEndGame;
+    public Button ButtonEndGame;
     public GameObject ScoreField;
     public GameObject fire1;
     public GameObject fire2;
     public GameObject fire3;
-
+    private int savePoints = 0;
     // Start is called before the first frame update
 
     void Start()
@@ -43,34 +46,37 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level1 = false;
         GlobalVariableStorage.level2 = false;
         GlobalVariableStorage.level3 = false;
+        GlobalVariableStorage.usedWater = false;
         GlobalVariableStorage.scoreElectricityBox = false;
+        GlobalVariableStorage.lastLevelDone = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
-        ButtonEndGame.SetActive(false);
+        ButtonEndGame.gameObject.SetActive(false);
         ScoreField.SetActive(false);
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
         fire3.SetActive(false);
-        StartCoroutine("countTaskTime");
+
+    StartCoroutine("countTaskTime");
     }
 
-    IEnumerator updateLevel()
-    {
-        float interval = 1f;
-        for (; ; )
-        {
-            yield return new WaitForSeconds(interval);
-            if (GlobalVariableStorage.timeLeft > 0)//jos aikaa on jäljellä vähennetään intervalli jäljellä olevasta ajasta
-            {
-                GlobalVariableStorage.timeLeft -= interval;
-            }
-            else //ei tee toistaiseksi mitään kun aika loppuu
-            {
-                Time.timeScale = 0;
-            }
-        }
-    }
+    //IEnumerator updateLevel()
+    //{
+    //    float interval = 1f;
+    //    for (; ; )
+    //    {
+    //        yield return new WaitForSeconds(interval);
+    //        if (GlobalVariableStorage.timeLeft > 0)//jos aikaa on jäljellä vähennetään intervalli jäljellä olevasta ajasta
+    //        {
+    //            GlobalVariableStorage.timeLeft -= interval;
+    //        }
+    //        else //ei tee toistaiseksi mitään kun aika loppuu
+    //        {
+    //            Time.timeScale = 0;
+    //        }
+    //    }
+    //}
 
     void DisplayTime(float timeToDisplay)
     {
@@ -123,25 +129,28 @@ public class LevelController : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
 
-
             if (GlobalVariableStorage.taskTimeLeft > 0)
             {
                 GlobalVariableStorage.taskTimeLeft -= interval;
             }
-            else
+            if (GlobalVariableStorage.safeTime
+                && GlobalVariableStorage.taskTimeLeft <= 0)
             {
-                Debug.Log("Task Time over");
+                Debug.Log("Safe Time over");
                 MoveToNextLevel();
-                yield return new WaitForSeconds(3f);
-                GlobalVariableStorage.taskTimeLeft = 60;
             }
-
+            //else
+            //{
+            //    Debug.Log("Task Time over");
+            //    MoveToNextLevel();
+            //    yield return new WaitForSeconds(3f);
+            //    GlobalVariableStorage.taskTimeLeft = 60;
+            //}
 
             if (GlobalVariableStorage.level1) 
             {
                 if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
                 {
-                    //Debug.Log("P key pressed");
                     //GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Fire is out level 1");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
@@ -149,9 +158,13 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
                     GlobalVariableStorage.fireIsOut = false;
-                    //MoveToNextLevel() ;
+                    MoveToNextLevel();
                     //break;
-
+                }
+                else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.usedWater) // if the time runs out, fire gets out of control
+                {
+                    Debug.Log("Time up1, Fire should get out of control");
+                    FireOutOfControl();
                 }
             }
             else if (GlobalVariableStorage.level2)
@@ -159,37 +172,34 @@ public class LevelController : MonoBehaviour
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.fireIsOut)//(GlobalVariableStorage.fireIsOut)//
                 {
-                    //Debug.Log("P key pressed");
                     //GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Fire is out level 2");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
-                    //MoveToNextLevel();
+                    MoveToNextLevel();
                     //break;
-
-
-
+                }
+                else if (GlobalVariableStorage.taskTimeLeft <= 0) // if the time runs out, fire gets out of control
+                {
+                    Debug.Log("Time up2, Fire should get out of control");
+                    FireOutOfControl();
                 }
             }
             else if (GlobalVariableStorage.level3)
             {
                 //GlobalVariableStorage.taskTimeLeft = 60;
-                if (GlobalVariableStorage.allOut)//(Input.GetKey(KeyCode.P))
+                if (GlobalVariableStorage.lastLevelDone)
                 {
-                    //Debug.Log("P key pressed");
-                    //GlobalVariableStorage.fireIsOut = true;
-                    Debug.Log("Everybody is out");
-                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
-                    //continueRunning = false;
+                    Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    GlobalVariableStorage.taskTimeLeft = 0;
+                    Debug.Log(savePoints);
+                    GlobalVariableStorage.level3 = false;
                 }
             }
-
-
-
         }
     }
 
@@ -220,19 +230,31 @@ public class LevelController : MonoBehaviour
         }
         else if (GlobalVariableStorage.level2)
         {
-            GlobalVariableStorage.level2 = false;
-            GlobalVariableStorage.level3 = true;
-            //GlobalVariableStorage.fireIsOut = true;
-            GlobalVariableStorage.taskTimeLeft = 60;
+            //GlobalVariableStorage.level2 = false;
+            //GlobalVariableStorage.level3 = true;
+            //GlobalVariableStorage.taskTimeLeft = 60;
+            FireOutOfControl();
             fire3.SetActive(true);
             Debug.Log("to level 3");
             //ButtonEndGame.SetActive(true); // Call 112 button to be set visible later!
+            //GlobalVariableStorage.fireIsOut = true;
         }
         else
         {
             return;
         }
         // Add more conditions as needed for additional levels
+    }
+
+    void FireOutOfControl()
+    {
+        GlobalVariableStorage.level1 = false;
+        GlobalVariableStorage.level2 = false;
+        GlobalVariableStorage.level3 = true;
+        GlobalVariableStorage.fireIsOutOfControl = true;
+        GlobalVariableStorage.taskTimeLeft = 60;
+        ButtonEndGame.gameObject.SetActive(true); // Call 112 button to be set visible later!
+        Debug.Log("OMG - to level 3");
     }
 
     public void Call112()
@@ -248,3 +270,4 @@ public class LevelController : MonoBehaviour
         DisplayActionScore();
     }
 }
+

@@ -11,7 +11,7 @@ public class GlobalVariableStorage : MonoBehaviour
     public static int totalActionScore;
     public static int playerScore; // pisteet yhteensä
     public static bool fireIsOut;
-    public static bool fireIsOutofControl;
+    public static bool fireIsOutOfControl;
     public static float initialTime;
     public static float taskTime;
     public static float timeLeft;
@@ -21,7 +21,9 @@ public class GlobalVariableStorage : MonoBehaviour
     public static bool level1;
     public static bool level2;
     public static bool level3;
+    public static bool usedWater;
     public static bool scoreElectricityBox; // sähkökaapista pisteet vain oikeaan aikaan ja kerran
+    public static bool lastLevelDone; // level3 juttuja
     public static bool allOut;
     public static bool isKnobTurned;
 

@@ -1006,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 1
+  extinquishFireText: {fileID: 0}
   fire1: {fileID: 0}
   fire2: {fileID: 0}
   fire4: {fileID: 0}
@@ -1303,7 +1304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &74615362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1343,7 +1344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Left click to use
+  m_text: Press R to use
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1377,8 +1378,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3663,6 +3664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  extinquishFireText: {fileID: 74615363}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 261143839}
@@ -4043,6 +4045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  extinquishFireText: {fileID: 0}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 261143839}
@@ -9584,6 +9587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  extinquishFireText: {fileID: 0}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 324549857}
@@ -61756,6 +61760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  extinquishFireText: {fileID: 0}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 261143839}
@@ -76072,6 +76077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
+  extinquishFireText: {fileID: 74615363}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 261143839}

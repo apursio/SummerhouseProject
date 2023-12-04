@@ -3962,8 +3962,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 878613501}
   lines:
-  - Moi olen linja 1
-  - Hei olen kakkonen
+  - '!'
+  - ' Oh no! The fire is out of controll, save yourself and those important to you..'
+  - After you have saved all, unite at the gate and call 112
   textSpeed: 0
 --- !u!4 &345389383 stripped
 Transform:
@@ -51462,6 +51463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c8fcfeba88ed349bee33749cdd6aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueLaatikko: {fileID: 345347882}
   tmpIfTime: {fileID: 1231048435}
   tmpIfPoints: {fileID: 1968913096}
   TextTimeScore: {fileID: 418010184}

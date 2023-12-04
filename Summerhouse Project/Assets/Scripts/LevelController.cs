@@ -12,7 +12,7 @@ using UnityEditor.Callbacks;
 
 public class LevelController : MonoBehaviour
 {
-
+    public GameObject DialogueLaatikko;
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
     public TMP_Text TextTimeScore;
@@ -61,6 +61,7 @@ public class LevelController : MonoBehaviour
         fire2.SetActive(false);
         fire3.SetActive(false);
         fire4 .SetActive(false);
+        DialogueLaatikko.SetActive(false);
 
     StartCoroutine("countTaskTime");
     }
@@ -261,6 +262,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level3 = true;
         GlobalVariableStorage.fireIsOutOfControl = true;
         GlobalVariableStorage.taskTimeLeft = 60;
+        DialogueLaatikko.SetActive(true);
         ButtonEndGame.gameObject.SetActive(true); // Call 112 button to be set visible later!
         Debug.Log("OMG - to level 3");
     }

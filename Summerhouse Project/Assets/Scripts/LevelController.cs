@@ -56,6 +56,7 @@ public class LevelController : MonoBehaviour
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         endMsg.SetActive(false);
+        
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
@@ -228,6 +229,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.safeTime = false;
             GlobalVariableStorage.level1 = true;
             GlobalVariableStorage.taskTimeLeft = 60;
+            tmpIfTime.enabled = true;
             fire1.SetActive(true);
             DialogueBox1.SetActive(true);
             Debug.Log("to level 1");
@@ -282,7 +284,10 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayTime(GlobalVariableStorage.taskTimeLeft);
+        if(GlobalVariableStorage.safeTime == false) {
+            DisplayTime(GlobalVariableStorage.taskTimeLeft);
+        }
+        
         DisplayPoints();
         DisplayActionScore();
     }

@@ -32,6 +32,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire2;
     public GameObject fire3;
     public GameObject fire4;
+    public GameObject fire5;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
@@ -60,12 +61,12 @@ public class LevelController : MonoBehaviour
         endMsg.SetActive(false);
         CallText.enabled = false;
 
-
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
         fire3.SetActive(false);
-        fire4 .SetActive(false);
+        fire4.SetActive(false);
+        fire5.SetActive(false);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
@@ -200,6 +201,7 @@ public class LevelController : MonoBehaviour
                 {
                     Debug.Log("Time up2, Fire should get out of control");
                     FireOutOfControl();
+                    fire5.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level3)

@@ -34,7 +34,7 @@ public class BackendHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {         
-        Debug.Log("BackendHandler started");
+        //Debug.Log("BackendHandler started");
         FetchHighScoresJSON();
         // conversion from JSON to object
         // hs = JsonUtility.FromJson<HighScores>(jsonTestStr);       
@@ -47,7 +47,7 @@ public class BackendHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        logTextArea.text = log;
+        //logTextArea.text = log;
 
         if (updateHighScoreTextArea)
         {
@@ -155,7 +155,7 @@ public class BackendHandler : MonoBehaviour
     public void FetchHighScoresJSON() 
     {
         fetchCounter++;
-        Debug.Log("FetchHighScoresJSON button clicked");
+        //Debug.Log("FetchHighScoresJSON button clicked");
         StartCoroutine(GetRequestForHighScores(urlBackendHighScores));
     }
 
@@ -173,7 +173,8 @@ public class BackendHandler : MonoBehaviour
     {
         HighScore hsItem = new HighScore();
         hsItem.playername = playernameInput.text;
-        hsItem.score = float.Parse(scoreInput.text);
+        //hsItem.score = float.Parse(scoreInput.text);
+        hsItem.score = GlobalVariableStorage.playerScore;
 
         Debug.Log("PostGameResults button clicked: " + playernameInput.text + " with scores " + scoreInput.text);
         Debug.Log("hsItem: " + JsonUtility.ToJson(hsItem)); 

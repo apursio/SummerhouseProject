@@ -12,7 +12,7 @@ public class ElectricBoxController : MonoBehaviour
     public float activationDistance = 2.0f;
 
     private bool isLidOpen = false;
-    private bool isKnobTurned = false;
+    // private bool isKnobTurned = false;
 
     private bool canToggleLid = true;
     private bool canToggleKnob = false;
@@ -30,6 +30,7 @@ public class ElectricBoxController : MonoBehaviour
 
     void Start()
     {
+        GlobalVariableStorage.isKnobTurned = false;
         lid = GameObject.Find("Cup");
         knob = GameObject.Find("Main Knob");
 
@@ -40,39 +41,55 @@ public class ElectricBoxController : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("Update method called");
+        // Original raycast direction calculation
+        Vector3 originalDirection = (playerController.transform.position - transform.position).normalized;
 
-        Debug.DrawRay(transform.position, playerController.transform.position - transform.position, Color.green); // Visualize the ray
+        // Rotate the original direction by 25 degrees to the left around the Y-axis
+        float rotationAngle = 25f;
+        Quaternion rotation = Quaternion.Euler(0, -rotationAngle, 0);
+        Vector3 rotatedDirection = rotation * originalDirection;
+
+        // Visualize the ray with the rotated direction
+        Debug.DrawRay(transform.position, rotatedDirection * activationDistance, Color.green);
+
         // Use the interactableLayerMask in the Physics.Raycast
-        if (Physics.Raycast(transform.position, playerController.transform.position - transform.position, out RaycastHit hit, activationDistance, interactableLayerMask))
+        if (Physics.Raycast(transform.position, rotatedDirection, out RaycastHit hit, activationDistance, interactableLayerMask))
         {
-            //Debug.Log("Player is within activation distance");
+            //Debug.Log("Ray hit an object!");
 
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.E))
             {
                 Debug.Log("R key pressed");
                 if (canToggleLid)
                 {
                     canToggleLid = false;
                     StartCoroutine(ToggleLid());
+                    FindObjectOfType<AudioManager>().Play("electricbox");
                 }
             }
-            else if (Input.GetKey(KeyCode.T))
+            else if (Input.GetKey(KeyCode.R))
             {
                 Debug.Log("T key pressed");
                 if (canToggleKnob)
                 {
                     canToggleKnob = false;
                     StartCoroutine(ToggleKnob());
-                    GlobalVariableStorage.actionScore = 600;
-                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
+                    FindObjectOfType<AudioManager>().Play("electricboxtoggle");
+                    //GlobalVariableStorage.actionScore = 600;
+                    //GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
                     isDynamicLightsEnabled = !isDynamicLightsEnabled;
                     ToggleDynamicLights();
-
+                    if (GlobalVariableStorage.scoreElectricityBox)
+                    {
+                        GlobalVariableStorage.actionScore = 600;
+                        GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
+                        GlobalVariableStorage.scoreElectricityBox = false;
+                    }
                 }
             }
         }
     }
+
 
     void ToggleDynamicLights()
     {
@@ -98,14 +115,14 @@ public class ElectricBoxController : MonoBehaviour
 
     IEnumerator ToggleKnob()
     {
-        isKnobTurned = !isKnobTurned;
-        Quaternion knobTargetRotation = isKnobTurned ? Quaternion.Euler(40, 0, 0) : Quaternion.Euler(-90, 0, 0);
+        GlobalVariableStorage.isKnobTurned = !GlobalVariableStorage.isKnobTurned;
+        Quaternion knobTargetRotation = GlobalVariableStorage.isKnobTurned ? Quaternion.Euler(40, 0, 0) : Quaternion.Euler(-90, 0, 0);
         yield return StartCoroutine(MoveKnob(knobTargetRotation));
         canToggleKnob = true;
 
         // Lisätty 26.11.
         // Notify subscribers (other scripts) that lights were toggled
-        OnLightsToggle?.Invoke(!isKnobTurned);
+        OnLightsToggle?.Invoke(!GlobalVariableStorage.isKnobTurned);
         // Lisätty 26.11.
     }
 

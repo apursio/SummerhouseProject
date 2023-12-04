@@ -33,6 +33,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire4;
     private int savePoints = 0;
     public GameObject endMsg;
+    public TMP_Text CallText;
 
     // Start is called before the first frame update
 
@@ -56,7 +57,9 @@ public class LevelController : MonoBehaviour
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         endMsg.SetActive(false);
-        
+        CallText.enabled = false;
+
+
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
@@ -271,6 +274,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.taskTimeLeft = 60;
         DialogueBox4.SetActive(true);
         // Call 112 button to be set visible later!
+        CallText.enabled = true;
         Debug.Log("OMG - to level 3");
     }
 

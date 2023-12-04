@@ -45,7 +45,7 @@ public class ElectricBoxController : MonoBehaviour
         Vector3 originalDirection = (playerController.transform.position - transform.position).normalized;
 
         // Rotate the original direction by 25 degrees to the left around the Y-axis
-        float rotationAngle = 25f;
+        float rotationAngle = 15f;
         Quaternion rotation = Quaternion.Euler(0, -rotationAngle, 0);
         Vector3 rotatedDirection = rotation * originalDirection;
 

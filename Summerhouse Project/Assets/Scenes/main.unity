@@ -15,8 +15,8 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_FogColor: {r: 0, g: 0, b: 0, a: 0.77254903}
+  m_FogMode: 2
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
@@ -29,7 +29,7 @@ RenderSettings:
   m_SkyboxMaterial: {fileID: 2100000, guid: 434ce8dc011de764c90d8d367f780cb6, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
-  m_FlareFadeSpeed: 3
+  m_FlareFadeSpeed: 1
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
@@ -21812,8 +21812,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9137255, g: 0.6399731, b: 0.19607843, a: 1}
-  m_Intensity: 0.9
-  m_Range: 15
+  m_Intensity: 2
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -22504,7 +22504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &542701349
 Transform:
   m_ObjectHideFlags: 0
@@ -62890,7 +62890,7 @@ GameObject:
   - component: {fileID: 1448775720}
   - component: {fileID: 1448775719}
   m_Layer: 0
-  m_Name: Fire_3_Curtains
+  m_Name: Fire_3_Curtains_Bedroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63531,7 +63531,7 @@ Transform:
   m_GameObject: {fileID: 1486073728}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63549,8 +63549,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9245283, g: 0.8278459, b: 0.49424464, a: 1}
-  m_Intensity: 1
-  m_Range: 15
+  m_Intensity: 2
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -77672,6 +77672,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898691065}
   m_CullTransparentMesh: 1
+--- !u!1 &1899214484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1899214486}
+  - component: {fileID: 1899214485}
+  m_Layer: 0
+  m_Name: Increasing_Fog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1899214485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899214484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505098cb6a169fe49b9af84cedca7ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDensity: 0.01
+  endDensity: 0.5
+  duration: 60
+--- !u!4 &1899214486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899214484}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 44.60442, y: -0.80818725, z: 25.517265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1901092743
 GameObject:
   m_ObjectHideFlags: 0
@@ -84028,7 +84075,7 @@ Transform:
   m_GameObject: {fileID: 2041612744}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.082}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84046,8 +84093,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9137255, g: 0.6399731, b: 0.19607843, a: 1}
-  m_Intensity: 0.9
-  m_Range: 15
+  m_Intensity: 2
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -84964,8 +85011,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9137255, g: 0.6399731, b: 0.19607843, a: 1}
-  m_Intensity: 0.9
-  m_Range: 15
+  m_Intensity: 2
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -85358,3 +85405,4 @@ SceneRoots:
   - {fileID: 833894578}
   - {fileID: 546872041}
   - {fileID: 1033623479}
+  - {fileID: 1899214486}

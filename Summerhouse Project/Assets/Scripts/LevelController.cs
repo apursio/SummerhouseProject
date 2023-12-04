@@ -113,16 +113,24 @@ public class LevelController : MonoBehaviour
     void DisplayActionScore()
     {
         // Debug.Log("Display action score");
-        TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
+        if (GlobalVariableStorage.actionScore >= 0)
+        {
+            TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
+        }
+        else
+        {
+            TextActionScore.text = GlobalVariableStorage.actionScore.ToString();
+        }
         TextActionScore.enabled = true;
-        ;
+        StartCoroutine("waitForSecond");
     }
 
-    
+
     IEnumerator waitForSecond()
     {
         yield return new WaitForSeconds(3f);
         TextTimeScore.enabled = false;
+        TextActionScore.enabled = false;
     }
 
     void DisplayPoints()
@@ -169,6 +177,7 @@ public class LevelController : MonoBehaviour
                     
                     Debug.Log("Fire is out level 1");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
@@ -186,11 +195,19 @@ public class LevelController : MonoBehaviour
             else if (GlobalVariableStorage.level2)
             {
                 //GlobalVariableStorage.taskTimeLeft = 60;
+                if (GlobalVariableStorage.scoreElectricityBox && GlobalVariableStorage.isKnobTurned)
+                {
+                    GlobalVariableStorage.actionScore = 300;
+                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
+                    GlobalVariableStorage.scoreElectricityBox = false;
+                    DisplayActionScore();
+                }
                 if (GlobalVariableStorage.fireIsOut)//(GlobalVariableStorage.fireIsOut)//
                 {
                     //GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Fire is out level 2");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
@@ -209,6 +226,7 @@ public class LevelController : MonoBehaviour
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.lastLevelDone)
                 {
+                    DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
@@ -298,9 +316,7 @@ public class LevelController : MonoBehaviour
         if(GlobalVariableStorage.safeTime == false) {
             DisplayTime(GlobalVariableStorage.taskTimeLeft);
         }
-        
         DisplayPoints();
-        DisplayActionScore();
     }
 }
 

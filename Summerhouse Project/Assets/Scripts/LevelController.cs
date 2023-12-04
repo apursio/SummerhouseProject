@@ -55,7 +55,6 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.lastLevelDone = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
-        ScoreField.SetActive(false);
         endMsg.SetActive(false);
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
@@ -209,7 +208,7 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.taskTimeLeft = 0;
                     Debug.Log(savePoints);
                     GlobalVariableStorage.level3 = false;
-                    ScoreField.SetActive(true);
+                    //ScoreField.SetActive(true);
                     endMsg.SetActive(true);
                     Time.timeScale = 0;
                 }

@@ -28560,7 +28560,7 @@ MonoBehaviour:
   textComponent: {fileID: 675107074}
   lines:
   - '!'
-  - The fire has gone out of control! Save those important to you.
+  - The fire has gone out of control! Save everything important!
   - 'Meet up at the gate, then call 112. '
   - To call 112 press R key
   textSpeed: 0.001

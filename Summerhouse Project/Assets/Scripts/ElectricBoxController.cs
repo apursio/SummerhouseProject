@@ -101,12 +101,6 @@ public class ElectricBoxController : MonoBehaviour
                         //GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
                         isDynamicLightsEnabled = !isDynamicLightsEnabled;
                         ToggleDynamicLights();
-                        if (GlobalVariableStorage.scoreElectricityBox)
-                        {
-                            GlobalVariableStorage.actionScore = 600;
-                            GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
-                            GlobalVariableStorage.scoreElectricityBox = false;
-                        }
                     }
                 }
             }

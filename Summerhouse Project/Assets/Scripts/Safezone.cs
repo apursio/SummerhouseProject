@@ -19,7 +19,7 @@ public class Safezone : MonoBehaviour
     private void Start()
     {
         savedItemPoints.Add("granny", 500);
-        savedItemPoints.Add("animal", 100);
+        savedItemPoints.Add("animal", 150);
         savedItemPoints.Add("badchoice", -50);
     }
 

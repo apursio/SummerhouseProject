@@ -49,7 +49,7 @@ public class ElectricBoxController : MonoBehaviour
         {
             //Debug.Log("Player is within activation distance");
 
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.E))
             {
                 Debug.Log("R key pressed");
                 if (canToggleLid)
@@ -59,7 +59,7 @@ public class ElectricBoxController : MonoBehaviour
                     FindObjectOfType<AudioManager>().Play("electricbox");
                 }
             }
-            else if (Input.GetKey(KeyCode.T))
+            else if (Input.GetKey(KeyCode.R))
             {
                 Debug.Log("T key pressed");
                 if (canToggleKnob)

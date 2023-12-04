@@ -12,7 +12,10 @@ using UnityEditor.Callbacks;
 
 public class LevelController : MonoBehaviour
 {
-
+    public GameObject DialogueBox1;
+    public GameObject DialogueBox2;
+    public GameObject DialogueBox3;
+    public GameObject DialogueBox4;
     public TMP_InputField tmpIfTime;
     public TMP_InputField tmpIfPoints;
     public TMP_Text TextTimeScore;
@@ -23,7 +26,6 @@ public class LevelController : MonoBehaviour
     public GameObject blanket;
     public GameObject extinguisher;
     public GameObject lid;
-    public Button ButtonEndGame;
     public GameObject ScoreField;
     public GameObject fire1;
     public GameObject fire2;
@@ -53,14 +55,18 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.lastLevelDone = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
-        ButtonEndGame.gameObject.SetActive(false);
         ScoreField.SetActive(false);
         endMsg.SetActive(false);
+        
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
         fire3.SetActive(false);
         fire4 .SetActive(false);
+        DialogueBox1.SetActive(false);
+        DialogueBox2.SetActive(false);
+        DialogueBox3.SetActive(false);
+        DialogueBox4.SetActive(false);
 
     StartCoroutine("countTaskTime");
     }
@@ -156,6 +162,7 @@ public class LevelController : MonoBehaviour
                 if (GlobalVariableStorage.fireIsOut)//(Input.GetKey(KeyCode.P))
                 {
                     //GlobalVariableStorage.fireIsOut = true;
+                    
                     Debug.Log("Fire is out level 1");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayTimeScore();
@@ -223,7 +230,9 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.safeTime = false;
             GlobalVariableStorage.level1 = true;
             GlobalVariableStorage.taskTimeLeft = 60;
+            tmpIfTime.enabled = true;
             fire1.SetActive(true);
+            DialogueBox1.SetActive(true);
             Debug.Log("to level 1");
         }
         else if (GlobalVariableStorage.level1)
@@ -261,7 +270,8 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level3 = true;
         GlobalVariableStorage.fireIsOutOfControl = true;
         GlobalVariableStorage.taskTimeLeft = 60;
-        ButtonEndGame.gameObject.SetActive(true); // Call 112 button to be set visible later!
+        DialogueBox4.SetActive(true);
+        // Call 112 button to be set visible later!
         Debug.Log("OMG - to level 3");
     }
 
@@ -275,7 +285,10 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayTime(GlobalVariableStorage.taskTimeLeft);
+        if(GlobalVariableStorage.safeTime == false) {
+            DisplayTime(GlobalVariableStorage.taskTimeLeft);
+        }
+        
         DisplayPoints();
         DisplayActionScore();
     }

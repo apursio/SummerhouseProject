@@ -178,7 +178,7 @@ public class MoveObjectController : MonoBehaviour
 			rtnVal = "Press [E] to close";
 		}else
 		{
-			rtnVal = "Press[E] to open";
+			rtnVal = "Press [E] to open";
 		}
 
 		return rtnVal;

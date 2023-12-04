@@ -2915,10 +2915,14 @@ PrefabInstance:
     - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
       propertyPath: sounds.Array.data[1].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 1dc2f2287b118ff45939a91b08a2244e, type: 3}
+      objectReference: {fileID: 8300000, guid: 1afd1ae47c6af48c08a65b91f3a4adb4, type: 3}
+    - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
       propertyPath: sounds.Array.data[1].name
-      value: button2
+      value: theme
       objectReference: {fileID: 0}
     - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
       propertyPath: sounds.Array.data[1].pitch
@@ -2926,11 +2930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8717160211411712352, guid: 6cc43f54d72020043b6c860893f1f449, type: 3}
       propertyPath: sounds.Array.data[1].volume
-      value: 0
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

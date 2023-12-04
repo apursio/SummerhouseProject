@@ -12,6 +12,7 @@ using UnityEditor.Callbacks;
 
 public class LevelController : MonoBehaviour
 {
+    public GameObject DialogueBox0;
     public GameObject DialogueBox1;
     public GameObject DialogueBox2;
     public GameObject DialogueBox3;
@@ -33,6 +34,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire4;
     private int savePoints = 0;
     public GameObject endMsg;
+    public TMP_Text CallText;
 
     // Start is called before the first frame update
 
@@ -55,9 +57,10 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.lastLevelDone = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
-        ScoreField.SetActive(false);
         endMsg.SetActive(false);
-        
+        CallText.enabled = false;
+
+
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
@@ -210,7 +213,7 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.taskTimeLeft = 0;
                     Debug.Log(savePoints);
                     GlobalVariableStorage.level3 = false;
-                    ScoreField.SetActive(true);
+                    //ScoreField.SetActive(true);
                     endMsg.SetActive(true);
                     Time.timeScale = 0;
                 }
@@ -232,6 +235,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.taskTimeLeft = 60;
             tmpIfTime.enabled = true;
             fire1.SetActive(true);
+            DialogueBox0.SetActive(false);
             DialogueBox1.SetActive(true);
             Debug.Log("to level 1");
         }
@@ -242,6 +246,8 @@ public class LevelController : MonoBehaviour
             //GlobalVariableStorage.fireIsOut = true;
             GlobalVariableStorage.taskTimeLeft = 60;
             fire2.SetActive(true);
+            DialogueBox1.SetActive(false);
+            DialogueBox2.SetActive(true);
             Debug.Log("to level 2");
             GlobalVariableStorage.scoreElectricityBox = true;
         }
@@ -270,8 +276,10 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level3 = true;
         GlobalVariableStorage.fireIsOutOfControl = true;
         GlobalVariableStorage.taskTimeLeft = 60;
+        DialogueBox1.SetActive(false);
         DialogueBox4.SetActive(true);
         // Call 112 button to be set visible later!
+        CallText.enabled = true;
         Debug.Log("OMG - to level 3");
     }
 

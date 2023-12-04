@@ -41,13 +41,21 @@ public class ElectricBoxController : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("Update method called");
+        // Original raycast direction calculation
+        Vector3 originalDirection = (playerController.transform.position - transform.position).normalized;
 
-        Debug.DrawRay(transform.position, playerController.transform.position - transform.position, Color.green); // Visualize the ray
+        // Rotate the original direction by 25 degrees to the left around the Y-axis
+        float rotationAngle = 15f;
+        Quaternion rotation = Quaternion.Euler(0, -rotationAngle, 0);
+        Vector3 rotatedDirection = rotation * originalDirection;
+
+        // Visualize the ray with the rotated direction
+        Debug.DrawRay(transform.position, rotatedDirection * activationDistance, Color.green);
+
         // Use the interactableLayerMask in the Physics.Raycast
-        if (Physics.Raycast(transform.position, playerController.transform.position - transform.position, out RaycastHit hit, activationDistance, interactableLayerMask))
+        if (Physics.Raycast(transform.position, rotatedDirection, out RaycastHit hit, activationDistance, interactableLayerMask))
         {
-            //Debug.Log("Player is within activation distance");
+            //Debug.Log("Ray hit an object!");
 
             if (Input.GetKey(KeyCode.E))
             {
@@ -81,6 +89,7 @@ public class ElectricBoxController : MonoBehaviour
             }
         }
     }
+
 
     void ToggleDynamicLights()
     {

@@ -1,19 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FireController : MonoBehaviour
 {
     public float extinguishDistance = 0.5f;  // Adjust this distance based on your needs
+    [SerializeField] private TextMeshProUGUI extinquishFireText;
 
     public GameObject fire1;
     public GameObject fire2;
     //GameObject fire3 = GlobalFireStorage.Instance.Fire3;
     public GameObject fire4;
 
+    private void Awake()
+    {
+        extinquishFireText.enabled = false;
+    }
+
     private void Update()
     {
+        IsObjectGrabbableNearFire();
         // Check for left mouse click
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             if (GlobalVariableStorage.level1)
             {
@@ -35,6 +43,7 @@ public class FireController : MonoBehaviour
                         //fire4.SetActive(true);
                         Debug.Log("Fire is out of Control");
                     }
+                    extinquishFireText.enabled = false;
                 }
             }
             if (GlobalVariableStorage.level2)
@@ -59,6 +68,7 @@ public class FireController : MonoBehaviour
                             GlobalVariableStorage.level3 = true;
                             Debug.Log("Fire is out of Control");
                         }
+                        extinquishFireText.enabled = false;
                     }
                 }
             }
@@ -90,10 +100,11 @@ public class FireController : MonoBehaviour
                 Debug.Log("in Level1");
                 if (objectGrabbableCollider != null &&
                     grabbableObject.CompareTag("lid") &&
-                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
+                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)     
                 {
                     //Debug.Log("If level 1 and crabbables");
                     GlobalVariableStorage.availableScore = 500;
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
                 else if (objectGrabbableCollider != null &&
@@ -102,6 +113,7 @@ public class FireController : MonoBehaviour
                 {
                     //Debug.Log("If level 1 and crabbables");
                     GlobalVariableStorage.availableScore = 500;
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
                 else if (objectGrabbableCollider != null &&
@@ -110,6 +122,7 @@ public class FireController : MonoBehaviour
                 {
                     //Debug.Log("If level 1 and crabbables");
                     GlobalVariableStorage.availableScore = 100;
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
                 else if (objectGrabbableCollider != null &&
@@ -120,6 +133,7 @@ public class FireController : MonoBehaviour
                     GlobalVariableStorage.availableScore = 0;
                     GlobalVariableStorage.fireIsOutOfControl = true;
                     //Debug.Log("Fire out of control");
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
             }
@@ -131,6 +145,7 @@ public class FireController : MonoBehaviour
                 {
                     Debug.Log("If level 2 and crabbables");
                     GlobalVariableStorage.availableScore = 500;
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
                 else if (objectGrabbableCollider != null &&
@@ -139,6 +154,7 @@ public class FireController : MonoBehaviour
                 {
                     Debug.Log("level 2 and crabbables");
                     GlobalVariableStorage.availableScore = 500;
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
                 else if (objectGrabbableCollider != null &&
@@ -147,6 +163,7 @@ public class FireController : MonoBehaviour
                 {
                     Debug.Log("level 2 and crabbables");
                     GlobalVariableStorage.availableScore = 500;
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
             }
@@ -157,12 +174,14 @@ public class FireController : MonoBehaviour
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
                     Debug.Log("If level 3 and crabbables");
+                    extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
             }
 
         }
         //Debug.Log("Object crabbable false");
+        extinquishFireText.enabled = false;
         return false; // No object is close enough
     }
 }

@@ -101,7 +101,7 @@ public class MoveObjectController : MonoBehaviour
 					bool isOpen = anim != null ? anim.GetBool(animBoolNameNum) : false; // check for null
 					msg = getGuiMsg(isOpen);
 
-					if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
+					if (Input.GetKeyUp(KeyCode.E))
 					{
 						if (anim != null)
 						{
@@ -167,7 +167,7 @@ public class MoveObjectController : MonoBehaviour
 		guiStyle.fontSize = 16;
 		guiStyle.fontStyle = FontStyle.Bold;
 		guiStyle.normal.textColor = Color.white;
-		msg = "Press E/Fire1 to Open";
+		msg = "Press [E] to open";
 	}
 
 	private string getGuiMsg(bool isOpen)
@@ -175,10 +175,10 @@ public class MoveObjectController : MonoBehaviour
 		string rtnVal;
 		if (isOpen)
 		{
-			rtnVal = "Press E/Fire1 to Close";
+			rtnVal = "Press [E] to close";
 		}else
 		{
-			rtnVal = "Press E/Fire1 to Open";
+			rtnVal = "Press [E] to open";
 		}
 
 		return rtnVal;

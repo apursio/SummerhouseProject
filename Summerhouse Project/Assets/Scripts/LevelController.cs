@@ -49,7 +49,6 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level1 = false;
         GlobalVariableStorage.level2 = false;
         GlobalVariableStorage.level3 = false;
-        GlobalVariableStorage.usedWater = false;
         GlobalVariableStorage.scoreElectricityBox = false;
         GlobalVariableStorage.lastLevelDone = false;
         TextTimeScore.enabled = false;
@@ -166,7 +165,7 @@ public class LevelController : MonoBehaviour
                     MoveToNextLevel();
                     //break;
                 }
-                else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.usedWater) // if the time runs out, fire gets out of control
+                else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
                 {
                     Debug.Log("Time up1, Fire should get out of control");
                     FireOutOfControl();

@@ -197,10 +197,10 @@ public class LevelController : MonoBehaviour
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.scoreElectricityBox && GlobalVariableStorage.isKnobTurned)
                 {
+                    DisplayActionScore();
                     GlobalVariableStorage.actionScore = 300;
                     GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
                     GlobalVariableStorage.scoreElectricityBox = false;
-                    DisplayActionScore();
                 }
                 if (GlobalVariableStorage.fireIsOut)//(GlobalVariableStorage.fireIsOut)//
                 {

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class ElectricBoxController : MonoBehaviour
 {
@@ -9,7 +10,12 @@ public class ElectricBoxController : MonoBehaviour
     // lisätty 26.11.
     public float lidSmoothness = 5f;
     public float knobSmoothness = 5f;
-    public float activationDistance = 2.0f;
+    public float activationDistance = 1.0f;
+    [SerializeField] private Transform playerCameraTransform;
+    [SerializeField] private TextMeshProUGUI OpenCloseText;
+    [SerializeField] private TextMeshProUGUI UseText;
+    private string openText = "Press [E] to open";
+    private string closeText = "Press [E] to close";
 
     private bool isLidOpen = false;
     // private bool isKnobTurned = false;
@@ -30,6 +36,7 @@ public class ElectricBoxController : MonoBehaviour
 
     void Start()
     {
+        OpenCloseText.gameObject.SetActive(false);
         GlobalVariableStorage.isKnobTurned = false;
         lid = GameObject.Find("Cup");
         knob = GameObject.Find("Main Knob");
@@ -42,51 +49,77 @@ public class ElectricBoxController : MonoBehaviour
     void Update()
     {
         // Original raycast direction calculation
-        Vector3 originalDirection = (playerController.transform.position - transform.position).normalized;
+        // Vector3 originalDirection = (playerController.transform.position - transform.position).normalized;
+        Vector3 directionToBox = (transform.position - playerController.transform.position).normalized;
 
         // Rotate the original direction by 25 degrees to the left around the Y-axis
-        float rotationAngle = 15f;
-        Quaternion rotation = Quaternion.Euler(0, -rotationAngle, 0);
-        Vector3 rotatedDirection = rotation * originalDirection;
+        // float rotationAngle = 15f;
+        // Quaternion rotation = Quaternion.Euler(0, -rotationAngle, 0);
+        // Vector3 rotatedDirection = rotation * originalDirection;
 
         // Visualize the ray with the rotated direction
-        Debug.DrawRay(transform.position, rotatedDirection * activationDistance, Color.green);
+        // Debug.DrawRay(transform.position, rotatedDirection * activationDistance, Color.green);
+        Debug.DrawRay(playerCameraTransform.position, playerCameraTransform.forward * activationDistance, Color.green);
 
         // Use the interactableLayerMask in the Physics.Raycast
-        if (Physics.Raycast(transform.position, rotatedDirection, out RaycastHit hit, activationDistance, interactableLayerMask))
+        // if (Physics.Raycast(transform.position, rotatedDirection, out RaycastHit hit, activationDistance, interactableLayerMask))
+        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, activationDistance, interactableLayerMask))
         {
             //Debug.Log("Ray hit an object!");
-
-            if (Input.GetKey(KeyCode.E))
+            if (raycastHit.collider.CompareTag("level2"))
             {
-                Debug.Log("R key pressed");
-                if (canToggleLid)
+                if (!isLidOpen)
                 {
-                    canToggleLid = false;
-                    StartCoroutine(ToggleLid());
-                    FindObjectOfType<AudioManager>().Play("electricbox");
+                    OpenCloseText.text = openText;
+                    OpenCloseText.gameObject.SetActive(true);
+                    UseText.enabled = false;
+                } else {
+                    OpenCloseText.text = closeText;
+                    OpenCloseText.gameObject.SetActive(true);
+                    UseText.enabled = true;
                 }
-            }
-            else if (Input.GetKey(KeyCode.R))
-            {
-                Debug.Log("T key pressed");
-                if (canToggleKnob)
+
+                if (Input.GetKey(KeyCode.E))
                 {
-                    canToggleKnob = false;
-                    StartCoroutine(ToggleKnob());
-                    FindObjectOfType<AudioManager>().Play("electricboxtoggle");
-                    //GlobalVariableStorage.actionScore = 600;
-                    //GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
-                    isDynamicLightsEnabled = !isDynamicLightsEnabled;
-                    ToggleDynamicLights();
-                    if (GlobalVariableStorage.scoreElectricityBox)
+                    Debug.Log("E key pressed");
+                    if (canToggleLid)
                     {
-                        GlobalVariableStorage.actionScore = 600;
-                        GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
-                        GlobalVariableStorage.scoreElectricityBox = false;
+                        canToggleLid = false;
+                        StartCoroutine(ToggleLid());
+                        FindObjectOfType<AudioManager>().Play("electricbox");
+                    }
+                }
+                else if (Input.GetKey(KeyCode.R))
+                {
+                    Debug.Log("R key pressed");
+                    if (canToggleKnob)
+                    {
+                        canToggleKnob = false;
+                        StartCoroutine(ToggleKnob());
+                        FindObjectOfType<AudioManager>().Play("electricboxtoggle");
+                        //GlobalVariableStorage.actionScore = 600;
+                        //GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
+                        isDynamicLightsEnabled = !isDynamicLightsEnabled;
+                        ToggleDynamicLights();
+                        if (GlobalVariableStorage.scoreElectricityBox)
+                        {
+                            GlobalVariableStorage.actionScore = 600;
+                            GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
+                            GlobalVariableStorage.scoreElectricityBox = false;
+                        }
                     }
                 }
             }
+            else
+            {
+                OpenCloseText.gameObject.SetActive(false);
+                UseText.enabled = false;
+            }
+        } 
+        else
+        {
+            OpenCloseText.gameObject.SetActive(false);
+            UseText.enabled = false;
         }
     }
 

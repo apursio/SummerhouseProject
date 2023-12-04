@@ -73982,8 +73982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1898691067}
   lines:
-  - It is late afternoon. You arrive at the summerhouse
-  - Everything seems normal. Grandma has started cooking the dinner
+  - '!'
+  - You put out the fire but TV appears to be on fire
   textSpeed: 0.06
 --- !u!114 &1760392262
 MonoBehaviour:
@@ -81524,6 +81524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c8fcfeba88ed349bee33749cdd6aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueBox0: {fileID: 345347882}
   DialogueBox1: {fileID: 1270907491}
   DialogueBox2: {fileID: 1760392259}
   DialogueBox3: {fileID: 126642285}

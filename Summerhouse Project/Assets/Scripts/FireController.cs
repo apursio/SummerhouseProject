@@ -77,7 +77,7 @@ public class FireController : MonoBehaviour
 
     private bool IsObjectGrabbableNearFire()
     {
-        Debug.Log("Is Object Crabbable Near Fire");
+        // Debug.Log("Is Object Crabbable Near Fire");
         Collider fireCollider = GetComponent<Collider>();
 
         if (fireCollider == null)
@@ -93,11 +93,11 @@ public class FireController : MonoBehaviour
         // Check if any of the grabbable objects are close enough to the fire
         foreach (ObjectGrabbable grabbableObject in grabbableObjects)
         {
-            Debug.Log("in forEach");
+            // Debug.Log("in forEach");
             Collider objectGrabbableCollider = grabbableObject.GetComponent<Collider>();
             if (GlobalVariableStorage.level1)
             {
-                Debug.Log("in Level1");
+                // Debug.Log("in Level1");
                 if (objectGrabbableCollider != null &&
                     grabbableObject.CompareTag("lid") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)     

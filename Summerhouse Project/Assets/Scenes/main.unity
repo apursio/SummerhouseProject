@@ -3990,7 +3990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
-  extinquishFireText: {fileID: 0}
+  extinquishFireText: {fileID: 74615363}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 261143839}
@@ -9532,7 +9532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
-  extinquishFireText: {fileID: 0}
+  extinquishFireText: {fileID: 74615363}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 324549857}
@@ -28034,7 +28034,7 @@ MonoBehaviour:
   lines:
   - '!'
   - The fire has gone out of control! Save everything important!
-  - 'Meet up at the gate, then call 112. '
+  - 'Gather everything important at the front gate, then call 112 '
   - To call 112 press R key
   textSpeed: 0.001
 --- !u!114 &662025218
@@ -60597,7 +60597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extinguishDistance: 0.5
-  extinquishFireText: {fileID: 0}
+  extinquishFireText: {fileID: 74615363}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
   fire4: {fileID: 261143839}

@@ -34,6 +34,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire3;
     public GameObject fire4;
     public GameObject fire5;
+    public GameObject fire6;
     public GameObject smoke4;
     private int savePoints = 0;
     public GameObject endMsg;
@@ -70,6 +71,7 @@ public class LevelController : MonoBehaviour
         fire3.SetActive(false);
         fire4.SetActive(false);
         fire5.SetActive(false);
+        fire6.SetActive(false);
         smoke4.SetActive(false);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
@@ -294,6 +296,7 @@ public class LevelController : MonoBehaviour
             //GlobalVariableStorage.taskTimeLeft = 60;
             FireOutOfControl();
             fire3.SetActive(true);
+            fire6.SetActive(true);
             //fog.SetActive(true);
             Debug.Log("to level 3");
             //ButtonEndGame.SetActive(true); // Call 112 button to be set visible later!

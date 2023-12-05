@@ -71637,6 +71637,7 @@ MonoBehaviour:
   fire3: {fileID: 1448775717}
   fire4: {fileID: 261143839}
   fire5: {fileID: 324549857}
+  fire6: {fileID: 300009848}
   smoke4: {fileID: 1009652296}
   endMsg: {fileID: 126060626}
   CallText: {fileID: 986708064}

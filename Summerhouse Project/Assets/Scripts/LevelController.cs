@@ -250,13 +250,10 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.level3 = false;
                     //ScoreField.SetActive(true);
                     endMsg.SetActive(true);
-                    if (Input.GetKey(KeyCode.Space))
-                    {
-                        EndLevel(2);
-                    }
                     Time.timeScale = 0;
                 }
             }
+
         }
     }
     void MoveToNextLevel()
@@ -324,8 +321,19 @@ public class LevelController : MonoBehaviour
 
     public void EndLevel(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex);
+        Debug.Log("EndLevel function called with build index: " + buildIndex);
+
+        if (SceneManager.GetSceneByBuildIndex(buildIndex) != null)
+        {
+            Debug.Log("Loading scene with build index: " + buildIndex);
+            SceneManager.LoadScene(buildIndex);
+        }
+        else
+        {
+            Debug.LogError("Invalid build index: " + buildIndex);
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -334,6 +342,11 @@ public class LevelController : MonoBehaviour
             DisplayTime(GlobalVariableStorage.taskTimeLeft);
         }
         DisplayPoints();
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Debug.Log("Space key pressed");
+            EndLevel(2);
+        }
     }
 }
 

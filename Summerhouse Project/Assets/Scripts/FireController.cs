@@ -4,7 +4,7 @@ using TMPro;
 
 public class FireController : MonoBehaviour
 {
-    public float extinguishDistance = 0.5f;  // Adjust this distance based on your needs
+    public float extinguishDistance = 0.5f;
     [SerializeField] private TextMeshProUGUI extinquishFireText;
 
     public GameObject fire1;
@@ -19,7 +19,7 @@ public class FireController : MonoBehaviour
     private void Update()
     {
         IsObjectGrabbableNearFire();
-        // Check for left mouse click
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (GlobalVariableStorage.level1)

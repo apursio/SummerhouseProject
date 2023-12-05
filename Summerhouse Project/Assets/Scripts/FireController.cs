@@ -12,6 +12,7 @@ public class FireController : MonoBehaviour
     //GameObject fire3 = GlobalFireStorage.Instance.Fire3;
     //public GameObject fire4;
     //public GameObject fire5;
+    private bool waterUsed = false;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class FireController : MonoBehaviour
                 if (IsObjectGrabbableNearFire())
                 {
                     // Disable the fire
-                    if (GlobalVariableStorage.fireIsOutOfControl == false)
+                    if (waterUsed == false)
                     {
                         fire1.SetActive(false);
                         GlobalVariableStorage.fireIsOut = true;
@@ -41,6 +42,7 @@ public class FireController : MonoBehaviour
                     else
                     {
                         GlobalVariableStorage.level3 = true;
+                        GlobalVariableStorage.fireIsOutOfControl = true;
                         //fire4.SetActive(true);
                         Debug.Log("Fire is out of Control");
                     }
@@ -132,9 +134,11 @@ public class FireController : MonoBehaviour
                 {
                     //Debug.Log("If level 1 and water");
                     GlobalVariableStorage.availableScore = 0;
-                    GlobalVariableStorage.fireIsOutOfControl = true;
-                    //Debug.Log("Fire out of control");
                     extinquishFireText.enabled = true;
+                    waterUsed = true;
+                    //GlobalVariableStorage.fireIsOutOfControl = true;
+                    //Debug.Log("Fire out of control");
+                    
                     return true; // At least one object is close enough
                 }
             }

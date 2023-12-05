@@ -40,6 +40,7 @@ public class LevelController : MonoBehaviour
     public GameObject endMsg;
     public TMP_Text CallText;
     public GameObject fog;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
 
@@ -316,6 +317,8 @@ public class LevelController : MonoBehaviour
         DialogueBox4.SetActive(true);
         // Call 112 button to be set visible later!
         CallText.enabled = true;
+        audioSource = GameObject.Find("FireAlarm").GetComponent<AudioSource>();
+        audioSource.Play();
         Debug.Log("OMG - to level 3");
     }
 

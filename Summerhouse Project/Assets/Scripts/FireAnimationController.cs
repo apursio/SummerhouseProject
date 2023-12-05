@@ -41,23 +41,24 @@ public class FireAnimationController : MonoBehaviour
             SetEmissionRate(heatDistortion, Mathf.Lerp(0f, 15f, timer / 10f));
         }
 
-        // From 10 to 20 seconds, adjust "Flames" parameters
-        if (timer > 10f && timer <= 20f)
+        // From 5 to 15 seconds, adjust "Flames" parameters
+        if (timer >= 5f && timer <= 15f)
         {
             // Adjust "Flames" start size to values between 0.01 and 0.02
-            SetStartSize(flames, Mathf.Lerp(0.01f, 0.02f, (timer - 10f) / 10f), Mathf.Lerp(0.03f, 0.04f, (timer - 10f) / 10f));
+            SetStartSize(flames, Mathf.Lerp(0.01f, 0.1f, (timer - 5f) / 10f), Mathf.Lerp(0.1f, 3f, (timer - 5f) / 10f));
 
             // Adjust "Flames" velocity over lifetime for "Linear Y" to values between 0.4 and 0.1
-            SetVelocityOverLifetime(flames, new Vector3(0f, Mathf.Lerp(0.1f, 0.6f, (timer - 10f) / 10f), 0f));
+            SetVelocityOverLifetime(flames, new Vector3(0.1f, Mathf.Lerp(0.1f, 1.6f, (timer - 5f) / 10f), 0f));
 
             // Set speed modifier to 1
             SetSpeedModifier(flames, 1f);
 
-            // Emission rate over time 0-5
-            SetEmissionRate(flames, Mathf.Lerp(0f, 5f, (timer - 10f) / 10f));
+            // Emission rate over time 0-15
+            SetEmissionRate(flames, Mathf.Lerp(1f, 15f, (timer - 5f) / 10f));
         }
 
-        // From 20 to 50 seconds, adjust "Flames" parameters
+
+        /* From 20 to 50 seconds, adjust "Flames" parameters
         if (timer > 20f && timer <= 50f)
         {
             // Adjust "Flames" start size to values between 0.01 and 0.02
@@ -72,26 +73,27 @@ public class FireAnimationController : MonoBehaviour
 
             // Emission rate over time 5-15
             SetEmissionRate(flames, Mathf.Lerp(5f, 15f, (timer - 20f) / 30f));
-        }
+        }*/
 
-        // From 30 to 50 seconds, grow "Flames Secondary" emission rate to 15
-        if (timer > 30f && timer <= 50f)
+        // From 10 to 20 seconds, grow "Flames Secondary" emission rate to 15
+        if (timer >= 10f && timer <= 20f)
         {
-            SetEmissionRate(flamesSecondary, Mathf.Lerp(0f, 15f, (timer - 30f) / 20f));
+            SetEmissionRate(flamesSecondary, Mathf.Lerp(5f, 15f, (timer - 10f) / 10f));
+
             // Set speed modifier to linearly change from 2 to 1 over time 10-20 seconds
-            SetSpeedModifier(flamesSecondary, Mathf.Lerp(0.4f, 1f, (timer - 30f) / 20f));
+            SetSpeedModifier(flamesSecondary, Mathf.Lerp(2f, 1f, (timer - 10f) / 10f));
         }
 
-        // From 25 to 50 seconds, grow "Lights" emission rate to 5
-        if (timer > 25f && timer <= 50f)
+        // From 0 to 10 seconds, grow "Lights" emission rate to 15
+        if (timer >= 0f && timer <= 10f)
         {
-            SetEmissionRate(lights, Mathf.Lerp(0f, 5f, (timer - 25f) / 25f));
+            SetEmissionRate(lights, Mathf.Lerp(0f, 15f, timer / 10f));
         }
 
-        // From 25 to 50 seconds, grow "Point LightFire" intensity from 0 to 1
+        // From 25 to 50 seconds, grow "Point LightFire" intensity from 0 to 2
         if (timer > 25f && timer <= 50f)
         {
-            SetPointLightIntensity(Mathf.Lerp(0f, 1f, (timer - 25f) / 25f));
+            SetPointLightIntensity(Mathf.Lerp(0f, 2f, (timer - 25f) / 25f));
         }
     }
 

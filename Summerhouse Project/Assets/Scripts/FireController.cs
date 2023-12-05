@@ -9,9 +9,6 @@ public class FireController : MonoBehaviour
 
     public GameObject fire1;
     public GameObject fire2;
-    //GameObject fire3 = GlobalFireStorage.Instance.Fire3;
-    //public GameObject fire4;
-    //public GameObject fire5;
     private bool waterUsed = false;
 
     private void Awake()
@@ -41,7 +38,6 @@ public class FireController : MonoBehaviour
                     }
                     else
                     {
-                        GlobalVariableStorage.level3 = true;
                         GlobalVariableStorage.fireIsOutOfControl = true;
                         //fire4.SetActive(true);
                         Debug.Log("Fire is out of Control");
@@ -85,7 +81,6 @@ public class FireController : MonoBehaviour
 
         if (fireCollider == null)
         {
-
             return false;
         }
 
@@ -102,74 +97,47 @@ public class FireController : MonoBehaviour
             {
                 // Debug.Log("in Level1");
                 if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("lid") &&
-                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)     
-                {
-                    //Debug.Log("If level 1 and crabbables");
-                    GlobalVariableStorage.availableScore = 500;
-                    extinquishFireText.enabled = true;
-                    return true; // At least one object is close enough
-                }
-                else if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("blanket") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
-                    //Debug.Log("If level 1 and crabbables");
-                    GlobalVariableStorage.availableScore = 500;
-                    extinquishFireText.enabled = true;
-                    return true; // At least one object is close enough
-                }
-                else if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("extinguisher") &&
-                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                {
-                    //Debug.Log("If level 1 and crabbables");
-                    GlobalVariableStorage.availableScore = 100;
-                    extinquishFireText.enabled = true;
-                    return true; // At least one object is close enough
-                }
-                else if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("water") &&
-                    Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                {
-                    //Debug.Log("If level 1 and water");
-                    GlobalVariableStorage.availableScore = 0;
-                    extinquishFireText.enabled = true;
-                    waterUsed = true;
-                    //GlobalVariableStorage.fireIsOutOfControl = true;
-                    //Debug.Log("Fire out of control");
-                    
-                    return true; // At least one object is close enough
+                    if (grabbableObject.CompareTag("lid") ||
+                        grabbableObject.CompareTag("blanket"))
+                    {
+                        Debug.Log("If level 1: lid or blanket");
+                        GlobalVariableStorage.availableScore = 500;
+                        extinquishFireText.enabled = true;
+                        return true; // At least one object is close enough
+                    }
+                    else if (grabbableObject.CompareTag("extinguisher"))
+                    {
+                        Debug.Log("If level 1: extinguisher");
+                        GlobalVariableStorage.availableScore = 100;
+                        extinquishFireText.enabled = true;
+                        return true; // At least one object is close enough
+                    }
+
+                    else if (grabbableObject.CompareTag("water"))
+                    {
+                        Debug.Log("If level 1: water");
+                        GlobalVariableStorage.availableScore = 0;
+                        extinquishFireText.enabled = true;
+                        waterUsed = true;
+                        return true; // At least one object is close enough
+                    }
                 }
             }
             else if (GlobalVariableStorage.level2)
             {
                 if (objectGrabbableCollider != null &&
-                    grabbableObject.CompareTag("blanket") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
-                    Debug.Log("If level 2 and crabbables");
-                    GlobalVariableStorage.availableScore = 500;
-                    extinquishFireText.enabled = true;
-                    return true; // At least one object is close enough
-                }
-                else if (objectGrabbableCollider != null &&
-                        grabbableObject.CompareTag("extinguisher") &&
-                        Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                {
-                    Debug.Log("level 2 and crabbables");
-                    GlobalVariableStorage.availableScore = 500;
-                    extinquishFireText.enabled = true;
-                    return true; // At least one object is close enough
-                }
-                else if (objectGrabbableCollider != null &&
-                        grabbableObject.CompareTag("water") &&
-                        Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
-                {
-                    Debug.Log("level 2 and crabbables");
-                    GlobalVariableStorage.availableScore = 500;
-                    extinquishFireText.enabled = true;
-                    return true; // At least one object is close enough
+                    if (grabbableObject.CompareTag("blanket") ||
+                        grabbableObject.CompareTag("extinguisher") ||
+                        grabbableObject.CompareTag("water"))
+                    {
+                        GlobalVariableStorage.availableScore = 500;
+                        extinquishFireText.enabled = true;
+                        return true;
+                    }
                 }
             }
             else if (GlobalVariableStorage.level3)

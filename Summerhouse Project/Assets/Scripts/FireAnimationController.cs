@@ -7,6 +7,8 @@ public class FireAnimationController : MonoBehaviour
     public ParticleSystem flamesSecondary;
     public ParticleSystem lights;
     public Light pointLightFire;
+    public ParticleSystem flamesSecondaryCeiling;
+    public Light pointLightFireCeiling;
 
     private float timer = 0f;
 
@@ -17,9 +19,13 @@ public class FireAnimationController : MonoBehaviour
         SetEmissionRate(flames, 0f);
         SetEmissionRate(flamesSecondary, 0f);
         SetEmissionRate(lights, 0f);
+        SetEmissionRate(flamesSecondaryCeiling, 0f);
 
         // Set initial intensity to 0
         SetPointLightIntensity(0f);
+        // Set initial intensity to 0
+        SetPointLightCeilingIntensity(0f);
+
 
         // Set initial start size to 0 for "Flames"
         SetStartSize(flames, 0f, 0f);
@@ -29,32 +35,33 @@ public class FireAnimationController : MonoBehaviour
 
         // Set initial speed modifier for "Flames"
         SetSpeedModifier(flames, 1f);
+
     }
 
     void Update()
     {
         timer += Time.deltaTime;
 
-        // From 0 to 10 seconds, grow "Heat Distortion" emission rate to 15
+        /* From 0 to 10 seconds, grow "Heat Distortion" emission rate to 15
         if (timer <= 10f)
         {
             SetEmissionRate(heatDistortion, Mathf.Lerp(0f, 15f, timer / 10f));
-        }
+        }*/
 
-        // From 5 to 15 seconds, adjust "Flames" parameters
-        if (timer >= 5f && timer <= 15f)
+        // From 0 to 10 seconds, adjust "Flames" parameters
+        if (timer >= 0f && timer <= 10f)
         {
-            // Adjust "Flames" start size to values between 0.01 and 0.02
-            SetStartSize(flames, Mathf.Lerp(0.01f, 0.1f, (timer - 5f) / 10f), Mathf.Lerp(0.1f, 3f, (timer - 5f) / 10f));
+            // Adjust "Flames" start size to values between 0.01 and 0.1
+            SetStartSize(flames, Mathf.Lerp(0.01f, 0.1f, timer / 10f), Mathf.Lerp(0.1f, 3f, timer / 10f));
 
             // Adjust "Flames" velocity over lifetime for "Linear Y" to values between 0.4 and 0.1
-            SetVelocityOverLifetime(flames, new Vector3(0.1f, Mathf.Lerp(0.1f, 1.6f, (timer - 5f) / 10f), 0f));
+            SetVelocityOverLifetime(flames, new Vector3(0.1f, Mathf.Lerp(0.1f, 1.6f, timer / 10f), 0f));
 
             // Set speed modifier to 1
             SetSpeedModifier(flames, 1f);
 
             // Emission rate over time 0-15
-            SetEmissionRate(flames, Mathf.Lerp(1f, 15f, (timer - 5f) / 10f));
+            SetEmissionRate(flames, Mathf.Lerp(1f, 15f, timer / 10f));
         }
 
 
@@ -75,13 +82,13 @@ public class FireAnimationController : MonoBehaviour
             SetEmissionRate(flames, Mathf.Lerp(5f, 15f, (timer - 20f) / 30f));
         }*/
 
-        // From 10 to 20 seconds, grow "Flames Secondary" emission rate to 15
-        if (timer >= 10f && timer <= 20f)
+        // From 5 to 10 seconds, grow "Flames Secondary" emission rate to 15
+        if (timer >= 5f && timer <= 10f)
         {
-            SetEmissionRate(flamesSecondary, Mathf.Lerp(5f, 15f, (timer - 10f) / 10f));
+            SetEmissionRate(flamesSecondary, Mathf.Lerp(5f, 15f, (timer - 5f) / 5f));
 
-            // Set speed modifier to linearly change from 2 to 1 over time 10-20 seconds
-            SetSpeedModifier(flamesSecondary, Mathf.Lerp(2f, 1f, (timer - 10f) / 10f));
+            // Set speed modifier to linearly change from 2 to 1 over time 5-10 seconds
+            SetSpeedModifier(flamesSecondary, Mathf.Lerp(2f, 1f, (timer - 5f) / 5f));
         }
 
         // From 0 to 10 seconds, grow "Lights" emission rate to 15
@@ -90,10 +97,29 @@ public class FireAnimationController : MonoBehaviour
             SetEmissionRate(lights, Mathf.Lerp(0f, 15f, timer / 10f));
         }
 
-        // From 25 to 50 seconds, grow "Point LightFire" intensity from 0 to 2
-        if (timer > 25f && timer <= 50f)
+        // From 0 to 10 seconds, grow "Point LightFire" intensity from 0 to 2
+        if(timer >= 0f && timer <= 10f)
         {
-            SetPointLightIntensity(Mathf.Lerp(0f, 2f, (timer - 25f) / 25f));
+            SetPointLightIntensity(Mathf.Lerp(0f, 2f, timer / 10f));
+        }
+
+        // From 5 to 15 seconds, grow "Flames Secondary Ceiling" emission rate to 15
+        if (timer >= 5f && timer <= 15f)
+        {
+            // Reset the Particle System
+            flamesSecondaryCeiling.Clear();
+            flamesSecondaryCeiling.Play();
+
+            // Set emission rate to linearly change from 0 to 15 over time 5-15 seconds
+            SetEmissionRate(flamesSecondaryCeiling, Mathf.Lerp(0f, 15f, (timer - 5f) / 10f));
+
+            // Set speed modifier to linearly change from 2 to 1 over time 5-10 seconds
+            SetSpeedModifier(flamesSecondaryCeiling, Mathf.Lerp(2f, 1f, (timer - 5f) / 10f));
+        }
+        // From 5 to 15 seconds, grow "Point LightFire Ceiling" intensity from 0 to 2
+        if (timer >= 5f && timer <= 15f)
+        {
+            SetPointLightCeilingIntensity(Mathf.Lerp(0f, 2f, (timer - 5f) / 10f));
         }
     }
 
@@ -102,6 +128,10 @@ public class FireAnimationController : MonoBehaviour
     {
         var emissionModule = particleSystem.emission;
         emissionModule.rateOverTime = rate;
+    }
+    void SetPointLightCeilingIntensity(float intensity)
+    {
+        pointLightFireCeiling.intensity = intensity;
     }
 
     // Helper method to set the start size of a Particle System
@@ -123,7 +153,7 @@ public class FireAnimationController : MonoBehaviour
     }
 
     // Helper method to set the intensity of a Point Light
-    void SetPointLightIntensity(float intensity)
+    void SetPointLightIntensity (float intensity)
     {
         pointLightFire.intensity = intensity;
     }

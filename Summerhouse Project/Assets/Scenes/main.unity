@@ -3864,7 +3864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8023546d73139c343a7d3a62adcaf6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extinguishDistance: 0.5
+  extinguishDistance: 1
   extinquishFireText: {fileID: 74615363}
   fire1: {fileID: 1850177682}
   fire2: {fileID: 240090523}
@@ -3887,8 +3887,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5097351, y: 0.61501133, z: 0.53819275}
-  m_Center: {x: -0.013839722, y: -0.19249433, z: -0.013795853}
+  m_Size: {x: 0.57748413, y: 0.7628109, z: 1.318737}
+  m_Center: {x: -0.32463074, y: -0.1788077, z: -0.060216904}
 --- !u!114 &240090526
 MonoBehaviour:
   m_ObjectHideFlags: 0

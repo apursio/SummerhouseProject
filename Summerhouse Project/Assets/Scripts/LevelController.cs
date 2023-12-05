@@ -34,9 +34,11 @@ public class LevelController : MonoBehaviour
     public GameObject fire3;
     public GameObject fire4;
     public GameObject fire5;
+    public GameObject smoke4;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
+    public GameObject fog;
 
     // Start is called before the first frame update
 
@@ -68,10 +70,12 @@ public class LevelController : MonoBehaviour
         fire3.SetActive(false);
         fire4.SetActive(false);
         fire5.SetActive(false);
+        smoke4.SetActive(false);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(false);
+        fog.SetActive(false);
 
     StartCoroutine("countTaskTime");
     }
@@ -191,6 +195,8 @@ public class LevelController : MonoBehaviour
                     Debug.Log("Time up1, Fire should get out of control");
                     FireOutOfControl();
                     fire4.SetActive(true);
+                    smoke4.SetActive(true);
+                    fog.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level2)
@@ -288,6 +294,7 @@ public class LevelController : MonoBehaviour
             //GlobalVariableStorage.taskTimeLeft = 60;
             FireOutOfControl();
             fire3.SetActive(true);
+            //fog.SetActive(true);
             Debug.Log("to level 3");
             //ButtonEndGame.SetActive(true); // Call 112 button to be set visible later!
             //GlobalVariableStorage.fireIsOut = true;

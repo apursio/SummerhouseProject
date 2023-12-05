@@ -10,7 +10,8 @@ public class FireController : MonoBehaviour
     public GameObject fire1;
     public GameObject fire2;
     //GameObject fire3 = GlobalFireStorage.Instance.Fire3;
-    public GameObject fire4;
+    //public GameObject fire4;
+    //public GameObject fire5;
 
     private void Awake()
     {

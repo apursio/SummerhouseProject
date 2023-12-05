@@ -36,6 +36,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire5;
     public GameObject fire6;
     public GameObject smoke4;
+    public GameObject steam;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
@@ -74,6 +75,7 @@ public class LevelController : MonoBehaviour
         fire5.SetActive(false);
         fire6.SetActive(false);
         smoke4.SetActive(false);
+        steam.SetActive(true);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
@@ -272,6 +274,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.level1 = true;
             GlobalVariableStorage.taskTimeLeft = 60;
             tmpIfTime.enabled = true;
+            steam.SetActive(false);
             fire1.SetActive(true);
             DialogueBox0.SetActive(false);
             DialogueBox1.SetActive(true);

@@ -19,7 +19,7 @@ public class Safezone : MonoBehaviour
     private void Start()
     {
         savedItemPoints.Add("granny", 500);
-        savedItemPoints.Add("animal", 100);
+        savedItemPoints.Add("animal", 150);
         savedItemPoints.Add("badchoice", -50);
     }
 
@@ -28,7 +28,7 @@ public class Safezone : MonoBehaviour
     {
         if (GlobalVariableStorage.level3)
         {
-            if (!scoringProcessed && Input.GetKeyDown(KeyCode.P) || GlobalVariableStorage.taskTimeLeft <= 0)
+            if (!scoringProcessed && Input.GetKeyDown(KeyCode.P) || !scoringProcessed && GlobalVariableStorage.taskTimeLeft <= 0)
             {
                 scoringProcessed = true;
                 Debug.Log("P key pressed!");

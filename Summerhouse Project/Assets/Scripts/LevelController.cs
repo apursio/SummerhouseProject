@@ -32,6 +32,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire2;
     public GameObject fire3;
     public GameObject fire4;
+    public GameObject fire5;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
@@ -60,12 +61,12 @@ public class LevelController : MonoBehaviour
         endMsg.SetActive(false);
         CallText.enabled = false;
 
-
         GlobalVariableStorage.allOut = false;
         fire1.SetActive(false);
         fire2.SetActive(false);
         fire3.SetActive(false);
-        fire4 .SetActive(false);
+        fire4.SetActive(false);
+        fire5.SetActive(false);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
@@ -112,16 +113,24 @@ public class LevelController : MonoBehaviour
     void DisplayActionScore()
     {
         // Debug.Log("Display action score");
-        TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
+        if (GlobalVariableStorage.actionScore >= 0)
+        {
+            TextActionScore.text = "+" + GlobalVariableStorage.actionScore.ToString();
+        }
+        else
+        {
+            TextActionScore.text = GlobalVariableStorage.actionScore.ToString();
+        }
         TextActionScore.enabled = true;
-        ;
+        StartCoroutine("waitForSecond");
     }
 
-    
+
     IEnumerator waitForSecond()
     {
         yield return new WaitForSeconds(3f);
         TextTimeScore.enabled = false;
+        TextActionScore.enabled = false;
     }
 
     void DisplayPoints()
@@ -168,6 +177,7 @@ public class LevelController : MonoBehaviour
                     
                     Debug.Log("Fire is out level 1");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
@@ -185,11 +195,19 @@ public class LevelController : MonoBehaviour
             else if (GlobalVariableStorage.level2)
             {
                 //GlobalVariableStorage.taskTimeLeft = 60;
+                if (GlobalVariableStorage.scoreElectricityBox && GlobalVariableStorage.isKnobTurned)
+                {
+                    DisplayActionScore();
+                    GlobalVariableStorage.actionScore = 300;
+                    GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
+                    GlobalVariableStorage.scoreElectricityBox = false;
+                }
                 if (GlobalVariableStorage.fireIsOut)//(GlobalVariableStorage.fireIsOut)//
                 {
                     //GlobalVariableStorage.fireIsOut = true;
                     Debug.Log("Fire is out level 2");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
+                    DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
@@ -200,6 +218,7 @@ public class LevelController : MonoBehaviour
                 {
                     Debug.Log("Time up2, Fire should get out of control");
                     FireOutOfControl();
+                    fire5.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level3)
@@ -207,6 +226,7 @@ public class LevelController : MonoBehaviour
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.lastLevelDone)
                 {
+                    DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
@@ -296,9 +316,7 @@ public class LevelController : MonoBehaviour
         if(GlobalVariableStorage.safeTime == false) {
             DisplayTime(GlobalVariableStorage.taskTimeLeft);
         }
-        
         DisplayPoints();
-        DisplayActionScore();
     }
 }
 

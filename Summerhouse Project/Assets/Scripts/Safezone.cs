@@ -28,7 +28,7 @@ public class Safezone : MonoBehaviour
     {
         if (GlobalVariableStorage.level3)
         {
-            if (!scoringProcessed && Input.GetKeyDown(KeyCode.P) || !scoringProcessed && GlobalVariableStorage.taskTimeLeft <= 0)
+            if (!scoringProcessed && Input.GetKeyDown(KeyCode.R) || !scoringProcessed && GlobalVariableStorage.taskTimeLeft <= 0)
             {
                 scoringProcessed = true;
                 Debug.Log("P key pressed!");

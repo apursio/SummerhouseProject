@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 //using UnityEngine.UIElements;
 using UnityEngine.UI;
 using UnityEditor.Callbacks;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
@@ -223,9 +224,14 @@ public class LevelController : MonoBehaviour
             }
             else if (GlobalVariableStorage.level3)
             {
+                if(Input.GetKey(KeyCode.R)) 
+                {
+                    Call112();
+                }
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.lastLevelDone)
                 {
+
                     DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
@@ -235,6 +241,10 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.level3 = false;
                     //ScoreField.SetActive(true);
                     endMsg.SetActive(true);
+                    if (Input.GetKey(KeyCode.Space))
+                    {
+                        EndLevel(2);
+                    }
                     Time.timeScale = 0;
                 }
             }
@@ -305,9 +315,14 @@ public class LevelController : MonoBehaviour
 
     public void Call112()
     {
-        Debug.Log("Button clicked");
-        GlobalVariableStorage.allOut = true;
-        Debug.Log("112 called" +GlobalVariableStorage.allOut);
+        //Debug.Log("Button clicked");
+        GlobalVariableStorage.lastLevelDone = true;
+        Debug.Log("112 called" +GlobalVariableStorage.lastLevelDone);
+    }
+
+    public void EndLevel(int buildIndex)
+    {
+        SceneManager.LoadScene(buildIndex);
     }
 
     // Update is called once per frame

@@ -729,8 +729,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34410114}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 80
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -744,7 +744,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -11936,7 +11936,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!82 &428625449
@@ -17368,6 +17368,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4027228791024609348, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 997322766}
+    - targetCorrespondingSourceObject: {fileID: 4027228791024609348, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 997322771}
     - targetCorrespondingSourceObject: {fileID: 9103962308120395736, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 365765252}
@@ -24181,7 +24184,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &600958611
@@ -31137,7 +31140,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!4 &690409642 stripped
@@ -45236,7 +45239,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &997322767
@@ -45256,11 +45259,32 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4293751317952506913, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
+--- !u!65 &997322771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997322761}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.006011849, y: 0.0058286423, z: 0.0012651772}
+  m_Center: {x: -0.0011021614, y: -0.00000382075, z: 0.0053356993}
 --- !u!1001 &998130705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51280,7 +51304,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1001 &1153852116
@@ -51739,7 +51763,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &1174241526
@@ -52135,6 +52159,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011810544638, guid: 2c955ce5cc6b1a542900b51ed266259c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000010569510288, guid: 2c955ce5cc6b1a542900b51ed266259c, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -63069,6 +63097,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65000012874770740, guid: 9d10197870d1b0d4faefe30b1a81d689, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000012874770740, guid: 9d10197870d1b0d4faefe30b1a81d689, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -72257,6 +72293,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013091849974, guid: 9c7f97eb257571446a2c55ad625cac36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000011909244176, guid: 9c7f97eb257571446a2c55ad625cac36, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

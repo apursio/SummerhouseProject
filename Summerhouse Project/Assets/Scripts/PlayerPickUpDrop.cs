@@ -62,8 +62,6 @@ public class PlayerPickUpDrop : MonoBehaviour
                     if (grabbable != null)
                     {
                         pickUpPromptText.enabled = true;
-                        // You can also update the text content if needed
-                        // PickUpText.text = "Your custom text";
                     }
                     else
                     {

@@ -189,6 +189,9 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
                     GlobalVariableStorage.fireIsOut = false;
+                    
+                    yield return new WaitForSeconds(10f);
+                    
                     MoveToNextLevel();
                     //break;
                 }
@@ -220,6 +223,8 @@ public class LevelController : MonoBehaviour
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
+
+                    yield return new WaitForSeconds(10f);
                     MoveToNextLevel();
                     //break;
                 }
@@ -232,14 +237,9 @@ public class LevelController : MonoBehaviour
             }
             else if (GlobalVariableStorage.level3)
             {
-                if(Input.GetKey(KeyCode.R)) 
-                {
-                    Call112();
-                }
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.lastLevelDone)
                 {
-
                     DisplayActionScore();
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
@@ -258,7 +258,6 @@ public class LevelController : MonoBehaviour
             }
         }
     }
-
     void MoveToNextLevel()
     {
         // Your logic for moving to the next level goes here
@@ -291,15 +290,12 @@ public class LevelController : MonoBehaviour
         }
         else if (GlobalVariableStorage.level2)
         {
-            //GlobalVariableStorage.level2 = false;
-            //GlobalVariableStorage.level3 = true;
             //GlobalVariableStorage.taskTimeLeft = 60;
             FireOutOfControl();
             fire3.SetActive(true);
             fire6.SetActive(true);
             //fog.SetActive(true);
             Debug.Log("to level 3");
-            //ButtonEndGame.SetActive(true); // Call 112 button to be set visible later!
             //GlobalVariableStorage.fireIsOut = true;
         }
         else
@@ -321,13 +317,6 @@ public class LevelController : MonoBehaviour
         // Call 112 button to be set visible later!
         CallText.enabled = true;
         Debug.Log("OMG - to level 3");
-    }
-
-    public void Call112()
-    {
-        //Debug.Log("Button clicked");
-        GlobalVariableStorage.lastLevelDone = true;
-        Debug.Log("112 called" +GlobalVariableStorage.lastLevelDone);
     }
 
     public void EndLevel(int buildIndex)

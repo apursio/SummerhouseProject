@@ -2566,7 +2566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4100962096715416, guid: 9d95d61f077f93045afb3b743d45b14a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0244
+      value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 4100962096715416, guid: 9d95d61f077f93045afb3b743d45b14a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30746,7 +30746,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 675107074}
   lines:
-  - '!'
   - Fire has gone out of control! Save everything important!
   - 'Gather everything important at the front gate, then call 112 '
   - To call 112 press [R] key
@@ -80288,7 +80287,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1898691067}
   lines:
-  - '!'
   - The TV appears to be on fire
   - Find a away to put out the fire safely
   textSpeed: 0.0001

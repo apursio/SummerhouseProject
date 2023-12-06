@@ -80,13 +80,15 @@ public class LevelController : MonoBehaviour
         smoke5.SetActive(false);
         smoke6.SetActive(false);
         steam.SetActive(true);
+        DialogueBox0.SetActive(false);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(false);
+        DialogueBox0.SetActive(true);
         //fog.SetActive(false);
 
-    StartCoroutine("countTaskTime");
+        StartCoroutine("countTaskTime");
     }
 
     //IEnumerator updateLevel()

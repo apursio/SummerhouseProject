@@ -118,7 +118,7 @@ public class BackendHandler : MonoBehaviour
     {
         return log;
     }
-    */
+    
     public void PostGameResults()
     {
         HighScore hsItem = new HighScore();
@@ -160,5 +160,5 @@ public class BackendHandler : MonoBehaviour
             }
         }
     } 
-
+    */
 }

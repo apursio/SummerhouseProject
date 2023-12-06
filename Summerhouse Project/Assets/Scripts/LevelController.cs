@@ -36,11 +36,13 @@ public class LevelController : MonoBehaviour
     public GameObject fire5;
     public GameObject fire6;
     public GameObject smoke4;
+    public GameObject smoke5;
+    public GameObject smoke6;
     public GameObject steam;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
-    public GameObject fog;
+    //public GameObject fog;
     AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -75,12 +77,14 @@ public class LevelController : MonoBehaviour
         fire5.SetActive(false);
         fire6.SetActive(false);
         smoke4.SetActive(false);
+        smoke5.SetActive(false);
+        smoke6.SetActive(false);
         steam.SetActive(true);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(false);
-        fog.SetActive(false);
+        //fog.SetActive(false);
 
     StartCoroutine("countTaskTime");
     }
@@ -204,7 +208,7 @@ public class LevelController : MonoBehaviour
                     FireOutOfControl();
                     fire4.SetActive(true);
                     smoke4.SetActive(true);
-                    fog.SetActive(true);
+                    //fog.SetActive(true);
                 }
                 else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
                 {
@@ -212,7 +216,7 @@ public class LevelController : MonoBehaviour
                     FireOutOfControl();
                     fire4.SetActive(true);
                     smoke4.SetActive(true);
-                    fog.SetActive(true);
+                    //fog.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level2)
@@ -244,6 +248,7 @@ public class LevelController : MonoBehaviour
                     Debug.Log("Time up2, Fire should get out of control");
                     FireOutOfControl();
                     fire5.SetActive(true);
+                    smoke5.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level3)
@@ -303,6 +308,7 @@ public class LevelController : MonoBehaviour
             FireOutOfControl();
             fire3.SetActive(true);
             fire6.SetActive(true);
+            smoke6.SetActive(true);
             //fog.SetActive(true);
             Debug.Log("to level 3");
             //GlobalVariableStorage.fireIsOut = true;

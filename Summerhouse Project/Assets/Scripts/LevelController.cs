@@ -213,22 +213,14 @@ public class LevelController : MonoBehaviour
                     smoke4.SetActive(true);
                     //fog.SetActive(true);
                 }
-                else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
-                {
-                    Debug.Log("Time up1, Fire should get out of control");
-                    FireOutOfControl();
-                    fire4.SetActive(true);
-                    smoke4.SetActive(true);
-                    //fog.SetActive(true);
-                }
             }
             else if (GlobalVariableStorage.level2)
             {
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.scoreElectricityBox && GlobalVariableStorage.isKnobTurned)
                 {
-                    DisplayActionScore();
                     GlobalVariableStorage.actionScore = 300;
+                    DisplayActionScore();
                     GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
                     GlobalVariableStorage.scoreElectricityBox = false;
                 }
@@ -272,7 +264,6 @@ public class LevelController : MonoBehaviour
                     Time.timeScale = 0;
                 }
             }
-
         }
     }
     void MoveToNextLevel()
@@ -335,7 +326,6 @@ public class LevelController : MonoBehaviour
         DialogueBox1.SetActive(false);
         DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(true);
-        // Call 112 button to be set visible later!
         CallText.enabled = true;
         audioSource = GameObject.Find("FireAlarm").GetComponent<AudioSource>();
         audioSource.Play();

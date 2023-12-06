@@ -36,6 +36,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire5;
     public GameObject fire6;
     public GameObject smoke4;
+    public GameObject steam;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
@@ -46,7 +47,6 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
-        
         Time.timeScale = 1;
         //GlobalVariableStorage.timeLeft = initialTime;
         GlobalVariableStorage.taskTimeLeft = taskTime;
@@ -61,6 +61,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level3 = false;
         GlobalVariableStorage.scoreElectricityBox = false;
         GlobalVariableStorage.lastLevelDone = false;
+        GlobalVariableStorage.fireIsOutOfControl = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         endMsg.SetActive(false);
@@ -74,6 +75,7 @@ public class LevelController : MonoBehaviour
         fire5.SetActive(false);
         fire6.SetActive(false);
         smoke4.SetActive(false);
+        steam.SetActive(true);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
@@ -204,6 +206,14 @@ public class LevelController : MonoBehaviour
                     smoke4.SetActive(true);
                     fog.SetActive(true);
                 }
+                else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
+                {
+                    Debug.Log("Time up1, Fire should get out of control");
+                    FireOutOfControl();
+                    fire4.SetActive(true);
+                    smoke4.SetActive(true);
+                    fog.SetActive(true);
+                }
             }
             else if (GlobalVariableStorage.level2)
             {
@@ -269,6 +279,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.level1 = true;
             GlobalVariableStorage.taskTimeLeft = 60;
             tmpIfTime.enabled = true;
+            steam.SetActive(false);
             fire1.SetActive(true);
             DialogueBox0.SetActive(false);
             DialogueBox1.SetActive(true);
@@ -342,10 +353,13 @@ public class LevelController : MonoBehaviour
             DisplayTime(GlobalVariableStorage.taskTimeLeft);
         }
         DisplayPoints();
-        if (Input.GetKeyUp(KeyCode.Space))
+        if(GlobalVariableStorage.lastLevelDone)
         {
-            Debug.Log("Space key pressed");
-            EndLevel(2);
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Debug.Log("Space key pressed");
+                EndLevel(2);
+            }
         }
     }
 }

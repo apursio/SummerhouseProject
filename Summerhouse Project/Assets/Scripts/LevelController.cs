@@ -47,7 +47,6 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
-        
         Time.timeScale = 1;
         //GlobalVariableStorage.timeLeft = initialTime;
         GlobalVariableStorage.taskTimeLeft = taskTime;
@@ -62,6 +61,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level3 = false;
         GlobalVariableStorage.scoreElectricityBox = false;
         GlobalVariableStorage.lastLevelDone = false;
+        GlobalVariableStorage.fireIsOutOfControl = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         endMsg.SetActive(false);
@@ -197,6 +197,14 @@ public class LevelController : MonoBehaviour
                     
                     MoveToNextLevel();
                     //break;
+                }
+                else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
+                {
+                    Debug.Log("Time up1, Fire should get out of control");
+                    FireOutOfControl();
+                    fire4.SetActive(true);
+                    smoke4.SetActive(true);
+                    fog.SetActive(true);
                 }
                 else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
                 {
@@ -345,10 +353,13 @@ public class LevelController : MonoBehaviour
             DisplayTime(GlobalVariableStorage.taskTimeLeft);
         }
         DisplayPoints();
-        if (Input.GetKeyUp(KeyCode.Space))
+        if(GlobalVariableStorage.lastLevelDone)
         {
-            Debug.Log("Space key pressed");
-            EndLevel(2);
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Debug.Log("Space key pressed");
+                EndLevel(2);
+            }
         }
     }
 }

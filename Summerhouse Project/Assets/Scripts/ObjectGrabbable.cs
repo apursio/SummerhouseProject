@@ -6,26 +6,50 @@ public class ObjectGrabbable : MonoBehaviour
 {
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;
-    private Collider objectCollider;
+    private Collider objectCollider; // Store the object's collider
+    private Collider playerCollider; // Assuming the player has a collider
+    private Quaternion initialRotation; // Store the initial rotation of the object
+
     private void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
-        objectCollider = GetComponent<Collider>();
+        playerCollider = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>();
+
+        // Store the initial rotation of the object
+        initialRotation = objectRigidbody.rotation;
     }
+
     public void Grab(Transform objectGrabPointTransform)
     {
         this.objectGrabPointTransform = objectGrabPointTransform;
-        objectRigidbody.isKinematic = true;
+        objectCollider = GetComponent<Collider>(); // Store the object's collider
+
+       
         objectRigidbody.useGravity = false;
-        objectCollider.isTrigger = true;
+        objectRigidbody.isKinematic = true;
+        objectRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+
+        // Ignore collisions between the object and the player
+        Physics.IgnoreCollision(objectCollider, playerCollider, true);
+
+        objectRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     public void Drop()
     {
         this.objectGrabPointTransform = null;
-        objectRigidbody.isKinematic = false;
+
         objectRigidbody.useGravity = true;
-        objectCollider.isTrigger = false;
+        objectRigidbody.isKinematic = false;
+        objectRigidbody.interpolation = RigidbodyInterpolation.None;
+
+        // Restore collision between the object and the player
+        if (objectCollider != null)
+        {
+            Physics.IgnoreCollision(objectCollider, playerCollider, false);
+        }
+
+        objectRigidbody.constraints = RigidbodyConstraints.None;
     }
 
     private void FixedUpdate()
@@ -35,6 +59,8 @@ public class ObjectGrabbable : MonoBehaviour
             float lerpSpeed = 10f;
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
             objectRigidbody.MovePosition(newPosition);
+
+            objectRigidbody.rotation = initialRotation; // Set rotation directly
         }
     }
 }

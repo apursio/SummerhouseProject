@@ -40,6 +40,11 @@ public class BackendHandler2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyUp(KeyCode.Return))
+        {
+            PostGameResults();
+        }
+
         if (posted)
         {
             Restart(0);

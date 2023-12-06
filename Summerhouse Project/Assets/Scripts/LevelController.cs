@@ -36,6 +36,7 @@ public class LevelController : MonoBehaviour
     public GameObject fire5;
     public GameObject fire6;
     public GameObject smoke4;
+    public GameObject steam;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
@@ -46,7 +47,6 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
-        
         Time.timeScale = 1;
         //GlobalVariableStorage.timeLeft = initialTime;
         GlobalVariableStorage.taskTimeLeft = taskTime;
@@ -61,6 +61,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level3 = false;
         GlobalVariableStorage.scoreElectricityBox = false;
         GlobalVariableStorage.lastLevelDone = false;
+        GlobalVariableStorage.fireIsOutOfControl = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         endMsg.SetActive(false);
@@ -74,6 +75,7 @@ public class LevelController : MonoBehaviour
         fire5.SetActive(false);
         fire6.SetActive(false);
         smoke4.SetActive(false);
+        steam.SetActive(true);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
@@ -204,6 +206,14 @@ public class LevelController : MonoBehaviour
                     smoke4.SetActive(true);
                     fog.SetActive(true);
                 }
+                else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
+                {
+                    Debug.Log("Time up1, Fire should get out of control");
+                    FireOutOfControl();
+                    fire4.SetActive(true);
+                    smoke4.SetActive(true);
+                    fog.SetActive(true);
+                }
             }
             else if (GlobalVariableStorage.level2)
             {
@@ -250,13 +260,10 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.level3 = false;
                     //ScoreField.SetActive(true);
                     endMsg.SetActive(true);
-                    if (Input.GetKey(KeyCode.Space))
-                    {
-                        EndLevel(2);
-                    }
                     Time.timeScale = 0;
                 }
             }
+
         }
     }
     void MoveToNextLevel()
@@ -272,6 +279,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.level1 = true;
             GlobalVariableStorage.taskTimeLeft = 60;
             tmpIfTime.enabled = true;
+            steam.SetActive(false);
             fire1.SetActive(true);
             DialogueBox0.SetActive(false);
             DialogueBox1.SetActive(true);
@@ -324,8 +332,19 @@ public class LevelController : MonoBehaviour
 
     public void EndLevel(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex);
+        Debug.Log("EndLevel function called with build index: " + buildIndex);
+
+        if (SceneManager.GetSceneByBuildIndex(buildIndex) != null)
+        {
+            Debug.Log("Loading scene with build index: " + buildIndex);
+            SceneManager.LoadScene(buildIndex);
+        }
+        else
+        {
+            Debug.LogError("Invalid build index: " + buildIndex);
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -334,6 +353,14 @@ public class LevelController : MonoBehaviour
             DisplayTime(GlobalVariableStorage.taskTimeLeft);
         }
         DisplayPoints();
+        if(GlobalVariableStorage.lastLevelDone)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Debug.Log("Space key pressed");
+                EndLevel(2);
+            }
+        }
     }
 }
 

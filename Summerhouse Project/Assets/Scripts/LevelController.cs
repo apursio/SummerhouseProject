@@ -196,7 +196,8 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
                     GlobalVariableStorage.fireIsOut = false;
-                    
+                    DialogueBox1.SetActive(false);
+                    DialogueBox3.SetActive(true);
                     yield return new WaitForSeconds(10f);
                     
                     MoveToNextLevel();
@@ -238,7 +239,8 @@ public class LevelController : MonoBehaviour
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
-
+                    DialogueBox2.SetActive(false);
+                    DialogueBox3.SetActive(true);
                     yield return new WaitForSeconds(10f);
                     MoveToNextLevel();
                     //break;
@@ -298,6 +300,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.taskTimeLeft = 60;
             fire2.SetActive(true);
             DialogueBox1.SetActive(false);
+            DialogueBox3.SetActive(false);
             DialogueBox2.SetActive(true);
             Debug.Log("to level 2");
             GlobalVariableStorage.scoreElectricityBox = true;
@@ -328,6 +331,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.fireIsOutOfControl = true;
         GlobalVariableStorage.taskTimeLeft = 60;
         DialogueBox1.SetActive(false);
+        DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(true);
         // Call 112 button to be set visible later!
         CallText.enabled = true;

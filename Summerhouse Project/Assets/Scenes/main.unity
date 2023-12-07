@@ -80288,7 +80288,7 @@ MonoBehaviour:
   textComponent: {fileID: 1898691067}
   lines:
   - The TV appears to be on fire
-  - Find a away to put out the fire safely
+  - Find a away to turn off power and put out the fire safely
   textSpeed: 0.0001
 --- !u!114 &1760392262
 MonoBehaviour:
@@ -83883,7 +83883,7 @@ MonoBehaviour:
   TextTimeScore: {fileID: 418010184}
   TextActionScore: {fileID: 1036703121}
   initialTime: 200
-  taskTime: 20
+  taskTime: 40
   blanket: {fileID: 1174241521}
   extinguisher: {fileID: 1152222498}
   lid: {fileID: 997322761}

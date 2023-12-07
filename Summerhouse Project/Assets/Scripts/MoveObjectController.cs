@@ -21,7 +21,6 @@ public class MoveObjectController : MonoBehaviour
 
 	void Start()
 	{
-		Debug.Log("Script attached to: " + gameObject.name);
 		//Initialize moveDrawController if script is enabled.
 		player = GameObject.FindGameObjectWithTag("Player");
 

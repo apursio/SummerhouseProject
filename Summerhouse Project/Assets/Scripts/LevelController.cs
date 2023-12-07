@@ -200,7 +200,7 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.fireIsOut = false;
                     DialogueBox1.SetActive(false);
                     DialogueBox3.SetActive(true);
-                    yield return new WaitForSeconds(10f);
+                    yield return new WaitForSeconds(15f);
                     
                     MoveToNextLevel();
                     //break;
@@ -235,7 +235,7 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.taskTimeLeft = 0;
                     DialogueBox2.SetActive(false);
                     DialogueBox3.SetActive(true);
-                    yield return new WaitForSeconds(10f);
+                    yield return new WaitForSeconds(15f);
                     MoveToNextLevel();
                     //break;
                 }

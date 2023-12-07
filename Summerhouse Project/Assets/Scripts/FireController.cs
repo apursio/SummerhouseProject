@@ -39,7 +39,6 @@ public class FireController : MonoBehaviour
                     else
                     {
                         GlobalVariableStorage.fireIsOutOfControl = true;
-                        //fire4.SetActive(true);
                         Debug.Log("Fire is out of Control");
                     }
                     extinquishFireText.enabled = false;
@@ -76,7 +75,6 @@ public class FireController : MonoBehaviour
 
     private bool IsObjectGrabbableNearFire()
     {
-        // Debug.Log("Is Object Crabbable Near Fire");
         Collider fireCollider = GetComponent<Collider>();
 
         if (fireCollider == null)
@@ -86,30 +84,28 @@ public class FireController : MonoBehaviour
 
         // Find all objects with the ObjectGrabbable script
         ObjectGrabbable[] grabbableObjects = FindObjectsOfType<ObjectGrabbable>();
-        //Debug.Log("level 1: " + GlobalVariableStorage.level1);
+  
 
         // Check if any of the grabbable objects are close enough to the fire
         foreach (ObjectGrabbable grabbableObject in grabbableObjects)
         {
-            // Debug.Log("in forEach");
+          
             Collider objectGrabbableCollider = grabbableObject.GetComponent<Collider>();
             if (GlobalVariableStorage.level1)
             {
-                // Debug.Log("in Level1");
+            
                 if (objectGrabbableCollider != null &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
                     if (grabbableObject.CompareTag("lid") ||
                         grabbableObject.CompareTag("blanket"))
                     {
-                        Debug.Log("If level 1: lid or blanket");
                         GlobalVariableStorage.availableScore = 500;
                         extinquishFireText.enabled = true;
                         return true; // At least one object is close enough
                     }
                     else if (grabbableObject.CompareTag("extinguisher"))
                     {
-                        Debug.Log("If level 1: extinguisher");
                         GlobalVariableStorage.availableScore = 100;
                         extinquishFireText.enabled = true;
                         return true; // At least one object is close enough
@@ -117,7 +113,6 @@ public class FireController : MonoBehaviour
 
                     else if (grabbableObject.CompareTag("water"))
                     {
-                        Debug.Log("If level 1: water");
                         GlobalVariableStorage.availableScore = 0;
                         extinquishFireText.enabled = true;
                         waterUsed = true;
@@ -146,14 +141,13 @@ public class FireController : MonoBehaviour
                     grabbableObject.CompareTag("level3") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
-                    Debug.Log("If level 3 and crabbables");
                     extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }
             }
 
         }
-        //Debug.Log("Object crabbable false");
+      
         extinquishFireText.enabled = false;
         return false; // No object is close enough
     }

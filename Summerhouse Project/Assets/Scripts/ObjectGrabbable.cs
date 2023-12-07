@@ -28,6 +28,7 @@ public class ObjectGrabbable : MonoBehaviour
         objectRigidbody.useGravity = false;
         objectRigidbody.isKinematic = true;
         objectRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        objectCollider.isTrigger = true;
 
         // Ignore collisions between the object and the player
         Physics.IgnoreCollision(objectCollider, playerCollider, true);
@@ -42,6 +43,7 @@ public class ObjectGrabbable : MonoBehaviour
         objectRigidbody.useGravity = true;
         objectRigidbody.isKinematic = false;
         objectRigidbody.interpolation = RigidbodyInterpolation.None;
+        objectCollider.isTrigger = false;
 
         // Restore collision between the object and the player
         if (objectCollider != null)

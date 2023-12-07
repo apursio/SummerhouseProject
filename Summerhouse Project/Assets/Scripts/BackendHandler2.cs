@@ -11,13 +11,8 @@ using UnityEngine.SceneManagement;
 
 public class BackendHandler2 : MonoBehaviour
 {
-    //public TMP_Text highScoresTextArea;
-    //public TMP_Text logTextArea;
     public TMP_InputField playernameInput;
     public TMP_InputField scoreInput;
-    //bool updateHighScoreTextArea = false;
-    //private int fetchCounter = 0;
-    //string log = "";
     private bool posted;
 
     const string urlBackendHighScores = "https://niisku.lab.fi/~x119867/PHPBackend/api/highscores.php";
@@ -28,6 +23,7 @@ public class BackendHandler2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
         posted = false;
         scoreInput.text = GlobalVariableStorage.playerScore.ToString();
         playernameInput.interactable = true;
@@ -62,8 +58,6 @@ public class BackendHandler2 : MonoBehaviour
             hsItem.playername = playernameInput.text;
         }
         
-        //hsItem.playername = playernameInput.text;
-        //hsItem.score = float.Parse(scoreInput.text);
         hsItem.score = GlobalVariableStorage.playerScore;
 
         Debug.Log("PostGameResults button clicked: " + playernameInput.text + " with scores " + scoreInput.text);
@@ -83,7 +77,6 @@ public class BackendHandler2 : MonoBehaviour
             webRequest.SetRequestHeader("Content-Type", "application/json");
             webRequest.SetRequestHeader("Accept", "application/json");
 
-            //InsertToLog("POST request sent to " + uri);
 
             // Request and wait for reply
             yield return webRequest.SendWebRequest();
@@ -91,13 +84,11 @@ public class BackendHandler2 : MonoBehaviour
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                //InsertToLog("Error encountered in post request: " + webRequest.error);
                 Debug.Log("Error in post request: " + webRequest.error);
             }
             else
             {
                 string resultStr = Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-                //InsertToLog("POST request succesful");
                 Debug.Log("Received(UTF8): " + resultStr);
                 posted = true;
             }

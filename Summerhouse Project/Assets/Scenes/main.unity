@@ -2463,11 +2463,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1165726869}
   lines:
-  - '!'
-  - Bedroom curtains are on fire! It has gone out of control! Save everything important!
-  - 'Gather everything important at the front gate, then call 112 '
-  - To call 112 press [R] key
-  textSpeed: 0.01
+  - You put out the fire successfully
+  textSpeed: 0.0001
 --- !u!114 &126642288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2569,7 +2566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4100962096715416, guid: 9d95d61f077f93045afb3b743d45b14a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0244
+      value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 4100962096715416, guid: 9d95d61f077f93045afb3b743d45b14a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11622,7 +11619,7 @@ MonoBehaviour:
   lines:
   - It is late afternoon. You arrive at the summerhouse
   - Everything seems normal. Grandma has started cooking dinner
-  textSpeed: 0.01
+  textSpeed: 0.001
 --- !u!4 &345389383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2121115777601841395, guid: e334e6614ad50f749b0a37528784c614, type: 3}
@@ -30749,11 +30746,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 675107074}
   lines:
-  - '!'
   - Fire has gone out of control! Save everything important!
   - 'Gather everything important at the front gate, then call 112 '
   - To call 112 press [R] key
-  textSpeed: 0.001
+  textSpeed: 0.0001
 --- !u!114 &662025218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31939,12 +31935,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 40
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -39819,12 +39815,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 26
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -57685,11 +57681,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 22
   m_fontSizeMax: 26
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -59636,10 +59632,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1736973084}
   lines:
-  - '!'
   - You hear crackling sound... a fire has started in the kitchen!
   - Find a way to put out the fire
-  textSpeed: 0.01
+  textSpeed: 0.0001
 --- !u!114 &1270907494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79875,12 +79870,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 26
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -80292,9 +80287,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1898691067}
   lines:
-  - '!'
-  - You put out the fire but TV appears to be on fire
-  textSpeed: 0.01
+  - The TV appears to be on fire
+  - Find a away to put out the fire safely
+  textSpeed: 0.0001
 --- !u!114 &1760392262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81728,10 +81723,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 26
   m_fontStyle: 0

@@ -36,17 +36,19 @@ public class LevelController : MonoBehaviour
     public GameObject fire5;
     public GameObject fire6;
     public GameObject smoke4;
+    public GameObject smoke5;
+    public GameObject smoke6;
+    public GameObject steam;
     private int savePoints = 0;
     public GameObject endMsg;
     public TMP_Text CallText;
-    public GameObject fog;
+    //public GameObject fog;
     AudioSource audioSource;
 
     // Start is called before the first frame update
 
     void Start()
     {
-        
         Time.timeScale = 1;
         //GlobalVariableStorage.timeLeft = initialTime;
         GlobalVariableStorage.taskTimeLeft = taskTime;
@@ -61,6 +63,7 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.level3 = false;
         GlobalVariableStorage.scoreElectricityBox = false;
         GlobalVariableStorage.lastLevelDone = false;
+        GlobalVariableStorage.fireIsOutOfControl = false;
         TextTimeScore.enabled = false;
         TextActionScore.enabled = false;
         endMsg.SetActive(false);
@@ -74,13 +77,18 @@ public class LevelController : MonoBehaviour
         fire5.SetActive(false);
         fire6.SetActive(false);
         smoke4.SetActive(false);
+        smoke5.SetActive(false);
+        smoke6.SetActive(false);
+        steam.SetActive(true);
+        DialogueBox0.SetActive(false);
         DialogueBox1.SetActive(false);
         DialogueBox2.SetActive(false);
         DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(false);
-        fog.SetActive(false);
+        DialogueBox0.SetActive(true);
+        //fog.SetActive(false);
 
-    StartCoroutine("countTaskTime");
+        StartCoroutine("countTaskTime");
     }
 
     //IEnumerator updateLevel()
@@ -190,7 +198,8 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
                     GlobalVariableStorage.fireIsOut = false;
-                    
+                    DialogueBox1.SetActive(false);
+                    DialogueBox3.SetActive(true);
                     yield return new WaitForSeconds(10f);
                     
                     MoveToNextLevel();
@@ -202,7 +211,7 @@ public class LevelController : MonoBehaviour
                     FireOutOfControl();
                     fire4.SetActive(true);
                     smoke4.SetActive(true);
-                    fog.SetActive(true);
+                    //fog.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level2)
@@ -210,8 +219,8 @@ public class LevelController : MonoBehaviour
                 //GlobalVariableStorage.taskTimeLeft = 60;
                 if (GlobalVariableStorage.scoreElectricityBox && GlobalVariableStorage.isKnobTurned)
                 {
-                    DisplayActionScore();
                     GlobalVariableStorage.actionScore = 300;
+                    DisplayActionScore();
                     GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
                     GlobalVariableStorage.scoreElectricityBox = false;
                 }
@@ -224,7 +233,8 @@ public class LevelController : MonoBehaviour
                     DisplayTimeScore();
                     GlobalVariableStorage.playerScore += GlobalVariableStorage.timeScore;
                     GlobalVariableStorage.taskTimeLeft = 0;
-
+                    DialogueBox2.SetActive(false);
+                    DialogueBox3.SetActive(true);
                     yield return new WaitForSeconds(10f);
                     MoveToNextLevel();
                     //break;
@@ -234,6 +244,7 @@ public class LevelController : MonoBehaviour
                     Debug.Log("Time up2, Fire should get out of control");
                     FireOutOfControl();
                     fire5.SetActive(true);
+                    smoke5.SetActive(true);
                 }
             }
             else if (GlobalVariableStorage.level3)
@@ -250,10 +261,6 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.level3 = false;
                     //ScoreField.SetActive(true);
                     endMsg.SetActive(true);
-                    if (Input.GetKey(KeyCode.Space))
-                    {
-                        EndLevel(2);
-                    }
                     Time.timeScale = 0;
                 }
             }
@@ -272,6 +279,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.level1 = true;
             GlobalVariableStorage.taskTimeLeft = 60;
             tmpIfTime.enabled = true;
+            steam.SetActive(false);
             fire1.SetActive(true);
             DialogueBox0.SetActive(false);
             DialogueBox1.SetActive(true);
@@ -285,6 +293,7 @@ public class LevelController : MonoBehaviour
             GlobalVariableStorage.taskTimeLeft = 60;
             fire2.SetActive(true);
             DialogueBox1.SetActive(false);
+            DialogueBox3.SetActive(false);
             DialogueBox2.SetActive(true);
             Debug.Log("to level 2");
             GlobalVariableStorage.scoreElectricityBox = true;
@@ -295,6 +304,7 @@ public class LevelController : MonoBehaviour
             FireOutOfControl();
             fire3.SetActive(true);
             fire6.SetActive(true);
+            smoke6.SetActive(true);
             //fog.SetActive(true);
             Debug.Log("to level 3");
             //GlobalVariableStorage.fireIsOut = true;
@@ -314,8 +324,8 @@ public class LevelController : MonoBehaviour
         GlobalVariableStorage.fireIsOutOfControl = true;
         GlobalVariableStorage.taskTimeLeft = 60;
         DialogueBox1.SetActive(false);
+        DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(true);
-        // Call 112 button to be set visible later!
         CallText.enabled = true;
         audioSource = GameObject.Find("FireAlarm").GetComponent<AudioSource>();
         audioSource.Play();
@@ -324,8 +334,19 @@ public class LevelController : MonoBehaviour
 
     public void EndLevel(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex);
+        Debug.Log("EndLevel function called with build index: " + buildIndex);
+
+        if (SceneManager.GetSceneByBuildIndex(buildIndex) != null)
+        {
+            Debug.Log("Loading scene with build index: " + buildIndex);
+            SceneManager.LoadScene(buildIndex);
+        }
+        else
+        {
+            Debug.LogError("Invalid build index: " + buildIndex);
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -334,6 +355,14 @@ public class LevelController : MonoBehaviour
             DisplayTime(GlobalVariableStorage.taskTimeLeft);
         }
         DisplayPoints();
+        if(GlobalVariableStorage.lastLevelDone)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Debug.Log("Space key pressed");
+                EndLevel(2);
+            }
+        }
     }
 }
 

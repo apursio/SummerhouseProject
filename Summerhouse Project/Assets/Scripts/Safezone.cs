@@ -7,17 +7,11 @@ public class Safezone : MonoBehaviour
     public Transform targetArea; // Reference to the target area.
     public float detectionRadius = 8.0f; // Radius to detect if an item is near the target area
     private Dictionary<string, int> savedItemPoints = new Dictionary<string, int>();
-    private static bool scoringProcessed = false;
-
-    //[System.Serializable]
-    //private class SavedItemPoints
-    //{
-    //    private string itemTag; // Name of the item
-    //    private int points; // Points to add when this item is in the target area
-    //}
+    private static bool scoringProcessed;
 
     private void Start()
     {
+        scoringProcessed = false;
         savedItemPoints.Add("granny", 500);
         savedItemPoints.Add("animal", 150);
         savedItemPoints.Add("badchoice", -50);
@@ -72,15 +66,10 @@ public class Safezone : MonoBehaviour
                     string itemTag = kvp.Key;
                     int count = kvp.Value;
                     int points = savedItemPoints[itemTag] * count;
-
-                    // Saveable item is in the target area, add points or perform other actions
-                    Debug.Log($"{itemTag} in target area! Points added: {points}");
                     pointsCombined += points;
                 }
                 GlobalVariableStorage.actionScore = pointsCombined;
-                Debug.Log(pointsCombined);
                 GlobalVariableStorage.playerScore += GlobalVariableStorage.actionScore;
-                Debug.Log(GlobalVariableStorage.actionScore);
                 GlobalVariableStorage.lastLevelDone = true;
             }
         }

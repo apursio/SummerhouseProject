@@ -20,4 +20,15 @@ namespace Assets.Scripts
         public string playtime = "";
 
     }
+    [Serializable]
+    public class HighScoresDTO
+    {
+        public HighScoreDTO[] scores;
+    }
+    [Serializable]
+    public class HighScoreDTO
+    {
+        public string playername = "";
+        public float score = 0.0f;
+    }
 }

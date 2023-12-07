@@ -100,14 +100,12 @@ public class FireController : MonoBehaviour
                     if (grabbableObject.CompareTag("lid") ||
                         grabbableObject.CompareTag("blanket"))
                     {
-                        Debug.Log("If level 1: lid or blanket");
                         GlobalVariableStorage.availableScore = 500;
                         extinquishFireText.enabled = true;
                         return true; // At least one object is close enough
                     }
                     else if (grabbableObject.CompareTag("extinguisher"))
                     {
-                        Debug.Log("If level 1: extinguisher");
                         GlobalVariableStorage.availableScore = 100;
                         extinquishFireText.enabled = true;
                         return true; // At least one object is close enough
@@ -115,7 +113,6 @@ public class FireController : MonoBehaviour
 
                     else if (grabbableObject.CompareTag("water"))
                     {
-                        Debug.Log("If level 1: water");
                         GlobalVariableStorage.availableScore = 0;
                         extinquishFireText.enabled = true;
                         waterUsed = true;
@@ -144,7 +141,6 @@ public class FireController : MonoBehaviour
                     grabbableObject.CompareTag("level3") &&
                     Vector3.Distance(transform.position, objectGrabbableCollider.transform.position) <= extinguishDistance)
                 {
-                    Debug.Log("If level 3 and crabbables");
                     extinquishFireText.enabled = true;
                     return true; // At least one object is close enough
                 }

@@ -3492,11 +3492,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bb3763a445b5de4eb87236307133810, type: 3}
---- !u!4 &185440360 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
-  m_PrefabInstance: {fileID: 438005622}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &185843557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4921410234690962, guid: 460e632037d081d46ad6b150d763da86, type: 3}
@@ -18096,7 +18091,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 526745053}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       propertyPath: m_LocalScale.x
@@ -18112,15 +18107,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.842823
+      value: 32.092
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5608873
+      value: 0.9822998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.74379
+      value: 28.561
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18177,9 +18172,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4027228791024609348, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 997322765}
-    - targetCorrespondingSourceObject: {fileID: 4027228791024609348, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 997322767}
     - targetCorrespondingSourceObject: {fileID: 4027228791024609348, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 997322766}
@@ -19264,7 +19256,6 @@ Transform:
   - {fileID: 1749035282}
   - {fileID: 1035869104}
   - {fileID: 2084425309}
-  - {fileID: 185440360}
   - {fileID: 303355612}
   m_Father: {fileID: 883370692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30746,7 +30737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 675107074}
   lines:
-  - Fire has gone out of control! Save everything important!
+  - Curtains are on fire! It has gone out of control! Save everything important!
   - 'Gather everything important at the front gate, then call 112 '
   - To call 112 press [R] key
   textSpeed: 0.0001
@@ -31935,8 +31926,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -51201,28 +51192,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &997322767
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997322761}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4293751317952506913, guid: 7c6b161326854bb4d832b5bfb8cb77d2, type: 3}
 --- !u!65 &997322771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85230,6 +85199,7 @@ SceneRoots:
   - {fileID: 2066300028}
   - {fileID: 441344624}
   - {fileID: 883370692}
+  - {fileID: 438005622}
   - {fileID: 1959037228}
   - {fileID: 978249915}
   - {fileID: 1245602521}

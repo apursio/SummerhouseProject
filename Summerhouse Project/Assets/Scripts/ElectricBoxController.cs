@@ -4,10 +4,8 @@ using TMPro;
 
 public class ElectricBoxController : MonoBehaviour
 {
-    // Lisätty 26.11.
     public delegate void LightsToggleEventHandler(bool lightsOn);
     public static event LightsToggleEventHandler OnLightsToggle;
-    // lisätty 26.11.
     public float lidSmoothness = 5f;
     public float knobSmoothness = 5f;
     public float activationDistance = 1.0f;
@@ -18,7 +16,6 @@ public class ElectricBoxController : MonoBehaviour
     private string closeText = "Press [E] to close";
 
     private bool isLidOpen = false;
-    // private bool isKnobTurned = false;
 
     private bool canToggleLid = true;
     private bool canToggleKnob = false;
@@ -48,24 +45,11 @@ public class ElectricBoxController : MonoBehaviour
 
     void Update()
     {
-        // Original raycast direction calculation
-        // Vector3 originalDirection = (playerController.transform.position - transform.position).normalized;
         Vector3 directionToBox = (transform.position - playerController.transform.position).normalized;
-
-        // Rotate the original direction by 25 degrees to the left around the Y-axis
-        // float rotationAngle = 15f;
-        // Quaternion rotation = Quaternion.Euler(0, -rotationAngle, 0);
-        // Vector3 rotatedDirection = rotation * originalDirection;
-
-        // Visualize the ray with the rotated direction
-        // Debug.DrawRay(transform.position, rotatedDirection * activationDistance, Color.green);
         Debug.DrawRay(playerCameraTransform.position, playerCameraTransform.forward * activationDistance, Color.green);
 
-        // Use the interactableLayerMask in the Physics.Raycast
-        // if (Physics.Raycast(transform.position, rotatedDirection, out RaycastHit hit, activationDistance, interactableLayerMask))
         if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, activationDistance, interactableLayerMask))
         {
-            //Debug.Log("Ray hit an object!");
             if (raycastHit.collider.CompareTag("level2"))
             {
                 if (!isLidOpen)
@@ -97,8 +81,6 @@ public class ElectricBoxController : MonoBehaviour
                         canToggleKnob = false;
                         StartCoroutine(ToggleKnob());
                         FindObjectOfType<AudioManager>().Play("electricboxtoggle");
-                        //GlobalVariableStorage.actionScore = 600;
-                        //GlobalVariableStorage.playerScore = GlobalVariableStorage.playerScore + GlobalVariableStorage.actionScore;
                         isDynamicLightsEnabled = !isDynamicLightsEnabled;
                         ToggleDynamicLights();
                     }
@@ -147,10 +129,9 @@ public class ElectricBoxController : MonoBehaviour
         yield return StartCoroutine(MoveKnob(knobTargetRotation));
         canToggleKnob = true;
 
-        // Lisätty 26.11.
-        // Notify subscribers (other scripts) that lights were toggled
+ 
+        // Notify other scripts that lights were toggled
         OnLightsToggle?.Invoke(!GlobalVariableStorage.isKnobTurned);
-        // Lisätty 26.11.
     }
 
     IEnumerator MoveLid(Quaternion targetRotation)

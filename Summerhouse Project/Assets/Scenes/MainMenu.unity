@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -546,8 +546,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 292.9238, y: -107.53627}
-  m_SizeDelta: {x: 42.75, y: 25.7232}
+  m_AnchoredPosition: {x: 273.48163, y: -107.53627}
+  m_SizeDelta: {x: 81.6344, y: 25.7232}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &229111777
 MonoBehaviour:
@@ -3667,7 +3667,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScoresTextArea: {fileID: 2093816997}
-  logTextArea: {fileID: 407020534}
   playernameInput: {fileID: 380576200}
   scoreInput: {fileID: 1836282302}
 --- !u!4 &1366536175
@@ -4294,8 +4293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 561.2, y: -31.8}
-  m_SizeDelta: {x: 130, y: 25}
+  m_AnchoredPosition: {x: 526.7132, y: -31.795418}
+  m_SizeDelta: {x: 188.2359, y: 24.776}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1678518114
 MonoBehaviour:
@@ -4351,8 +4350,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5654,7 +5653,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 100
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
@@ -5676,7 +5675,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 59.371387, y: 0, z: -29.76786, w: 0}
+  m_margin: {x: 19.809254, y: 0, z: -17.86869, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

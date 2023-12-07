@@ -49,6 +49,7 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         Time.timeScale = 1;
         //GlobalVariableStorage.timeLeft = initialTime;
         GlobalVariableStorage.taskTimeLeft = taskTime;

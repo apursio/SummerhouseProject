@@ -17,7 +17,6 @@ public class Safezone : MonoBehaviour
         savedItemPoints.Add("badchoice", -50);
     }
 
-    //public SavedItemPoints[] itemPointValues; // Define point values for each item
     void Update()
     {
         if (GlobalVariableStorage.level3)
@@ -25,7 +24,6 @@ public class Safezone : MonoBehaviour
             if (!scoringProcessed && Input.GetKeyDown(KeyCode.R) || !scoringProcessed && GlobalVariableStorage.taskTimeLeft <= 0)
             {
                 scoringProcessed = true;
-                Debug.Log("P key pressed!");
                 Dictionary<string, int> itemCounts = new Dictionary<string, int>();
                 int pointsCombined = 0;
                 bool grannyPresent = false; // to check if granny is saved

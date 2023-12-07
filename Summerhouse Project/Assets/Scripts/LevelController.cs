@@ -83,7 +83,6 @@ public class LevelController : MonoBehaviour
         DialogueBox3.SetActive(false);
         DialogueBox4.SetActive(false);
         DialogueBox0.SetActive(true);
-        
 
         StartCoroutine("countTaskTime");
     }
@@ -158,7 +157,6 @@ public class LevelController : MonoBehaviour
             {
                 if (GlobalVariableStorage.fireIsOut)
                 {
-                    
                     Debug.Log("Fire is out level 1");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayActionScore();
@@ -168,10 +166,8 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.fireIsOut = false;
                     DialogueBox1.SetActive(false);
                     DialogueBox3.SetActive(true);
-                    yield return new WaitForSeconds(15f);
-                    
+                    yield return new WaitForSeconds(15f); // the next fire doesn't start immediately
                     MoveToNextLevel();
-                    
                 }
                 else if (GlobalVariableStorage.taskTimeLeft <= 0 || GlobalVariableStorage.fireIsOutOfControl) // if the time runs out, fire gets out of control
                 {
@@ -179,7 +175,6 @@ public class LevelController : MonoBehaviour
                     FireOutOfControl();
                     fire4.SetActive(true);
                     smoke4.SetActive(true);
-                   
                 }
             }
             else if (GlobalVariableStorage.level2)
@@ -193,8 +188,7 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.scoreElectricityBox = false;
                 }
                 if (GlobalVariableStorage.fireIsOut)
-                {
-                    
+                {  
                     Debug.Log("Fire is out level 2");
                     Debug.Log("Task time left " + GlobalVariableStorage.taskTimeLeft);
                     DisplayActionScore();
@@ -203,7 +197,7 @@ public class LevelController : MonoBehaviour
                     GlobalVariableStorage.taskTimeLeft = 0;
                     DialogueBox2.SetActive(false);
                     DialogueBox3.SetActive(true);
-                    yield return new WaitForSeconds(15f);
+                    yield return new WaitForSeconds(15f); // the next fire doesn't start immediately
                     MoveToNextLevel();
                    
                 }
@@ -268,7 +262,6 @@ public class LevelController : MonoBehaviour
             fire3.SetActive(true);
             fire6.SetActive(true);
             smoke6.SetActive(true);
- 
             Debug.Log("to level 3");
         }
         else
@@ -290,7 +283,6 @@ public class LevelController : MonoBehaviour
         CallText.enabled = true;
         audioSource = GameObject.Find("FireAlarm").GetComponent<AudioSource>();
         audioSource.Play();
-        Debug.Log("OMG - to level 3");
     }
 
     public void EndLevel(int buildIndex)

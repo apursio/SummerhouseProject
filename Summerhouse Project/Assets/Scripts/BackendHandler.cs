@@ -11,12 +11,11 @@ using System.Text;
 public class BackendHandler : MonoBehaviour
 {
     public TMP_Text highScoresTextArea;
-    //public TMP_Text logTextArea;
     public TMP_InputField playernameInput;
     public TMP_InputField scoreInput;
     bool updateHighScoreTextArea = false;
     private int fetchCounter = 0;
-    //string log = "";
+
    
     const string urlBackendHighScores = "https://niisku.lab.fi/~x119867/PHPBackend/api/highscores.php";
 
@@ -26,20 +25,13 @@ public class BackendHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {         
-        //Debug.Log("BackendHandler started");
-        FetchHighScoresJSON();
-        // conversion from JSON to object
-        // hs = JsonUtility.FromJson<HighScores>(jsonTestStr);       
-        // Debug.Log("HighScores name: " + hs.scores[0].playername);  
-        // conversion from object to JSON
-        // Debug.Log("HighScores as json: " + JsonUtility.ToJson(hs));     
+        FetchHighScoresJSON();   
     }
 
     
     // Update is called once per frame
     void Update()
     {
-        //logTextArea.text = log;
 
         if (updateHighScoreTextArea)
         {
@@ -94,10 +86,7 @@ public class BackendHandler : MonoBehaviour
                 // create HighScore item from json string
                 hs = JsonUtility.FromJson<HighScores>(resultStr);
                 updateHighScoreTextArea = true;
-                //InsertToLog("Response received succesfully ");
-                //Debug.Log("Received(UTF8): " + resultStr);
-                //Debug.Log("Received(HS): " + JsonUtility.ToJson(hs));
-                //Debug.Log("Received(HS) name: " + hs.scores[0].playername);
+                
             }
         }
     }
@@ -105,60 +94,7 @@ public class BackendHandler : MonoBehaviour
     public void FetchHighScoresJSON() 
     {
         fetchCounter++;
-        //Debug.Log("FetchHighScoresJSON button clicked");
         StartCoroutine(GetRequestForHighScores(urlBackendHighScores));
     }
-    /*
-    string InsertToLog(string s)
-    {
-        return log = "[" + fetchCounter + "]" + s + "\n" + log;
-    }
-
-    string GetLog() 
-    {
-        return log;
-    }
-    
-    public void PostGameResults()
-    {
-        HighScore hsItem = new HighScore();
-        hsItem.playername = playernameInput.text;
-        //hsItem.score = float.Parse(scoreInput.text);
-        hsItem.score = GlobalVariableStorage.playerScore;
-
-        Debug.Log("PostGameResults button clicked: " + playernameInput.text + " with scores " + scoreInput.text);
-        Debug.Log("hsItem: " + JsonUtility.ToJson(hsItem)); 
-        StartCoroutine(PostRequestForHighScores(urlBackendHighScores, hsItem));
-    }
-
-    IEnumerator PostRequestForHighScores(string uri, HighScore hsItem)
-    {
-
-        string jsonPayload = JsonUtility.ToJson(hsItem);
-        using (UnityWebRequest webRequest = new UnityWebRequest(uri, "POST"))
-        {
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonPayload);
-            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            webRequest.downloadHandler = new DownloadHandlerBuffer();
-            webRequest.SetRequestHeader("Content-Type", "application/json");
-            webRequest.SetRequestHeader("Accept", "application/json");
-
-            //InsertToLog("POST request sent to " + uri);
-
-            // Request and wait for reply
-            yield return webRequest.SendWebRequest();
-            // get raw data and convert it to string
-            
-            if (webRequest.result != UnityWebRequest.Result.Success) { 
-                //InsertToLog("Error encountered in post request: " + webRequest.error);
-                Debug.Log("Error in post request: " + webRequest.error);
-            }
-            else{
-                string resultStr = Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-                //InsertToLog("POST request succesful");
-                Debug.Log("Received(UTF8): " + resultStr);
-            }
-        }
-    } 
-    */
+   
 }

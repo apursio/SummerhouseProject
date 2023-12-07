@@ -30746,7 +30746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 675107074}
   lines:
-  - Fire has gone out of control! Save everything important!
+  - Curtains are on fire! It has gone out of control! Save everything important!
   - 'Gather everything important at the front gate, then call 112 '
   - To call 112 press [R] key
   textSpeed: 0.0001
@@ -31935,8 +31935,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
